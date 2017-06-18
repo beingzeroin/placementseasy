@@ -5,8 +5,8 @@
 ### Pre-Requisites
 Install NodeJS
 Install Bower and Nodemon globally
-npm install -g nodemon
-npm install -g bower
+1. npm install -g nodemon
+2. npm install -g bower
 
 ### Execution
 1. Clone the Repository
