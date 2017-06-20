@@ -7,6 +7,8 @@ peMod.config(function($routeProvider) {
         .when('/company', { templateUrl: '/partials/company.html', controller: 'compayWiseCtrl' })
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
         .when('/dashboard', { templateUrl: '/partials/dashboard.html' })
+        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
+        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
 });
@@ -22,3 +24,7 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
             $scope.error = error;
         });
 }]);
+
+/* SATYA START*/
+$(document).ready(function() { $("#input").cleditor(); });
+/* SATYA END*/
