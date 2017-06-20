@@ -1,0 +1,84 @@
+
+            <div class="container">
+                <div class="jumbotron" >
+                    <h1>Your Score Card</h1>
+                </div> 
+               <div class="row">
+                   <div class="col-md-3">
+                       <h3>Attempted</h3>
+                   </div>
+                       <div class="col-md-3">
+                       <h3>correct</h3>
+                   </div>
+                       <div class="col-md-3">
+                       <h3>Incorrect</h3>
+                   </div>
+                       <div class="col-md-3">
+                       <h3>Not Attempted</h3>
+                   </div>
+                     <div class="row">
+                            <div class="col-md-3">
+                            {{Attempted}}
+                           </div>
+                           <div class="col-md-3">
+                            {{correct}}
+                          </div>
+                            <div class="col-md-3">
+                            {{inCorrect}}
+                           </div>
+                            <div class="col-md-3">
+                             {{NotAttempted}}
+                             </div>
+                   </div>
+
+                </div>
+                <div>
+                    <br>
+                    <br>
+    Change the speed in the dropdown to see the dial position change
+    <select id="myList" onchange="redraw();">
+      <option value="90">Speed = 90</option>
+      <option value="30">Speed = 30</option>
+      <option value="50">Speed = 50</option>
+      <option value="60">Speed = 60</option>
+      <option value="140">Speed = 140</option>
+      <option value="160">Speed = 160</option>
+    </select>
+    </div>
+     <div>           
+    <canvas class="canvas" id="myCanvas" width="600" height="600"-->
+    </div>
+
+         <div class="row">
+             <div class="col-md-3">
+                  <h3>Your Score :</h3>
+            </div>
+            <div class="col-md-1">
+                  <h3>{{score}}</h3> 
+             </div>
+         </div> 
+
+         <div>
+             <label><h1>Correct Answer and Explanation</h1></label>
+         </div>
+
+
+
+         <div class="row" >
+             <div class="col-md-1" ng-repeat="q in questions">
+                 <button type="button" class="btn btn-default">{{q.No}}</button>
+             </div>
+
+          </div>
+
+
+         </div>
+
+
+         </div>
+         <form>
+        <div class="form-group">
+          <label for="exp"><h3>Explanation</h3></label>
+          <textarea class="form-control" placeholder="Explanation" rows="5" id="exp"></textarea>
+        </div>
+      </form>
