@@ -1,0 +1,119 @@
+<!-- <script src="js/peasy.js"></script>-->
+<div class="header" align="center">
+    <h1>Author a Test</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            Test Title:</div>
+        <div class="col-md-10"><input type="text" ng-model="name" placeholder="enter test name">
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">Company:</div>
+        <div class="col-md-10">
+
+            <select>
+  <option value="INFOSYS">INFOSYS</option>
+  <option value="AMAZON">AMAZON</option>
+  <option value="TCS">TCS</option>
+  <option value="GOOGLE">GOOGLE</option>
+            <option value="MICROSOFT">MICROSOFT</option>
+            <option value="ACCENTURE">ACCENTURE</option>
+            <option value="HCL">HCL</option>
+</select>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">Questions</div>
+            <div class="col-md-10"><input type="text" ng-model="number" placeholder="enter no.of questions">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <h5> INSTRUCTIONS</h5>
+        </div>
+        <div class="row">
+            <ul>
+                <li>
+                    It is a time bounded exam.</li>
+                <li>
+                    Each question has 4 options.</li>
+                <li>
+                    Candidate can chnage answer till the end of time.</li>
+            </ul>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div ng-controller="TimepickerDemoCtrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    Start Time:</div>
+                <div class="col-md-10">
+
+                    <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button></div>
+                <!--<button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>-->
+                <div class="col-md-9"><button type="button" class="btn btn-danger" ng-click="clear()">Clear</button></div>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+
+<div ng-controller="TimepickerDemo">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                End Time:</div>
+            <div class="col-md-10">
+
+                <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button></div>
+            <!--<button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>-->
+            <div class="col-md-9"><button type="button" class="btn btn-danger" ng-click="clear()">Clear</button></div>
+        </div>
+    </div>
+</div>
+
+
+
+<br><br>
+<div class="container">
+    <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-primary">Add Question</a>
+        <a href="#" class="btn btn-primary">Edit Question</a>
+        <a href="#" class="btn btn-primary">Delete Question</a>
+    </div>
+</div>
