@@ -23,7 +23,9 @@ app.get('/', function(req, res) {
 app.get('/partials/:partialPath', function(req, res) {
     res.sendFile(__dirname + '/frontend/partials/' + req.params.partialPath)
 })
-
+app.get('/data/:dataFileName', function(req, res) {
+    res.sendFile(__dirname + '/frontend/static/data/' + req.params.dataFileName)
+})
 app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })

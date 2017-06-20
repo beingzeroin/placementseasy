@@ -1,0 +1,30 @@
+[{
+        "companyName": "TCS",
+        "durationInMinutes": 2
+    },
+
+    {
+        "companyName": "WIPRO",
+        "durationInMinutes": 2
+    },
+
+    {
+        "companyName": "SATYAM",
+        "durationInMinutes": 2
+    },
+
+    {
+        "companyName": "HCL",
+        "durationInMinutes": 2
+    },
+
+    {
+        "companyName": "INFOSYS",
+        "durationInMinutes": 2
+    },
+
+    {
+        "companyName": "ACCENTURE",
+        "durationInMinutes": 2
+    }
+]
