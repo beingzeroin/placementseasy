@@ -64,186 +64,20 @@ peMod.controller('TimepickerDemo', function($scope, $log) {
 });
 
 /* AJAY START */
-peMod.controller('quizSummaryCtrl', function($scope) {
+peMod.controller('quizSummaryCtrl', function($scope, $http) {
 	draw(120);
     $scope.score=40;
     $scope.Attempted=50;
     $scope.correct=40;
     $scope.inCorrect= 10;
     $scope.NotAttempted= 50;
-    $scope.questions= [
-  {
-    "No": "1",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is : read only"
-  },
-  {
-    "No": "2",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-     
-  {
-    "No": "3",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-             
-  {
-    "No": "4",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-  {
-    "No": "5",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-  {
-    "No": "6",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-  {
-    "No": "7",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-  {
-    "No": "8",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },           
-  {
-    "No": "9",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
- {
-    "No": "10",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  }, 
-      {
-    "No": "11",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-  {
-    "No": "12",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-         {
-    "No": "13",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-         {
-    "No": "14",
-    "title": "work and energy",
-    "description": "this is my first question",
-    "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
-    ],
-    "Explanation": "Correct Answer is :    skip only"
-  },
-];
-        
+
+	$http.get('/data/quiz-summary-data.json')
+	.then(function(response) {
+		$scope.questions = response.data;
+	}, function(error) {
+		$scope.error = error;
+	});
    
     function redraw()
     {
