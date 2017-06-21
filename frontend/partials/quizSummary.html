@@ -65,20 +65,17 @@
 
 
          <div class="row" >
-             <div class="col-md-1" ng-repeat="q in questions">
-                 <button type="button" class="btn btn-default">{{q.No}}</button>
+             <div class="col-md-1" ng-repeat="q in questions" >
+                 <button type="button" class="btn btn-default " ng-click="showDetails(q)">{{q.No}}</button>
              </div>
-
           </div>
-
-
          </div>
-
-
          </div>
          <form>
+             <br>
+             <br>
         <div class="form-group">
           <label for="exp"><h3>Explanation</h3></label>
-          <textarea class="form-control" placeholder="Explanation" rows="5" id="exp"></textarea>
+          <textarea class="form-control" placeholder="Explanation" rows="5" id="exp" ng-model=selectedQuestion.No+selectedQuestion.title+selectedQuestion.description+selectedQuestion.options+selectedQuestion.Explanation></textarea>
         </div>
       </form>

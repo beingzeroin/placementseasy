@@ -13,15 +13,15 @@
   },
   {
     "No": "2",
-    "title": "work and energy",
-    "description": "this is my first question",
+    "title": "\n work and energy",
+    "description": "\nthis is my Second question",
     "options": [
-      "read only",
-      "skip now",
-      "do now",
-      "take rest"
+      "\nread only",
+      "\nskip now",
+      "\ndo now",
+      "\ntake rest"
     ],
-    "Explanation": "Correct Answer is :    skip only"
+    "Explanation": "\nCorrect Answer is :    skip only"
   },
      
   {

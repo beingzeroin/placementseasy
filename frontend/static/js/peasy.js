@@ -78,6 +78,9 @@ peMod.controller('quizSummaryCtrl', function($scope, $http) {
 	}, function(error) {
 		$scope.error = error;
 	});
+     $scope.showDetails = function(quesNo){
+      $scope.selectedQuestion = quesNo;
+     }
    
     function redraw()
     {
