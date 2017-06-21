@@ -11,52 +11,67 @@
 </head>
 
 <body ng-cloak>
-    <div class="navabar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand">Placement Easy</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="#!/dashboard">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#!/company">Company Wise</a>
-                    </li>
-                    <li>
-                        <a href="#!/topicwise">Topic Wise</a>
-                    </li>
-                    <li>
-                        <a href="#!/authortest">Author Test</a>
-                    </li>
-                    <li>
-                        <a href="#!/addInterviewExperience">Add IE</a>
-                    </li>
-                    <li>
-                        <a href="#!/viewInterviewExperience">View IE</a>
-                    </li>
-                    <li>
-                        <a href="#!/takeQuiz">Take Quiz</a>
-                    </li>
-                    <li>
-                        <a href="#!/quizSummary">Quiz Summary</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <a href="#!/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="#!/register">Register</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            <a href="/" class="navbar-brand">Placement Easy</a>
         </div>
-    </div>
+        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="#!/dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <div class="btn-group pull-right dropdown" uib-dropdown>
+                        <a class="dropdown btn btn-danger" role="menuitem" id="btn-append-to-body" uib-dropdown-toggle>
+                            More <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+                            <li>
+                                <a href="#!/company">Company Wise</a>
+                            </li>
+                            <li>
+                                <a href="#!/topicwise">Topic Wise</a>
+                            </li>
+                            <li>
+                                <a href="#!/authortest">Author Test</a>
+                            </li>
+                            <li>
+                                <a href="#!/addInterviewExperience">Add IE</a>
+                            </li>
+                            <li>
+                                <a href="#!/viewInterviewExperience">View IE</a>
+                            </li>
+                            <li>
+                                <a href="#!/takeQuiz">Take Quiz</a>
+                            </li>
+                            <li>
+                                <a href="#!/quizSummary">Quiz Summary</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li role="menuitem"><a href="#!/invalid">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="#!/login">Login</a>
+                </li>
+                <li>
+                    <a href="#!/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <section class="container">
         <div class="ng-view">
 

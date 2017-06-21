@@ -9,6 +9,14 @@ mainpage {
     margin-top: 0px
 }
 
+.horizontal-collapse {
+    height: 70px;
+}
+
+.navbar-collapse.in {
+    overflow-y: hidden;
+}
+
 
 /* COMMON END */
 
