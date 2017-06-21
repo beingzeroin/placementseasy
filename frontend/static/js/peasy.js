@@ -14,7 +14,7 @@ peMod.config(function($routeProvider) {
         .when('/dashboard', { templateUrl: '/partials/dashboard.html' })
         .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
-	    .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
+        .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
 });
@@ -69,23 +69,23 @@ peMod.controller('TimepickerDemo', function($scope, $log) {
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function($scope, $http) {
-	draw(120);
-    $scope.score=40;
-    $scope.Attempted=50;
-    $scope.correct=40;
-    $scope.inCorrect= 10;
-    $scope.NotAttempted= 50;
+    draw(120);
+    $scope.score = 40;
+    $scope.Attempted = 50;
+    $scope.correct = 40;
+    $scope.inCorrect = 10;
+    $scope.NotAttempted = 50;
 
-	$http.get('/data/quiz-summary-data.json')
-	.then(function(response) {
-		$scope.questions = response.data;
-	}, function(error) {
-		$scope.error = error;
-	});
-     $scope.showDetails = function(quesNo){
-      $scope.selectedQuestion = quesNo;
-     }
-   
+    $http.get('/data/quiz-summary-data.json')
+        .then(function(response) {
+            $scope.questions = response.data;
+        }, function(error) {
+            $scope.error = error;
+        });
+    $scope.showDetails = function(quesNo) {
+        $scope.selectedQuestion = quesNo;
+    }
+
 
     function redraw() {
         draw(document.getElementById("myList").value);
@@ -357,23 +357,24 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
 			$("#txtEditor2").Editor();
 		});
 */
-peMod.controller('addQtnCtrl',['$http','$scope',function($http,$scope){
+peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
+    $("#txtEditor1").Editor();
+    $("#txtEditor2").Editor();
+    $scope.addQuestionFn = function() {
+        var qn = $scope.qn;
+        $http({
+                url: '/question/api',
+                method: "POST",
+                data: qn
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify(qn));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(qn));
+                });
+    }
 
-	$scope.addQuestionFn = function(){
-		var qn=$scope.qn;
-		$http({
-			url: '/question/api',
-			method: "POST",
-			data: qn
-		})
-		.then(function(response){
-					console.log("SUCCESS"+JSON.stringify(qn));
-		},
-			 function(error){
-					console.log("FAILURE"+JSON.stringify(qn));
-		});
-	}
-	
 }]);
 
 /* VAMSHI END */
