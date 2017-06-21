@@ -3,10 +3,20 @@
 body {
     padding-top: 60px;
     margin: 0px 0px 0px 0px;
+    font-family: 'Segoe UI', sans-serif;
+    margin: auto;
 }
 
 mainpage {
     margin-top: 0px
+}
+
+.horizontal-collapse {
+    height: 70px;
+}
+
+.navbar-collapse.in {
+    overflow-y: hidden;
 }
 
 
@@ -73,3 +83,287 @@ mainpage {
 
 
 /* -- SUPRIYA  END -- */
+
+
+/* QUIZ TAKING */
+
+* {
+    border-radius: 0px !important;
+}
+
+h1 {
+    color: #740808;
+    font-weight: normal;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    background: none;
+    margin-bottom: 2px;
+}
+
+.header-right {
+    padding-top: 12px;
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.question {
+    background-color: #eee;
+    color: #151569;
+    min-height: 300px;
+    text-align: center;
+}
+
+.option {
+    background-color: #cadaee;
+    font-size: 20px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.option label {
+    font-weight: normal;
+}
+
+#quiz .options input[type=checkbox] {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    height: 22px;
+    width: 22px;
+}
+
+.quizNav {
+    margin: auto;
+    text-align: center;
+}
+
+.quizNav ul {
+    margin: 0;
+}
+
+.quizNav ul li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+div.review {
+    text-align: center;
+}
+
+div.review>div {
+    cursor: pointer;
+}
+
+.answered {
+    background-color: #ccffcc;
+    border: 1px solid #aaeeaa;
+    margin: 2px 0;
+    padding: 12px;
+}
+
+.not-answered {
+    background-color: #ffcccc;
+    border: 1px solid #eeaaaa;
+    margin: 2px 0;
+    padding: 12px;
+}
+
+.result-question {
+    background-color: #eee;
+    margin: 4px;
+    padding: 6px;
+}
+
+
+/* Create Quiz Styles */
+
+.create-quiz .question {
+    text-align: left;
+}
+
+.create-quiz input[type=text] {
+    border: 1px solid #ddd;
+    width: 95%;
+}
+
+.create-quiz .tb-quiz-name {
+    background-color: #ccffcc;
+    text-align: center;
+}
+
+.create-quiz .tb-desc {
+    background-color: #fff;
+}
+
+.create-quiz .options>div {
+    margin-left: 20px;
+}
+
+.create-quiz .options input[type=checkbox] {
+    border: 1px solid #262626;
+    display: inline-block;
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 0;
+    width: 20px;
+    -webkit-appearance: checkbox;
+}
+
+@media only screen and (max-width: 480px) {
+    h1,
+    .h1 {
+        font-size: 22px;
+    }
+    h2,
+    .h2 {
+        font-size: 20px;
+    }
+    h3,
+    .h3 {
+        font-size: 18px;
+    }
+    .option {
+        font-size: 16px;
+        padding: 6px;
+    }
+}
+
+
+/* QUIZ TAKING END*/
+
+/* -- VAMSHI -- */
+
+
+.funkyradio div {
+  clear: both;
+  overflow: hidden;
+}
+
+.funkyradio label {
+  width: 11%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before,
+.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #337ab7;
+}
+
+.funkyradio-success input[type="radio"]:checked ~ label:before,
+.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5cb85c;
+}
+
+.funkyradio-danger input[type="radio"]:checked ~ label:before,
+.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
+.funkyradio-info input[type="radio"]:checked ~ label:before,
+.funkyradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+}
+
+.qDiffLevelRadio {
+	display: inline;
+}
+
+.qCorrectOptionRadio {
+	display: inline;
+}
+
+
+/* -- VAMSHI -- */

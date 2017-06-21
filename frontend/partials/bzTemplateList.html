@@ -1,0 +1,38 @@
+<h1>All Templates</h1>
+<div class="row">
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+        <div class="col-md-2">
+            <a href="#!/bzTemplateAdd" class="btn btn-info"> Add Template</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>All Templates</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">SR </th>
+                    <th class="col-md-1">_id </th>
+                    <th class="col-md-1">Title </th>
+                    <th class="col-md-2">Description </th>
+                    <th class="col-md-3">Created At </th>
+                    <th class="col-md-3">Updated At </th>
+                    <th class="col-md-1">Deleted</th>
+                </tr>
+                <tbody>
+                    <tr ng-repeat="x in bzTemplates | filter:searchFilter ">
+                        <td>{{$index + 1}}</td>
+                        <td><a href='#!/bzTemplateEdit/{{x._id}}'>{{x._id}}</a> </td>
+                        <td>{{x.title}} </td>
+                        <td> {{x.description}}</td>
+                        <td>{{x.created_at}} </td>
+                        <td>{{x.updated_at}} </td>
+                        <td>{{x.deleted}}</td>
+                    </tr>
+                </tbody>
+            </thead>
+        </table>
+    </div>
+</div>

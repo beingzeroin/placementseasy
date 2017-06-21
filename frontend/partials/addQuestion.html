@@ -1,0 +1,110 @@
+<div class="container">
+		<h1>Add a Question</h1>
+		<form class="form-horizontal">
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Title:</label>
+				</div>
+				<div class="col-md-10">
+					<input type="text" class="form-control" placeholder="Title" ng-model="qn.title" >
+				</div>
+			</div>
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Description:</label>
+				</div>
+				<div class="col-md-10">
+					<textarea ng-model="qn.description"></textarea>
+					<!--textarea id="txtEditor1" ng-model="qn.description"></textarea-->
+				</div>
+			</div>
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Options:</label>
+				</div>
+				<div class="col-md-10">
+					<div>
+						<div class="input-group"> 													
+						<span class="input-group-addon">Option A</span>
+						<input ng-model="qn.options.a" type="text" class="form-control" placeholder="Option A">
+						</div>
+						<div class="input-group"> 													
+						<span class="input-group-addon">Option B</span>
+						<input ng-model="qn.options.b" type="text" class="form-control" placeholder="Option B">
+						</div>
+						<div class="input-group"> 													
+						<span class="input-group-addon">Option C</span>
+						<input ng-model="qn.options.c" type="text" class="form-control" placeholder="Option C">
+						</div>
+						<div class="input-group"> 													
+						<span class="input-group-addon">Option D</span>
+						<input ng-model="qn.options.d" type="text" class="form-control" placeholder="Option D">
+						</div>
+					</div>		
+				</div>
+			</div>
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Correct Option:</label>
+				</div>
+				<div class="col-md-10">
+					<div class="funkyradio">
+						<div class="funkyradio-success qCorrectOptionRadio">
+							<input type="radio" id="radio1" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="a"> 
+							<!--  ng-model="qn.answer" -->
+							<label for="radio1">A</label>
+						</div>
+						<div class="funkyradio-success qDiffLevelRadio">
+							<input type="radio" id="radio2" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="b">
+							<label for="radio2">B</label>
+						</div>
+						<div class="funkyradio-success qDiffLevelRadio">
+							<input type="radio" id="radio3" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="c">
+							<label for="radio3">C</label>
+						</div>
+						<div class="funkyradio-success qDiffLevelRadio">
+							<input type="radio" id="radio4" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="d">
+							<label for="radio4">D</label>
+						</div>
+    				</div>			
+				</div>
+			</div>
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Explanation:</label>
+				</div>
+				<div class="col-md-10">
+					<textarea ng-model="qn.explanation"></textarea>
+					<!--textarea id="txtEditor2" ng-model="qn.explanation"></textarea-->
+				</div>
+			</div>
+			<div class="row question-property">
+				<div class="col-md-2">
+					<label class="question-property-label">Level:</label>
+				</div>
+				<div class="col-md-10">
+					<div class="funkyradio">
+						<div class="funkyradio-success qDiffLevelRadio">
+							<input type="radio" id="radio5" class="myRadio" name="qDiffLevel" ng-model="qn.diffLevel" value="easy">
+							<label for="radio5">Easy</label>
+						</div>
+						<div class="funkyradio-warning qDiffLevelRadio">
+							<input type="radio" id="radio6" class="myRadio" name="qDiffLevel" ng-model="qn.diffLevel" value="medium">
+							<label for="radio6">Medium</label>
+						</div>
+						<div class="funkyradio-danger qDiffLevelRadio">
+							<input type="radio" id="radio7" class="myRadio" name="qDiffLevel" ng-model="qn.diffLevel" value="hard">
+							<label for="radio7">Hard</label>
+						</div>
+    				</div>			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-10">
+					<button class="btn btn-default" ng-click="addQuestionFn()" >ADD QUESTION</button>
+				</div>
+			</div>
+		</form>
+	</div>
