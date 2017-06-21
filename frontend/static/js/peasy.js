@@ -6,6 +6,8 @@ peMod.config(function($routeProvider) {
         .when('/register', { templateUrl: '/partials/register.html' })
         .when('/takeQuiz', { templateUrl: '/partials/takeQuiz.html', controller: 'takeQuizCtrl' })
         .when('/company', { templateUrl: '/partials/company.html', controller: 'compayWiseCtrl' })
+        .when('/bzTemplateAdd', { templateUrl: '/partials/bzTemplateAdd.html', controller: 'bzAddTemplateCtrl' })
+        .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
         .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
         .when('/authortest', { templateUrl: '/partials/authorTest.html' })
@@ -320,3 +322,25 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
         return result;
     };
 })
+
+
+peMod.controller("bzAddTemplateCtrl", function($http, $window, $scope) {
+    $scope.saveBZTemplateDetails = function() {
+        $http.post("/bzTemplate/api/", $scope.bzTemplate)
+            .then(function(response) {
+                $window.location.href = '/bzTemplate/all';
+            })
+            .error(function() {
+                alert('error occured');
+            });
+    }
+});
+peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
+    $http.get("/bzTemplate/api")
+        .then(function(response) {
+            $scope.bzTemplates = response.data.items;
+            console.log($scope.bzTemplates);
+        }, function() {
+            alert('failure');
+        });
+});

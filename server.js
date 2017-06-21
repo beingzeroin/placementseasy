@@ -3,6 +3,8 @@ const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
+
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'))
@@ -15,6 +17,9 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express.static('frontend'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+/* ROUTES */
+app.use('/bzTemplate', bzTemplateRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
