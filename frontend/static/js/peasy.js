@@ -344,3 +344,37 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
             alert('failure');
         });
 });
+
+
+/* VAMSHI START */
+$(document).ready(function() {
+			$("#txtEditor1").Editor();
+			$("#txtEditor2").Editor();
+		});
+
+peMod.controller('addQtnCtrl',['$http','$scope',function($http,$scope){
+		/*
+		{
+			"title" : string,
+			"description" : string/HTML,
+			'options{
+				"a" : string,
+				"b"  : string,
+				"c" : string,
+				"d" : string,
+				}',
+			"answer" : {'a' | 'b' |'c' | 'd'},
+			"explanation" : string/HTML,
+			"diffLevel" : {'easy' | 'medium' | 'hard'}
+		}
+		*/
+	$scope.addQuestionFn = function(){
+		var qn=$scope.qn;
+		//$http.post(qn)
+		alert(qn);
+		console.log(qn);
+	}
+	
+}]);
+
+/* VAMSHI END */
