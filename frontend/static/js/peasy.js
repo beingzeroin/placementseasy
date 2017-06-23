@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput']);
 peMod.config(function($routeProvider) {
     $routeProvider
         .when('/', { templateUrl: '/partials/main.html' })
@@ -11,7 +11,7 @@ peMod.config(function($routeProvider) {
         .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
         .when('/authortest', { templateUrl: '/partials/authorTest.html' })
-        .when('/dashboard', { templateUrl: '/partials/dashboard.html' })
+        .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
         .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
         .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
@@ -32,7 +32,9 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 /* SATYA START*/
-$(document).ready(function() { $("#input").cleditor(); });
+peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
+		CKEDITOR.replace( 'input' );
+}]);
 /* SATYA END*/
 
 
@@ -69,20 +71,57 @@ peMod.controller('TimepickerDemo', function($scope, $log) {
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function($scope, $http) {
-    draw(120);
+    /*
     $scope.score = 40;
     $scope.Attempted = 50;
     $scope.correct = 40;
     $scope.inCorrect = 10;
     $scope.NotAttempted = 50;
+*/
+	/*
+	
+	$http({
+                url: '/question/api',
+                method: "POST",
+                data: qn
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify(qn));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(qn));
+                });
+    }
 
+	
+	*/
+	
+	$http({
+                url: '/scorecard/api',
+                method: "GET",
+                data: $scope.sc
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify($scope.sc));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify($scope.sc));
+                });
+    
+	
+	
+	/*
     $http.get('/data/quiz-summary-data.json')
         .then(function(response) {
             $scope.questions = response.data;
         }, function(error) {
             $scope.error = error;
         });
-    $scope.showDetails = function(quesNo) {
+	
+	*/
+    
+	
+	$scope.showDetails = function(quesNo) {
         $scope.selectedQuestion = quesNo;
     }
 
@@ -358,9 +397,10 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
 		});
 */
 peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
-    $("#txtEditor1").Editor();
-    $("#txtEditor2").Editor();
-    $scope.addQuestionFn = function() {
+		CKEDITOR.replace( 'qnDescription' );
+		CKEDITOR.replace( 'qnExplanation' );
+
+		$scope.addQuestionFn = function() {
         var qn = $scope.qn;
         $http({
                 url: '/question/api',
@@ -377,4 +417,45 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
+/*
+function setCorrespondingAnsRadio(x,radioId){
+		var xstr = x.value;
+		if(xstr.length==0)
+			document.getElementById(radioId).disabled=true;
+		else
+			document.getElementById(radioId).disabled=false;
+}
+*/
+
+    function startedTyping(x,radioId){
+		this.off;
+        if(typeof x.value != 'null' ) { 
+            document.getElementById(radioId).disabled = 'false';
+        } else{ 
+			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'true';
+        }
+    }
+ /*
+    function stoppedTyping(x,radioId){
+		this.off;
+        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
+    			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = true;
+        } else if(x.value.length>0) { 
+			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'false';
+        }
+    }
+    function againTyping(x,radioId){
+		this.off;
+        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
+    		document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'true';
+        } else if(x.value.length>0) { 
+			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'false';
+        }
+    }
+ */
 /* VAMSHI END */

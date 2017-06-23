@@ -3,8 +3,14 @@ var mongoose = require("mongoose"),
 
 var questionSchema = new mongoose.Schema({
     "answer": {
-            "type": "string"
+            "type": "number"
         },
+	    "tags": {          
+  			"type": "array",
+  			"items": {
+    			"type": "string"
+  			}
+		},
         "description": {
             "type": "string"
         },
@@ -15,21 +21,10 @@ var questionSchema = new mongoose.Schema({
             "type": "string"
         },
         "options": {
-            "properties": {
-                "a": {
-                    "type": "string"
-                },
-                "b": {
-                    "type": "string"
-                },
-                "c": {
-                    "type": "string"
-                },
-                "d": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
+   			"type": "array",
+  			"items": {
+    			"type": "string"
+  			}
         },
         "title": {
             "type": "string"

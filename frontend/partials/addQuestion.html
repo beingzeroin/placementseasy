@@ -14,8 +14,9 @@
                 <label class="question-property-label">Description:</label>
             </div>
             <div class="col-md-10">
-                <!--textarea ng-model="qn.description"></textarea-->
-                <textarea id="txtEditor1" ng-model="qn.description"></textarea>
+				<textarea name="editor2" type="text/html" id="qnDescription" nrows="10" cols="80" ng-model="qn.description"></textarea>
+                <!--textarea ng-model="qn.description"></textarea>
+                <textarea id="txtEditor1" ng-model="qn.description"></textarea-->
             </div>
         </div>
         <div class="row question-property">
@@ -26,19 +27,19 @@
                 <div>
                     <div class="input-group">
                         <span class="input-group-addon">Option A</span>
-                        <input ng-model="qn.options.a" type="text" class="form-control" placeholder="Option A">
+                        <input id="qnOptionA" ng-model="qn.options[0]" type="text" class="form-control" placeholder="Option A" onchange="startedTyping(this,'radio1')"> <!--onblur="stoppedTyping(this,'radio1')"  onblur="againTyping(this,'radio1')">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group">	
                         <span class="input-group-addon">Option B</span>
-                        <input ng-model="qn.options.b" type="text" class="form-control" placeholder="Option B">
+                        <input id="qnOptionB" ng-model="qn.options[1]" type="text" class="form-control" placeholder="Option B" onchange="startedTyping(this,'radio2')"> <!--onblur="stoppedTyping(this,'radio2')"  onblur="againTyping(this,'radio2')">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option C</span>
-                        <input ng-model="qn.options.c" type="text" class="form-control" placeholder="Option C">
+                        <input id="qnOptionC" ng-model="qn.options[2]" type="text" class="form-control" placeholder="Option C" onchange="startedTyping(this,'radio3')"> <!--onblur="stoppedTyping(this,'radio3')"  onblur="againTyping(this,'radio3')">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option D</span>
-                        <input ng-model="qn.options.d" type="text" class="form-control" placeholder="Option D">
+                        <input id="qnOptionD" ng-model="qn.options[3]" type="text" class="form-control" placeholder="Option D" onchange="startedTyping(this,'radio4')"> <!--onblur="stoppedTyping(this,'radio4')"  onblur="againTyping(this,'radio4')"-->
                     </div>
                 </div>
             </div>
@@ -50,20 +51,20 @@
             <div class="col-md-10">
                 <div class="funkyradio">
                     <div class="funkyradio-success qCorrectOptionRadio">
-                        <input type="radio" id="radio1" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="a">
+                        <input type="radio" id="radio1" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="0" disabled>
                         <!--  ng-model="qn.answer" -->
                         <label for="radio1">A</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio2" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="b">
+                        <input type="radio" id="radio2" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="1" disabled>
                         <label for="radio2">B</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio3" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="c">
+                        <input type="radio" id="radio3" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="2" disabled>
                         <label for="radio3">C</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio4" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="d">
+                        <input type="radio" id="radio4" class="qDiffLevelRadioClass" name="qDiffLevelRadioName" ng-model="qn.answer" value="3" disabled>
                         <label for="radio4">D</label>
                     </div>
                 </div>
@@ -74,8 +75,9 @@
                 <label class="question-property-label">Explanation:</label>
             </div>
             <div class="col-md-10">
-                <!--textarea ng-model="qn.explanation"></textarea-->
-                <textarea id="txtEditor2" ng-model="qn.explanation"></textarea>
+				<textarea name="editor1" type="text/html" id="qnExplanation" nrows="10" cols="80" ng-model="qn.explanation"></textarea>
+                <!--textarea ng-model="qn.explanation"></textarea>
+                <textarea id="txtEditor2" ng-model="qn.explanation"></textarea-->
             </div>
         </div>
         <div class="row question-property">
@@ -97,6 +99,21 @@
                         <label for="radio7">Hard</label>
                     </div>
                 </div>
+            </div>
+        </div>
+		
+
+			
+		
+		<div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Add tags</label>
+            </div>
+            <div class="col-md-10">
+                <div class="input-group">
+    				<span class="input-group-addon">Add tags</span>
+    				<tags-input ng-model="qn.tags"></tags-input>
+				</div>
             </div>
         </div>
         <div class="row">
