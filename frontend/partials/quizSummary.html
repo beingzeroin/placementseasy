@@ -18,16 +18,16 @@
                    </div>
                      <div class="row">
                             <div class="col-md-3">
-                            {{Attempted}}
+                            {{sc.attempted}}
                            </div>
                            <div class="col-md-3">
-                            {{correct}}
+                            {{sc.correct}}
                           </div>
                             <div class="col-md-3">
-                            {{inCorrect}}
+                            {{sc.incorrect}}
                            </div>
                             <div class="col-md-3">
-                             {{NotAttempted}}
+                             {{sc.notAttempted}}
                              </div>
                    </div>
 
@@ -46,7 +46,7 @@
     </select>
     </div>
      <div>           
-    <canvas class="canvas" id="myCanvas" width="600" height="600"-->
+    <canvas class="canvas" id="myCanvas" width="600" height="600">
     </div>
 
          <div class="row">
@@ -54,7 +54,7 @@
                   <h3>Your Score :</h3>
             </div>
             <div class="col-md-1">
-                  <h3>{{score}}</h3> 
+                  <h3>{{sc.score}}</h3> 
              </div>
          </div> 
 
@@ -66,7 +66,7 @@
 
          <div class="row" >
              <div class="col-md-1" ng-repeat="q in questions" >
-                 <button type="button" class="btn btn-default " ng-click="showDetails(q)">{{q.No}}</button>
+                 <button type="button" class="btn btn-default " ng-click="showDetails(q)">{{Shown below}}</button>
              </div>
           </div>
          </div>
@@ -76,6 +76,6 @@
              <br>
         <div class="form-group">
           <label for="exp"><h3>Explanation</h3></label>
-          <textarea class="form-control" placeholder="Explanation" rows="5" id="exp" ng-model=selectedQuestion.No+selectedQuestion.title+selectedQuestion.description+selectedQuestion.options+selectedQuestion.Explanation></textarea>
+          <textarea class="form-control" placeholder="Explanation" rows="5" id="exp" ng-model="sc.question+sc.description+sc.optionA+sc.optionB+sc.optionC+sc.optionD+sc.yourAnswer+sc.explanation"></textarea>
         </div>
       </form>
