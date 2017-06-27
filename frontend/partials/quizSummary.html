@@ -2,6 +2,9 @@
             <div class="container">
                 <div class="jumbotron" >
                     <h1>Your Score Card</h1>
+                    
+                    
+                    
                 </div> 
                <div class="row">
                    <div class="col-md-3">
@@ -18,37 +21,24 @@
                    </div>
                      <div class="row">
                             <div class="col-md-3">
-                            {{sc.attempted}}
+                            {{sc[0].attempted}}
                            </div>
                            <div class="col-md-3">
-                            {{sc.correct}}
+                            {{sc[0].correct}}
                           </div>
                             <div class="col-md-3">
-                            {{sc.incorrect}}
+                            {{sc[0].incorrect}}
                            </div>
                             <div class="col-md-3">
-                             {{sc.notAttempted}}
+                             {{sc[0].notAttempted}}
                              </div>
                    </div>
 
                 </div>
                 <div>
                     <br>
-                    <br>
-    Change the speed in the dropdown to see the dial position change
-    <select id="myList" onchange="redraw();">
-      <option value="90">Speed = 90</option>
-      <option value="30">Speed = 30</option>
-      <option value="50">Speed = 50</option>
-      <option value="60">Speed = 60</option>
-      <option value="140">Speed = 140</option>
-      <option value="160">Speed = 160</option>
-    </select>
-    </div>
-     <div>           
-    <canvas class="canvas" id="myCanvas" width="600" height="600">
-    </div>
-
+                  <br>
+   
          <div class="row">
              <div class="col-md-3">
                   <h3>Your Score :</h3>
@@ -81,4 +71,3 @@
 
         </div>
       </form>
-+
