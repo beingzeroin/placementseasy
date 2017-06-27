@@ -390,6 +390,29 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
 });
 
 
+
+peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+
+
+		$scope.authorTest = function() {
+        var qn = $scope.a;
+        $http({
+                url: '/authorTest/api',
+                method: "POST",
+                data: a
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify(a));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(a));
+                });
+    }
+
+}]);
+
+
+
 /* VAMSHI START */
 /*$(document).ready(function() {
 			$("#txtEditor1").Editor();

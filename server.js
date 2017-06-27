@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
+const authorTestRouter = require('./backend/routes/authorTestRoute')
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 /* ROUTES */
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
+app.use('/authorTest', authorTestRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
@@ -37,6 +39,6 @@ app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })
 
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!')
+app.listen(9000, function() {
+    console.log('Example app listening on port 9000!')
 })
