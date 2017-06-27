@@ -12,6 +12,9 @@ const authorTestRouter = require('./backend/routes/authorTestRoute')
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
+const interviewRouter = require('./backend/routes/interviewRoutes')
+const quizSumRouter = require('./backend/routes/quizSumRoutes')
+
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'))
@@ -29,6 +32,11 @@ app.use(bodyParser.json())
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
 app.use('/authorTest', authorTestRouter);
+
+app.use('/interview', interviewRouter);
+
+app.use('/quizSum',quizSumRouter);
+
 
 app.use('/interview', interviewRouter);
 

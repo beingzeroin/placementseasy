@@ -338,6 +338,7 @@ peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $sco
 
 
 /* SAHITHI END */
+<<<<<<< HEAD
 
 
 peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
@@ -361,6 +362,8 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 }]);
 
 
+=======
+>>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 /*$(document).ready(function() {
