@@ -1,27 +1,30 @@
-const express = require('express')
+var express = require('express');
+var companyLib = require('../lib/companyLib');
+var router = express.Router();
 
-var routes = function() {
+router.route('/all')
+    .get(function(req, res) {
+        res.sendFile('company/viewAll', { user: req.user });
+    });
 
-    var companyRouter = express.Router;
+router.route('/create')
+    .get(function(req, res) {
+        res.sendFile('company/create', { user: req.user, companyId: null });
+    });
 
-    companyRouter.route('/company')
-        .post(function(req, res) {
+router.route('/edit/:id')
+    .get(function(req, res) {
+        res.render('company/create', { user: req.user, companyId: req.params.id });
+    });
 
-        })
-        .get(function(req, res) {
+router.route('/api')
+    .get(companyLib.getAllTemplates)
+    .put(companyLib.editTemplate)
+    .post(companyLib.createTemplate);
 
-        })
+router.route('/api/:id')
+    .get(companyLib.getTemplate)
+    .delete(companyLib.deleteTemplate);
 
-    companyRouter.route('/company/:companyId')
-        .put(function(req, res) {
 
-        })
-        .get(function(req, res) {
-
-        })
-        .delete(function(req, res) {
-
-        })
-}
-
-module.exports = routes();
+module.exports = router;

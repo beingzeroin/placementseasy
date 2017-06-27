@@ -5,6 +5,8 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
+const companyRouter = require('./backend/routes/companyRoute')
+
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -22,6 +24,7 @@ app.use(bodyParser.json())
 /* ROUTES */
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
+app.use('/company', companyRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
