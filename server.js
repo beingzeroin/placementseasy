@@ -1,11 +1,16 @@
 const express = require('express')
 const app = express()
+
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
 const authorTestRouter = require('./backend/routes/authorTestRoute')
+
+const interviewRouter = require('./backend/routes/interviewRoutes')
+const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -24,6 +29,11 @@ app.use(bodyParser.json())
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
 app.use('/authorTest', authorTestRouter);
+
+app.use('/interview', interviewRouter);
+
+app.use('/quizSum',quizSumRouter);
+
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
