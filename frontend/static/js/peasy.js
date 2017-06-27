@@ -389,6 +389,30 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
         });
 });
 
+/* SAHITHI START */
+
+peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $scope) {
+
+		$scope.addInterviewExpFn = function() {
+        var ie = $scope.ie;
+        $http({
+                url: '/interviewExperience/api',
+                method: "POST",
+                data: ie
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify(ie));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(ie));
+                });
+    }
+
+}]);
+
+
+
+/* SAHITHI END */
 
 /* VAMSHI START */
 /*$(document).ready(function() {
