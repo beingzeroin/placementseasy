@@ -24,7 +24,7 @@ exports.createQuestion = function(req, res) {
     });
 };
 
---------------------------
+
 exports.editQuestion = function(req, res) {
     console.log('Edit ' + req.body._id);
     BZTemplateModel.findById(req.body._id, function(err, cObj) {

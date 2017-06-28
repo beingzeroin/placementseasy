@@ -2,6 +2,7 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
 peMod.config(function($routeProvider) {
     $routeProvider
+
         .when('/', {
             templateUrl: '/partials/main.html'
         })
@@ -405,14 +406,13 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 
 /* SAHITHI END */
-<<<<<<< HEAD
 
 
-peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
 		$scope.authorTest = function() {
-        var qn = $scope.a;
+        var a = $scope.a;
         $http({
                 url: '/authorTest/api',
                 method: "POST",
@@ -428,25 +428,12 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-
-=======
->>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
+// 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
-<<<<<<< HEAD
+
 
 peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
-
-=======
-/*$(document).ready(function() {
-			$("#txtEditor1").Editor();
-			$("#txtEditor2").Editor();
-		});
-*/
-peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('qnDescription');
-    CKEDITOR.replace('qnExplanation');
->>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
@@ -465,49 +452,5 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
 }]);
 
-<<<<<<< HEAD
-/* VAMSHI END */
-=======
-/*
-function setCorrespondingAnsRadio(x,radioId){
-		var xstr = x.value;
-		if(xstr.length==0)
-			document.getElementById(radioId).disabled=true;
-		else
-			document.getElementById(radioId).disabled=false;
-}
-*/
 
-function startedTyping(x, radioId) {
-    this.off;
-    if (typeof x.value != 'null') {
-        document.getElementById(radioId).disabled = 'false';
-    } else {
-        document.getElementById(radioId).checked = 'false';
-        document.getElementById(radioId).disabled = 'true';
-    }
-}
-/*
-    function stoppedTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = true;
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
-    function againTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    		document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
- */
 /* VAMSHI END */
->>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
