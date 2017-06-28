@@ -72,10 +72,8 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 }]);
 
 /* SATYA START*/
-<<<<<<< HEAD
-peMod.controller('dashboardCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('input');
-=======
+
+
 peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
 		CKEDITOR.replace( 'input' );
     
@@ -97,7 +95,7 @@ peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
         $scope.selectedCompany = compname;
     }
     
->>>>>>> f7ebbed5e04c483b9bac0d9f2e758cf4c130f5cf
+
 }]);
 /* SATYA END*/
 
@@ -409,7 +407,6 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 
 /* SAHITHI END */
-<<<<<<< HEAD
 
 
 peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
@@ -433,8 +430,6 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 }]);
 
 
-=======
->>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 /*$(document).ready(function() {
