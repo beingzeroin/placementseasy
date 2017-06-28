@@ -67,7 +67,12 @@ app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })
 
+<<<<<<< HEAD
 app.listen(9000, function() {
     console.log('Example app listening on port 9000!')
 })
-
+=======
+app.listen(3000, function() {
+    console.log('Example app listening on port 3000!')
+})
+>>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
