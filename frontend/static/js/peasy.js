@@ -1,7 +1,7 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
 peMod.config(function ($routeProvider) {
     $routeProvider
-<<<<<<< HEAD
+//<<<<<<< HEAD
         .when('/', { templateUrl: '/partials/main.html' })
         .when('/login', { templateUrl: '/partials/login.html' })
         .when('/register', { templateUrl: '/partials/register.html' })
@@ -18,7 +18,7 @@ peMod.config(function ($routeProvider) {
         .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
-=======
+
         .when('/', {
             templateUrl: '/partials/main.html'
         })
@@ -75,7 +75,7 @@ peMod.config(function ($routeProvider) {
         .otherwise({
             redirectTo: '/notfound'
         })
->>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
+//>>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
 });
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
@@ -91,10 +91,10 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 }]);
 
 /* SATYA START*/
-<<<<<<< HEAD
-peMod.controller('dashboardCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('input');
-=======
+//<<<<<<< HEAD
+//peMod.controller('dashboardCtrl', ['$http', '$scope', function ($http, $scope) {
+  //  CKEDITOR.replace('input');
+//=======
 peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
 		CKEDITOR.replace( 'input' );
     
@@ -116,7 +116,7 @@ peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
         $scope.selectedCompany = compname;
     }
     
->>>>>>> f7ebbed5e04c483b9bac0d9f2e758cf4c130f5cf
+//>>>>>>> f7ebbed5e04c483b9bac0d9f2e758cf4c130f5cf
 }]);
 /* SATYA END*/
 
