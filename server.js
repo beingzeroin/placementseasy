@@ -16,18 +16,17 @@ const authorTestRouter = require('./backend/routes/authorTestRoute')
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
 //const interviewRouter = require('./backend/routes/interviewRoutes')
 //const quizSumRouter = require('./backend/routes/quizSumRoutes')
-=======
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 >>>>>>> 27c111add06e7fde1ef2f38a06e90250cc32dd05
 >>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
->>>>>>> cb4488c713285a05ad87ad30cf7b1e39352aa4f6
+>>>>>>> cb4488c713285a05ad87ad30cf7b1e39352aa4f6*/
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
