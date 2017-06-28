@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
 peMod.config(function($routeProvider) {
     $routeProvider
         .when('/', { templateUrl: '/partials/main.html' })
@@ -391,14 +391,9 @@ peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
 
 
 /* VAMSHI START */
-/*$(document).ready(function() {
-			$("#txtEditor1").Editor();
-			$("#txtEditor2").Editor();
-		});
-*/
+
 peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
-		CKEDITOR.replace( 'qnDescription' );
-		CKEDITOR.replace( 'qnExplanation' );
+
 
 		$scope.addQuestionFn = function() {
         var qn = $scope.qn;
@@ -417,45 +412,4 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-/*
-function setCorrespondingAnsRadio(x,radioId){
-		var xstr = x.value;
-		if(xstr.length==0)
-			document.getElementById(radioId).disabled=true;
-		else
-			document.getElementById(radioId).disabled=false;
-}
-*/
-
-    function startedTyping(x,radioId){
-		this.off;
-        if(typeof x.value != 'null' ) { 
-            document.getElementById(radioId).disabled = 'false';
-        } else{ 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        }
-    }
- /*
-    function stoppedTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = true;
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
-    function againTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    		document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
- */
 /* VAMSHI END */
