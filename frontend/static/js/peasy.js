@@ -1,6 +1,8 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
-peMod.config(function ($routeProvider) {
+
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
+peMod.config(function($routeProvider) {
     $routeProvider
+	
         .when('/', {
             templateUrl: '/partials/main.html'
         })
@@ -74,25 +76,22 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 /* SATYA START*/
 
 
-peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
-		CKEDITOR.replace( 'input' );
+peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
+		$scope.addCompanydescFn = function() {
+        var c = $scope.c;
+
     
     $http({
                 url: '/company/api',
-                method: "GET",
-            
-                
+                method: "POST",
+                data: c
             })
             .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.sc=response.data.items;
+                    console.log("SUCCESS" + JSON.stringify(c));
                 },
                 function(error) {
-                    console.log("FAILURE");
+                    console.log("FAILURE" + JSON.stringify(c));
                 });
-    
-    $scope.showDetails = function(compname) {
-        $scope.selectedCompany = compname;
     }
     
 
@@ -409,11 +408,12 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 /* SAHITHI END */
 
 
-peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+
+peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
 		$scope.authorTest = function() {
-        var qn = $scope.a;
+        var a = $scope.a;
         $http({
                 url: '/authorTest/api',
                 method: "POST",
@@ -432,14 +432,9 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 
 
 /* VAMSHI START */
-/*$(document).ready(function() {
-			$("#txtEditor1").Editor();
-			$("#txtEditor2").Editor();
-		});
-*/
-peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('qnDescription');
-    CKEDITOR.replace('qnExplanation');
+
+
+peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
@@ -458,45 +453,5 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
 }]);
 
-/*
-function setCorrespondingAnsRadio(x,radioId){
-		var xstr = x.value;
-		if(xstr.length==0)
-			document.getElementById(radioId).disabled=true;
-		else
-			document.getElementById(radioId).disabled=false;
-}
-*/
 
-function startedTyping(x, radioId) {
-    this.off;
-    if (typeof x.value != 'null') {
-        document.getElementById(radioId).disabled = 'false';
-    } else {
-        document.getElementById(radioId).checked = 'false';
-        document.getElementById(radioId).disabled = 'true';
-    }
-}
-/*
-    function stoppedTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = true;
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
-    function againTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    		document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
- */
 /* VAMSHI END */
