@@ -2,7 +2,7 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
 peMod.config(function($routeProvider) {
     $routeProvider
-
+	
         .when('/', {
             templateUrl: '/partials/main.html'
         })
@@ -75,24 +75,23 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 
 /* SATYA START*/
 
-peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
+
+peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
+		$scope.addCompanydescFn = function() {
+        var c = $scope.c;
+
     
     $http({
                 url: '/company/api',
-                method: "GET",
-            
-                
+                method: "POST",
+                data: c
             })
             .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.sc=response.data.items;
+                    console.log("SUCCESS" + JSON.stringify(c));
                 },
                 function(error) {
-                    console.log("FAILURE");
+                    console.log("FAILURE" + JSON.stringify(c));
                 });
-    
-    $scope.showDetails = function(compname) {
-        $scope.selectedCompany = compname;
     }
 
 }]);
@@ -408,6 +407,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 /* SAHITHI END */
 
 
+
 peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
@@ -428,7 +428,6 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-// 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 

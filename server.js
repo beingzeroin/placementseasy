@@ -7,12 +7,8 @@ const mongoose = require('mongoose')
 
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
-
 const companyRouter = require('./backend/routes/companyRoute')
-
-
 const authorTestRouter = require('./backend/routes/authorTestRoute')
-
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
@@ -37,7 +33,6 @@ app.use('/authorTest', authorTestRouter);
 app.use('/interview', interviewRouter);
 app.use('/quizSum',quizSumRouter);
 
-
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
 })
@@ -52,6 +47,6 @@ app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })
 
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!')
+app.listen(4000, function() {
+    console.log('Example app listening on port 4000!')
 })
