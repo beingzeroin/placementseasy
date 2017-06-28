@@ -10,7 +10,7 @@ peMod.config(function($routeProvider) {
         .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
         .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
-        .when('/authortest', { templateUrl: '/partials/authorTest.html' })
+        .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
         .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
         .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
@@ -338,14 +338,13 @@ peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $sco
 
 
 /* SAHITHI END */
-<<<<<<< HEAD
 
 
-peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
 		$scope.authorTest = function() {
-        var qn = $scope.a;
+        var a = $scope.a;
         $http({
                 url: '/authorTest/api',
                 method: "POST",
@@ -361,9 +360,7 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-
-=======
->>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
+// 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 /*$(document).ready(function() {
