@@ -3,23 +3,23 @@ var mongoose = require("mongoose"),
 
 var authorTestSchema = new mongoose.Schema
 ({
-    "Test Title":
+    "Test_Title":
     {
         "type":"string"
     },
-    "Company":
+    "company":
     {
         "type":"string"
     },
-    "Questions":
+    "questions":
     {
         "type":"number"
     },
-    "Start Time":
+    "start_time":
     {
         "type":"date"
     },
-    "End Time":
+    "end_time":
     {
         "type":"date"
     },

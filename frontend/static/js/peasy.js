@@ -1,5 +1,5 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput']);
-peMod.config(function($routeProvider) {
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
+peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', { templateUrl: '/partials/main.html' })
         .when('/login', { templateUrl: '/partials/login.html' })
@@ -10,7 +10,7 @@ peMod.config(function($routeProvider) {
         .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
         .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
-        .when('/authortest', { templateUrl: '/partials/authorTest.html' })
+        .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
         .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
         .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
@@ -18,25 +18,85 @@ peMod.config(function($routeProvider) {
         .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
+
+        .when('/', {
+            templateUrl: '/partials/main.html'
+        })
+        .when('/login', {
+            templateUrl: '/partials/login.html'
+        })
+        .when('/register', {
+            templateUrl: '/partials/register.html'
+        })
+        .when('/takeQuiz', {
+            templateUrl: '/partials/takeQuiz.html',
+            controller: 'takeQuizCtrl'
+        })
+        .when('/company', {
+            templateUrl: '/partials/company.html',
+            controller: 'compayWiseCtrl'
+        })
+        .when('/bzTemplateAdd', {
+            templateUrl: '/partials/bzTemplateAdd.html',
+            controller: 'bzAddTemplateCtrl'
+        })
+        .when('/bzTemplateList', {
+            templateUrl: '/partials/bzTemplateList.html',
+            controller: 'bzListTemplateCtrl'
+        })
+        .when('/quizSummary', {
+            templateUrl: '/partials/quizSummary.html',
+            controller: 'quizSummaryCtrl'
+        })
+        .when('/topicwise', {
+            templateUrl: '/partials/topicwise.html'
+        })
+        .when('/authortest', {
+            templateUrl: '/partials/authorTest.html'
+        })
+        .when('/dashboard', {
+            templateUrl: '/partials/dashboard.html',
+            controller: 'dashboardCtrl'
+        })
+        .when('/addInterviewExperience', {
+            templateUrl: '/partials/addInterviewExperience.html',
+            controller: 'addInterviewExpCtrl'
+        })
+        .when('/viewInterviewExperience', {
+            templateUrl: '/partials/viewInterviewExperience.html'
+        })
+        .when('/addQuestion', {
+            templateUrl: '/partials/addQuestion.html',
+            controller: 'addQtnCtrl'
+        })
+        .when('/notfound', {
+            templateUrl: '/partials/404.html'
+        })
+        .otherwise({
+            redirectTo: '/notfound'
+        })
 });
-peMod.controller('peasyCtrl', ['$scope', function($scope) {
+peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
 
-peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
+peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('/data/company-wise-test-data.json')
-        .then(function(response) {
+        .then(function (response) {
             $scope.info = response.data;
-        }, function(error) {
+        }, function (error) {
             $scope.error = error;
         });
 }]);
 
 /* SATYA START*/
+
 peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
 		$scope.addCompanydescFn = function() {
         var c = $scope.c;
-        $http({
+        
+    
+    $http({
                 url: '/company/api',
                 method: "POST",
                 data: c
@@ -49,43 +109,44 @@ peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) 
                 });
     }
     
+
 }]);
 /* SATYA END*/
 
 
-peMod.controller('TimepickerDemoCtrl', function($scope, $log) {
+peMod.controller('TimepickerDemoCtrl', function ($scope, $log) {
     $scope.mytime = new Date();
 
     $scope.hstep = 1;
     $scope.mstep = 5;
 
     $scope.ismeridian = true;
-    $scope.toggleMode = function() {
+    $scope.toggleMode = function () {
         $scope.ismeridian = !$scope.ismeridian;
     };
 
-    $scope.clear = function() {
+    $scope.clear = function () {
         $scope.mytime = null;
     };
 });
 
-peMod.controller('TimepickerDemo', function($scope, $log) {
+peMod.controller('TimepickerDemo', function ($scope, $log) {
     $scope.mytime = new Date();
     $scope.hstep = 1;
     $scope.mstep = 5;
 
     $scope.ismeridian = true;
-    $scope.toggleMode = function() {
+    $scope.toggleMode = function () {
         $scope.ismeridian = !$scope.ismeridian;
     };
 
-    $scope.clear = function() {
+    $scope.clear = function () {
         $scope.mytime = null;
     };
 });
 
 /* AJAY START */
-peMod.controller('quizSummaryCtrl', function($scope, $http) {
+peMod.controller('quizSummaryCtrl', function ($scope, $http) {
     /*
     $scope.score = 40;
     $scope.Attempted = 50;
@@ -93,7 +154,7 @@ peMod.controller('quizSummaryCtrl', function($scope, $http) {
     $scope.inCorrect = 10;
     $scope.NotAttempted = 50;
 */
-	/*
+    /*
 	
 	$http({
                 url: '/question/api',
@@ -110,24 +171,24 @@ peMod.controller('quizSummaryCtrl', function($scope, $http) {
 
 	
 	*/
-    
 
-	
-	$http({
-                url: '/quizSum/api',
-                method: "GET",
-            
-                
-            })
-            .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.sc=response.data.items;
-                },
-                function(error) {
-                    console.log("FAILURE");
-                });
-    
-	/*
+
+
+    $http({
+            url: '/quizSum/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.sc = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+    /*
 
 	
     $http.get('/data/quiz-summary-data.json')
@@ -140,8 +201,8 @@ peMod.controller('quizSummaryCtrl', function($scope, $http) {
 	
 
     */
-	
-	$scope.showDetails = function(quesNo) {
+
+    $scope.showDetails = function (quesNo) {
         $scope.selectedQuestion = quesNo;
     }
 
@@ -153,11 +214,11 @@ peMod.controller('quizSummaryCtrl', function($scope, $http) {
 /* AJAY END */
 
 
-peMod.service('helperService', function() {
-    this.hello = function() {
+peMod.service('helperService', function () {
+    this.hello = function () {
         return "Hello World";
     };
-    this.toBool = function(val) {
+    this.toBool = function (val) {
         if (val == 'undefined' || val == null || val == '' || val == 'false' || val == 'False')
             return false;
         else if (val == true || val == 'true' || val == 'True')
@@ -165,7 +226,7 @@ peMod.service('helperService', function() {
         else
             return 'unidentified';
     };
-    this.shuffle = function(array) {
+    this.shuffle = function (array) {
         var currentIndex = array.length,
             temp, randomIndex;
 
@@ -179,7 +240,7 @@ peMod.service('helperService', function() {
         }
         return array;
     }
-    this.extend = function(out) {
+    this.extend = function (out) {
         out = out || {};
 
         for (var i = 1; i < arguments.length; i++) {
@@ -195,7 +256,7 @@ peMod.service('helperService', function() {
     };
 });
 
-peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
+peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
     $scope.quizName = '/data/csharp-quiz-data.json';
 
     //Note: Only those configs are functional which is documented at: http://www.codeproject.com/Articles/860024/Quiz-Application-in-AngularJs
@@ -215,16 +276,16 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
         'theme': 'none'
     }
 
-    $scope.goTo = function(index) {
+    $scope.goTo = function (index) {
         if (index > 0 && index <= $scope.totalItems) {
             $scope.currentPage = index;
             $scope.mode = 'quiz';
         }
     }
 
-    $scope.onSelect = function(question, option) {
+    $scope.onSelect = function (question, option) {
         if (question.QuestionTypeId == 1) {
-            question.Options.forEach(function(element, index, array) {
+            question.Options.forEach(function (element, index, array) {
                 if (element.Id != option.Id) {
                     element.Selected = false;
                     //question.Answered = element.Id;
@@ -236,10 +297,14 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
             $scope.currentPage++;
     }
 
-    $scope.onSubmit = function() {
+    $scope.onSubmit = function () {
         var answers = [];
-        $scope.questions.forEach(function(q, index) {
-            answers.push({ 'QuizId': $scope.quiz.Id, 'QuestionId': q.Id, 'Answered': q.Answered });
+        $scope.questions.forEach(function (q, index) {
+            answers.push({
+                'QuizId': $scope.quiz.Id,
+                'QuestionId': q.Id,
+                'Answered': q.Answered
+            });
         });
         // Post your data to the server here. answers contains the questionId and the users' answer.
         //$http.post('api/Quiz/Submit', answers).success(function (data, status) {
@@ -249,14 +314,14 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
         $scope.mode = 'result';
     }
 
-    $scope.pageCount = function() {
+    $scope.pageCount = function () {
         return Math.ceil($scope.questions.length / $scope.itemsPerPage);
     };
 
     //If you wish, you may create a separate factory or service to call loadQuiz. To keep things simple, i have kept it within controller.
-    $scope.loadQuiz = function(file) {
+    $scope.loadQuiz = function (file) {
         $http.get(file)
-            .then(function(res) {
+            .then(function (res) {
                 $scope.quiz = res.data.quiz;
                 $scope.config = helperService.extend({}, $scope.defaultConfig, res.data.config);
                 $scope.questions = $scope.config.shuffleQuestions ? helperService.shuffle(res.data.questions) : res.data.questions;
@@ -267,7 +332,7 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
                 if ($scope.config.shuffleOptions)
                     $scope.shuffleOptions();
 
-                $scope.$watch('currentPage + itemsPerPage', function() {
+                $scope.$watch('currentPage + itemsPerPage', function () {
                     var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
                         end = begin + $scope.itemsPerPage;
 
@@ -276,17 +341,17 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
             });
     }
 
-    $scope.shuffleOptions = function() {
-        $scope.questions.forEach(function(question) {
+    $scope.shuffleOptions = function () {
+        $scope.questions.forEach(function (question) {
             question.Options = helperService.shuffle(question.Options);
         });
     }
 
     $scope.loadQuiz($scope.quizName);
 
-    $scope.isAnswered = function(index) {
+    $scope.isAnswered = function (index) {
         var answered = 'Not Answered';
-        $scope.questions[index].Options.forEach(function(element, index, array) {
+        $scope.questions[index].Options.forEach(function (element, index, array) {
             if (element.Selected == true) {
                 answered = 'Answered';
                 return false;
@@ -295,9 +360,9 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
         return answered;
     };
 
-    $scope.isCorrect = function(question) {
+    $scope.isCorrect = function (question) {
         var result = 'correct';
-        question.Options.forEach(function(option, index, array) {
+        question.Options.forEach(function (option, index, array) {
             if (helperService.toBool(option.Selected) != option.IsAnswer) {
                 result = 'wrong';
                 return false;
@@ -308,42 +373,45 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
 })
 
 
-peMod.controller("bzAddTemplateCtrl", function($http, $window, $scope) {
-    $scope.saveBZTemplateDetails = function() {
+peMod.controller("bzAddTemplateCtrl", function ($http, $window, $scope) {
+    $scope.saveBZTemplateDetails = function () {
         $http.post("/bzTemplate/api/", $scope.bzTemplate)
-            .then(function(response) {
+            .then(function (response) {
                 $window.location.href = '/bzTemplate/all';
             })
-            .error(function() {
+            .error(function () {
                 alert('error occured');
             });
     }
 });
-peMod.controller("bzListTemplateCtrl", function($http, $window, $scope) {
+peMod.controller("bzListTemplateCtrl", function ($http, $window, $scope) {
     $http.get("/bzTemplate/api")
-        .then(function(response) {
+        .then(function (response) {
             $scope.bzTemplates = response.data.items;
             console.log($scope.bzTemplates);
-        }, function() {
+        }, function () {
             alert('failure');
         });
 });
 
 /* SAHITHI START */
 
-peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $scope) {
+peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
 
-		$scope.addInterviewExpFn = function() {
+
+    $scope.addInterviewExpFn = function () {
+        
         var ie = $scope.ie;
+        console.log(JSON.stringify(ie));
         $http({
-                url: '/interviewExperience/api',
+                url: '/interview/api',
                 method: "POST",
                 data: ie
             })
-            .then(function(response) {
+            .then(function (response) {
                     console.log("SUCCESS" + JSON.stringify(ie));
                 },
-                function(error) {
+                function (error) {
                     console.log("FAILURE" + JSON.stringify(ie));
                 });
     }
@@ -356,11 +424,11 @@ peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $sco
 
 
 
-peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
 		$scope.authorTest = function() {
-        var qn = $scope.a;
+        var a = $scope.a;
         $http({
                 url: '/authorTest/api',
                 method: "POST",
@@ -377,27 +445,30 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 }]);
 
 
+// 0903608f280327a5aa489bee233f422f61fab9e8
+
+
 /* VAMSHI START */
 /*$(document).ready(function() {
 			$("#txtEditor1").Editor();
 			$("#txtEditor2").Editor();
 		});
 */
-peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
-		CKEDITOR.replace( 'qnDescription' );
-		CKEDITOR.replace( 'qnExplanation' );
+peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
+    CKEDITOR.replace('qnDescription');
+    CKEDITOR.replace('qnExplanation');
 
-		$scope.addQuestionFn = function() {
+    $scope.addQuestionFn = function () {
         var qn = $scope.qn;
         $http({
                 url: '/question/api',
                 method: "POST",
                 data: qn
             })
-            .then(function(response) {
+            .then(function (response) {
                     console.log("SUCCESS" + JSON.stringify(qn));
                 },
-                function(error) {
+                function (error) {
                     console.log("FAILURE" + JSON.stringify(qn));
                 });
     }
@@ -414,16 +485,16 @@ function setCorrespondingAnsRadio(x,radioId){
 }
 */
 
-    function startedTyping(x,radioId){
-		this.off;
-        if(typeof x.value != 'null' ) { 
-            document.getElementById(radioId).disabled = 'false';
-        } else{ 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        }
+function startedTyping(x, radioId) {
+    this.off;
+    if (typeof x.value != 'null') {
+        document.getElementById(radioId).disabled = 'false';
+    } else {
+        document.getElementById(radioId).checked = 'false';
+        document.getElementById(radioId).disabled = 'true';
     }
- /*
+}
+/*
     function stoppedTyping(x,radioId){
 		this.off;
         if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 

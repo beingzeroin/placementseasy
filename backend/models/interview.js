@@ -2,13 +2,13 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
 var interviewSchema = new mongoose.Schema({
-    "Company name": {
+    "Company": {
             "type": "string"
         },
-	    "Date visited": {          
+	    "DateVisited": {          
   			"type": "date"
 		},
-        "College name": {
+        "CollegeName": {
             "type": "string"
         },
         "Description": {
