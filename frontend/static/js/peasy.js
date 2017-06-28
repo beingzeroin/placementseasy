@@ -15,6 +15,7 @@ peMod.config(function($routeProvider) {
         .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
         .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
+        .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
 });
@@ -32,25 +33,20 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 /* SATYA START*/
-peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
-		CKEDITOR.replace( 'input' );
-    
-    $http({
+peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
+		$scope.addCompanydescFn = function() {
+        var c = $scope.c;
+        $http({
                 url: '/company/api',
-                method: "GET",
-            
-                
+                method: "POST",
+                data: c
             })
             .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.sc=response.data.items;
+                    console.log("SUCCESS" + JSON.stringify(c));
                 },
                 function(error) {
-                    console.log("FAILURE");
+                    console.log("FAILURE" + JSON.stringify(c));
                 });
-    
-    $scope.showDetails = function(compname) {
-        $scope.selectedCompany = compname;
     }
     
 }]);
@@ -357,7 +353,7 @@ peMod.controller('addInterviewExpCtrl', ['$http', '$scope', function($http, $sco
 
 
 /* SAHITHI END */
-<<<<<<< HEAD
+
 
 
 peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
@@ -380,9 +376,6 @@ peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-
-=======
->>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 /*$(document).ready(function() {

@@ -3,7 +3,7 @@ var mongoose = require("mongoose"),
 
 var companySchema = new mongoose.Schema({
     
-        name: String
+        name: String,
     description: String,
     //users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     created_at: Date,
