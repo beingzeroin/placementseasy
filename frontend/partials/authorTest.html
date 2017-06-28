@@ -1,7 +1,5 @@
 <!-- <script src="js/peasy.js"></script>-->
-
-    <form class="form-horizontal">
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 <div class="header" align="center">
     <h1>Author a Test</h1>
 </div>
@@ -9,7 +7,7 @@
     <div class="row">
         <div class="col-md-2">
             Test Title:</div>
-        <div class="col-md-10"><input type="text" class="form-control" ng-model="a.Test_Title" placeholder="enter test name">
+        <div class="col-md-10"><input type="text" ng-model="a.Test Title" placeholder="enter test name">
         </div>
     </div>
 </div>
@@ -20,7 +18,7 @@
         <div class="col-md-2">Company:</div>
         <div class="col-md-10">
 
-            <select class="form-control">
+            <select>
   <option value="INFOSYS" ng-model="a.company">INFOSYS</option>
   <option value="AMAZON" ng-model="a.company">AMAZON</option>
   <option value="TCS" ng-model="a.company">TCS</option>
@@ -30,13 +28,13 @@
             <option value="HCL" ng-model="a.company">HCL</option>
 </select>
         </div>
-    </div></div>
+    </div>
     <br>
     <br>
     <div class="container">
         <div class="row">
             <div class="col-md-2">Questions</div>
-            <div class="col-md-10"><input type="text" ng-model="a.questions" class="form-control" placeholder="enter no.of questions">
+            <div class="col-md-10"><input type="text" ng-model="a.questions" placeholder="enter no.of questions">
             </div>
         </div>
     </div>
@@ -57,12 +55,10 @@
             </ul>
         </div>
     </div>
-        
-        
+
     <br>
     <br>
-        <div class="container">
-    <div ng-controller="TimepickerDemoCtrl" ng-model="a.start_time" class="form-control">
+    <div ng-controller="TimepickerDemoCtrl" ng-model="a.start_time">
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
@@ -86,10 +82,9 @@
             </div>
         </div>
     </div>
-        </div>
-<br><br><br>
-<div class="container">
-<div ng-controller="TimepickerDemo" ng-model="a.end_time" class="form-control">
+</div><br><br>
+
+<div ng-controller="TimepickerDemo" ng-model="a.end_time">
 
     <div class="container">
         <div class="row">
@@ -113,24 +108,13 @@
     </div>
 </div>
 
-        </div>
+
 
 <br><br>
-<!--<div class="container">
+<div class="container">
     <div class="btn-group btn-group-justified">
         <a href="addQuestion.html" class="btn btn-primary">Add Question</a>
         <a href="#" class="btn btn-primary">Edit Question</a>
         <a href="#" class="btn btn-primary">Delete Question</a>
     </div>
-</div>-->
-     <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
-                <button class="btn btn-default" ng-click="authorTest()">Submit</button>
-                <!--button type="submit" ng-click="a()" class="btn btn-default">Submit</button-->
-            </div>
-
-        </div>
-
-    </form>
+</div>

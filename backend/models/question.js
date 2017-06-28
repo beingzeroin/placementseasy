@@ -29,9 +29,12 @@ var questionSchema = new mongoose.Schema({
         "title": {
             "type": "string"
         },
-    created_at: Date,
-    updated_at: Date,
-    deleted: Boolean
+    
+		created_at: Date,
+	
+    	updated_at: Date,
+    		
+		deleted: Boolean
 });
 
 questionSchema.pre('save', function(next) {

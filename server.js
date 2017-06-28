@@ -14,19 +14,11 @@ const companyRouter = require('./backend/routes/companyRoute')
 const authorTestRouter = require('./backend/routes/authorTestRoute')
 
 const interviewRouter = require('./backend/routes/interviewRoutes')
-const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
-/*<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-//const interviewRouter = require('./backend/routes/interviewRoutes')
-//const quizSumRouter = require('./backend/routes/quizSumRoutes')
-const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
->>>>>>> 27c111add06e7fde1ef2f38a06e90250cc32dd05
->>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
->>>>>>> cb4488c713285a05ad87ad30cf7b1e39352aa4f6*/
+const viewcompRouter = require('./backend/routes/viewcompRoute')
+
+
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -51,12 +43,13 @@ app.use('/authorTest', authorTestRouter);
 
 app.use('/interview', interviewRouter);
 
+
+
 app.use('/quizSum',quizSumRouter);
 
+app.use('/viewcomp',viewcompRouter);
 
-//app.use('/interview', interviewRouter);
 
-//app.use('/quizSum',quizSumRouter);
 
 
 
@@ -74,6 +67,6 @@ app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })
 
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!')
+app.listen(9000, function() {
+    console.log('Example app listening on port 9000!')
 })
