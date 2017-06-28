@@ -10,7 +10,6 @@ const questionRouter = require('./backend/routes/questionRoute')
 const companyRouter = require('./backend/routes/companyRoute')
 const authorTestRouter = require('./backend/routes/authorTestRoute')
 const interviewRouter = require('./backend/routes/interviewRoutes')
-const viewinterviewRouter = require('./backend/routes/viewinterviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 
 mongoose.connect('mongodb://localhost/peasy')
@@ -32,7 +31,6 @@ app.use('/question', questionRouter);
 app.use('/company', companyRouter);
 app.use('/authorTest', authorTestRouter);
 app.use('/interview', interviewRouter);
-app.use('/viewinterview',viewinterviewRouter);
 app.use('/quizSum',quizSumRouter);
 
 app.get('/', function(req, res) {

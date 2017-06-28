@@ -1,7 +1,7 @@
 var interviewModel = require('../models/interview');
 
 exports.getAllTemplates = function(req, res) {
-    interviewModel.find(req.query).populate('users').exec(function(err, dbItems) {
+    interviewModel.find(req.query).exec(function(err, dbItems) {
         //console.log(dbItems);
         if (err)
             res.status(500).send(err);
