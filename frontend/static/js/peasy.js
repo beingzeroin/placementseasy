@@ -72,8 +72,32 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 }]);
 
 /* SATYA START*/
+<<<<<<< HEAD
 peMod.controller('dashboardCtrl', ['$http', '$scope', function ($http, $scope) {
     CKEDITOR.replace('input');
+=======
+peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
+		CKEDITOR.replace( 'input' );
+    
+    $http({
+                url: '/company/api',
+                method: "GET",
+            
+                
+            })
+            .then(function(response) {
+                    console.log("SUCCESS"+ JSON.stringify(response.data));
+                   $scope.sc=response.data.items;
+                },
+                function(error) {
+                    console.log("FAILURE");
+                });
+    
+    $scope.showDetails = function(compname) {
+        $scope.selectedCompany = compname;
+    }
+    
+>>>>>>> f7ebbed5e04c483b9bac0d9f2e758cf4c130f5cf
 }]);
 /* SATYA END*/
 
@@ -385,6 +409,32 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 
 /* SAHITHI END */
+<<<<<<< HEAD
+
+
+peMod.controller('authorTest', ['$http', '$scope', function($http, $scope) {
+
+
+		$scope.authorTest = function() {
+        var qn = $scope.a;
+        $http({
+                url: '/authorTest/api',
+                method: "POST",
+                data: a
+            })
+            .then(function(response) {
+                    console.log("SUCCESS" + JSON.stringify(a));
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(a));
+                });
+    }
+
+}]);
+
+
+=======
+>>>>>>> 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
 /*$(document).ready(function() {
