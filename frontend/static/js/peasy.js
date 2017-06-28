@@ -1,24 +1,8 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
-peMod.config(function ($routeProvider) {
-    $routeProvider
-//<<<<<<< HEAD
-        .when('/', { templateUrl: '/partials/main.html' })
-        .when('/login', { templateUrl: '/partials/login.html' })
-        .when('/register', { templateUrl: '/partials/register.html' })
-        .when('/takeQuiz', { templateUrl: '/partials/takeQuiz.html', controller: 'takeQuizCtrl' })
-        .when('/company', { templateUrl: '/partials/company.html', controller: 'compayWiseCtrl' })
-        .when('/bzTemplateAdd', { templateUrl: '/partials/bzTemplateAdd.html', controller: 'bzAddTemplateCtrl' })
-        .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
-        .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
-        .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
-        .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
-        .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
-        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
-        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
-        .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
-        .when('/notfound', { templateUrl: '/partials/404.html' })
-        .otherwise({ redirectTo: '/notfound' })
 
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
+peMod.config(function($routeProvider) {
+    $routeProvider
+	
         .when('/', {
             templateUrl: '/partials/main.html'
         })
@@ -75,7 +59,6 @@ peMod.config(function ($routeProvider) {
         .otherwise({
             redirectTo: '/notfound'
         })
-//>>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
 });
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
@@ -91,32 +74,26 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 }]);
 
 /* SATYA START*/
-//<<<<<<< HEAD
-//peMod.controller('dashboardCtrl', ['$http', '$scope', function ($http, $scope) {
-  //  CKEDITOR.replace('input');
-//=======
-peMod.controller('dashboardCtrl', ['$http', '$scope', function($http, $scope) {
-		CKEDITOR.replace( 'input' );
+
+
+peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
+		$scope.addCompanydescFn = function() {
+        var c = $scope.c;
+
     
     $http({
                 url: '/company/api',
-                method: "GET",
-            
-                
+                method: "POST",
+                data: c
             })
             .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.sc=response.data.items;
+                    console.log("SUCCESS" + JSON.stringify(c));
                 },
                 function(error) {
-                    console.log("FAILURE");
+                    console.log("FAILURE" + JSON.stringify(c));
                 });
-    
-    $scope.showDetails = function(compname) {
-        $scope.selectedCompany = compname;
     }
-    
-//>>>>>>> f7ebbed5e04c483b9bac0d9f2e758cf4c130f5cf
+
 }]);
 /* SATYA END*/
 
@@ -430,6 +407,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 /* SAHITHI END */
 
 
+
 peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
@@ -450,17 +428,11 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 }]);
 
-// 0903608f280327a5aa489bee233f422f61fab9e8
 
 /* VAMSHI START */
-/*$(document).ready(function() {
-			$("#txtEditor1").Editor();
-			$("#txtEditor2").Editor();
-		});
-*/
-peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('qnDescription');
-    CKEDITOR.replace('qnExplanation');
+
+
+peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
@@ -479,45 +451,5 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
 }]);
 
-/*
-function setCorrespondingAnsRadio(x,radioId){
-		var xstr = x.value;
-		if(xstr.length==0)
-			document.getElementById(radioId).disabled=true;
-		else
-			document.getElementById(radioId).disabled=false;
-}
-*/
 
-function startedTyping(x, radioId) {
-    this.off;
-    if (typeof x.value != 'null') {
-        document.getElementById(radioId).disabled = 'false';
-    } else {
-        document.getElementById(radioId).checked = 'false';
-        document.getElementById(radioId).disabled = 'true';
-    }
-}
-/*
-    function stoppedTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = true;
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
-    function againTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    		document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
- */
 /* VAMSHI END */

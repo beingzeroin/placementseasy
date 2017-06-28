@@ -7,23 +7,10 @@ const mongoose = require('mongoose')
 
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
-//<<<<<<< HEAD
 const companyRouter = require('./backend/routes/companyRoute')
-
-//=======
 const authorTestRouter = require('./backend/routes/authorTestRoute')
-
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
-
-//<<<<<<< HEAD
-//const interviewRouter = require('./backend/routes/interviewRoutes')
-//const quizSumRouter = require('./backend/routes/quizSumRoutes')
-//=======
-//const interviewRouter = require('./backend/routes/interviewRoutes')
-//const quizSumRouter = require('./backend/routes/quizSumRoutes')
-//>>>>>>> 27c111add06e7fde1ef2f38a06e90250cc32dd05
-//>>>>>>> ec59419d85ca64c54c4f26d3c1b0e145de78c42b
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -42,19 +29,9 @@ app.use(bodyParser.json())
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
 app.use('/company', companyRouter);
-
 app.use('/authorTest', authorTestRouter);
-
 app.use('/interview', interviewRouter);
-
 app.use('/quizSum',quizSumRouter);
-
-
-//app.use('/interview', interviewRouter);
-
-//app.use('/quizSum',quizSumRouter);
-
-//>>>>>>> 27c111add06e7fde1ef2f38a06e90250cc32dd05
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')

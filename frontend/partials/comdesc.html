@@ -1,0 +1,44 @@
+<div class="container">
+    <form class="form-horizontal">
+        <h1>company Name</h1>
+        <br>
+
+        <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Company name</label>
+        </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="Name" ng-model="c.name">
+            
+                            </div>
+
+
+        </div>
+       
+        <br><br>
+        <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Description</label>
+            </div>
+            <div class="col-md-10">
+
+                <textarea class="form-control" id="input" placeholder="Description" ng-model="c.description"></textarea>
+
+            </div>
+
+        </div>
+       
+<div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <button class="btn btn-default" ng-click="addCompanydescFn()">Submit</button>
+                <!--button type="submit" ng-click="addInterviewExpFn()" class="btn btn-default">Submit</button-->
+            </div>
+
+        </div>
+
+
+       
+    </form>
+</div>
