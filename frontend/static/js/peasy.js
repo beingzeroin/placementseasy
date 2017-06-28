@@ -53,6 +53,10 @@ peMod.config(function($routeProvider) {
             templateUrl: '/partials/addQuestion.html',
             controller: 'addQtnCtrl'
         })
+        .when('/editDeleteQuestion', {
+            templateUrl: '/partials/editDeleteQuestion.html',
+            controller: 'editDeleteQtnCtrl'
+        })
         .when('/notfound', {
             templateUrl: '/partials/404.html'
         })
@@ -442,10 +446,69 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
                 data: qn
             })
             .then(function (response) {
-                    console.log("SUCCESS" + JSON.stringify(qn));
+                    console.log("SUCCESS IN POST" + JSON.stringify(qn));
                 },
                 function (error) {
-                    console.log("FAILURE" + JSON.stringify(qn));
+                    console.log("FAILURE IN POST" + JSON.stringify(qn));
+                });
+    }
+
+}]);
+
+
+//TO EDIT
+
+peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
+	var questionId=$scope.qId;
+    $scope.showQuestionFn = function () {
+	
+        $http({
+                url: '/question/api/'+questionId,
+                method: "GET",
+            })
+            .then(function (response) {
+					var qn=response.data;
+                    console.log("SUCCESS IN GET" + JSON.stringify(qn));
+					$scope.qn=qn;
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                });
+		
+		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}
+				
+    }
+
+    $scope.updateQuestionFn = function () {
+        var questionId=$scope.qId;
+		var qn = $scope.qn;
+        $http({
+                url: '/question/api/'+questionId,
+                method: "PUT",
+				data:qn
+            })
+           .then(function (response) {
+                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                });
+    }
+
+    $scope.deleteQuestionFn = function () {
+        var qn = $scope.qn;
+        $http({
+                url: '/question/api'+questionId,
+                method: "DELETE",
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN DELETE" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN DELETE" + JSON.stringify(qn));
                 });
     }
 

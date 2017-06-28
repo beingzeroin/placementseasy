@@ -26,8 +26,8 @@ exports.createQuestion = function(req, res) {
 
 
 exports.editQuestion = function(req, res) {
-    console.log('Edit ' + req.body._id);
-    BZTemplateModel.findById(req.body._id, function(err, cObj) {
+    console.log('Edit ' + req.params.id);
+    QuestionModel.findById(req.params.id, function(err, cObj) {
         if (err)
             res.status(500).send(err);
         else {
@@ -69,18 +69,20 @@ exports.getQuestion = function(req, res) {
 exports.deleteQuestion = function(req, res) {
 
     console.log('Delete ' + req.params.id);
-    QuestionModel.findById(req.params.id, function(err, cObj) {
+    QuestionModel.findByIdAndRemove(req.params.id, function(err) {
         if (err)
             res.status(500).send(err);
-        else {
+		else
+			res.status(200).send({"status":"SUCCESS"});
+       /* else {
             cObj.deleted = true;
             // Save Updated Statement
             cObj.save(function(err) {
                 if (err)
                     res.status(500).send(err);
                 else
-                    res.status(200).send(cObj);
+                    
             });
-        }
+        } */
     });
 };

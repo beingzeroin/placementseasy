@@ -367,3 +367,6 @@ div.review>div {
 
 
 /* -- VAMSHI -- */
+.hiddenEditDelQnProperties {
+	display: none;
+}
