@@ -47,7 +47,8 @@ peMod.config(function($routeProvider) {
             controller: 'addInterviewExpCtrl'
         })
         .when('/viewInterviewExperience', {
-            templateUrl: '/partials/viewInterviewExperience.html'
+            templateUrl: '/partials/viewInterviewExperience.html',
+            controller: 'viewInterviewExpCtrl'
         })
         .when('/addQuestion', {
             templateUrl: '/partials/addQuestion.html',
@@ -400,6 +401,26 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
                     console.log("FAILURE" + JSON.stringify(ie));
                 });
     }
+
+}]);
+
+peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
+
+    
+     $http({
+            url: '/Interview/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
 
 }]);
 

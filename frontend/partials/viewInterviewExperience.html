@@ -1,12 +1,28 @@
 View Interview Experience
 <br>
 <br>
-<div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
-                <button class="btn btn-default" ng-click="fn()">View</button>
-                <!--button type="submit" ng-click="addInterviewExpFn()" class="btn btn-default">Submit</button-->
-            </div>
+<div class="container"
+   
+	<div class="row"><br>
 
+		<div class="jumbotron" ng-repeat="d in data">
+          <h3>Experience</h3>
+          Company name:{{d.Company}}
+            <br>
+            Date : {{d.DateVisited}}
+            <br>
+            CollegeName:{{d.CollegeName}}
+            <br>
+            Description:{{d.Description}}
+            <br>
+           Explanation:{{d.Explanation}}
+            <br>
+            
+          
         </div>
+	</div>
+	
+</div>
+ 
+
+
