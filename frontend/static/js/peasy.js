@@ -1,6 +1,5 @@
-
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
-peMod.config(function($routeProvider) {
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
+peMod.config(function ($routeProvider) {
     $routeProvider
      
 	
@@ -49,11 +48,16 @@ peMod.config(function($routeProvider) {
             controller: 'addInterviewExpCtrl'
         })
         .when('/viewInterviewExperience', {
-            templateUrl: '/partials/viewInterviewExperience.html'
+            templateUrl: '/partials/viewInterviewExperience.html',
+            controller: 'viewInterviewExpCtrl'
         })
         .when('/addQuestion', {
             templateUrl: '/partials/addQuestion.html',
             controller: 'addQtnCtrl'
+        })
+        .when('/editDeleteQuestion', {
+            templateUrl: '/partials/editDeleteQuestion.html',
+            controller: 'editDeleteQtnCtrl'
         })
         .when('/notfound', {
             templateUrl: '/partials/404.html'
@@ -77,11 +81,10 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 
 /* SATYA START*/
 
-
 peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
 		$scope.addCompanydescFn = function() {
         var c = $scope.c;
-
+        
     
     $http({
                 url: '/company/api',
@@ -95,6 +98,7 @@ peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) 
                     console.log("FAILURE" + JSON.stringify(c));
                 });
     }
+    
 
 }]);
 /* SATYA END*/
@@ -404,6 +408,26 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 }]);
 
+peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
+
+    
+     $http({
+            url: '/Interview/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+
+}]);
+
 
 
 /* SAHITHI END */
@@ -437,7 +461,16 @@ peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http
 /* VAMSHI START */
 
 
-peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
+
+/* VAMSHI START */
+/*$(document).ready(function() {
+			$("#txtEditor1").Editor();
+			$("#txtEditor2").Editor();
+		});
+*/
+peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
+    CKEDITOR.replace('qnDescription');
+    CKEDITOR.replace('qnExplanation');
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
@@ -447,14 +480,116 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function($http, $scope) {
                 data: qn
             })
             .then(function (response) {
-                    console.log("SUCCESS" + JSON.stringify(qn));
+                    console.log("SUCCESS IN POST" + JSON.stringify(qn));
                 },
                 function (error) {
-                    console.log("FAILURE" + JSON.stringify(qn));
+                    console.log("FAILURE IN POST" + JSON.stringify(qn));
                 });
     }
 
 }]);
+
+
+//TO EDIT
+
+peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
+	var questionId=$scope.qId;
+    $scope.showQuestionFn = function () {
+	
+        $http({
+                url: '/question/api/'+questionId,
+                method: "GET",
+            })
+            .then(function (response) {
+					var qn=response.data;
+                    console.log("SUCCESS IN GET" + JSON.stringify(qn));
+					$scope.qn=qn;
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                });
+		
+		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}
+				
+    }
+
+    $scope.updateQuestionFn = function () {
+        var questionId=$scope.qId;
+		var qn = $scope.qn;
+        $http({
+                url: '/question/api/'+questionId,
+                method: "PUT",
+				data:qn
+            })
+           .then(function (response) {
+                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                });
+    }
+
+    $scope.deleteQuestionFn = function () {
+        var qn = $scope.qn;
+        $http({
+                url: '/question/api'+questionId,
+                method: "DELETE",
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN DELETE" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN DELETE" + JSON.stringify(qn));
+                });
+    }
+
+}]);
+
+/*
+function setCorrespondingAnsRadio(x,radioId){
+		var xstr = x.value;
+		if(xstr.length==0)
+			document.getElementById(radioId).disabled=true;
+		else
+			document.getElementById(radioId).disabled=false;
+}
+*/
+
+<<<<<<< HEAD
+function startedTyping(x, radioId) {
+    this.off;
+    if (typeof x.value != 'null') {
+        document.getElementById(radioId).disabled = 'false';
+    } else {
+        document.getElementById(radioId).checked = 'false';
+        document.getElementById(radioId).disabled = 'true';
+    }
+}
+/*
+    function stoppedTyping(x,radioId){
+		this.off;
+        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
+    			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = true;
+        } else if(x.value.length>0) { 
+			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'false';
+        }
+    }
+    function againTyping(x,radioId){
+		this.off;
+        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
+    		document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'true';
+        } else if(x.value.length>0) { 
+			document.getElementById(radioId).checked = 'false'; 
+            document.getElementById(radioId).disabled = 'false';
+        }
+    }
+ */
 
 
 /* VAMSHI END */

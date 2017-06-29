@@ -1,7 +1,26 @@
 <div class="container">
-    <h1>Add a Question</h1>
+    <h1>Edit / Delete a Question</h1>
     <form class="form-horizontal">
-        <div class="row question-property">
+		<div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Question ID:</label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="QUESTION ID" ng-model="qId">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <button class="btn btn-info" ng-click="showQuestionFn()">SHOW QUESTION</button>
+                <button id="deleteQnBtn" class="btn btn-danger hiddenEditDelQnProperties" ng-click="deleteQuestionFn()">DELETE QUESTION </button>
+            </div>
+        </div>
+		<br>
+		<br>
+		<br>
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Title:</label>
             </div>
@@ -9,7 +28,7 @@
                 <input type="text" class="form-control" placeholder="Title" ng-model="qn.title">
             </div>
         </div>
-        <div class="row question-property">
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Description:</label>
             </div>
@@ -17,7 +36,7 @@
 				<text-angular ng-model="qn.description"></text-angular>
             </div>
         </div>
-        <div class="row question-property">
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Options:</label>
             </div>
@@ -25,24 +44,24 @@
                 <div>
                     <div class="input-group">
                         <span class="input-group-addon">Option A</span>
-                        <input id="qnOptionA" ng-model="qn.options[0]" type="text" class="form-control" placeholder="Option A">
+                        <input id="qnOptionA" ng-model="qn['options'][0]['0']" type="text" class="form-control" placeholder="Option A">
                     </div>
                     <div class="input-group">	
                         <span class="input-group-addon">Option B</span>
-                        <input id="qnOptionB" ng-model="qn.options[1]" type="text" class="form-control" placeholder="Option B">
+                        <input id="qnOptionB" ng-model="qn['options'][0]['1']" type="text" class="form-control" placeholder="Option B">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option C</span>
-                        <input id="qnOptionC" ng-model="qn.options[2]" type="text" class="form-control" placeholder="Option C">
+                        <input id="qnOptionC" ng-model="qn['options'][0]['2']" type="text" class="form-control" placeholder="Option C">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option D</span>
-                        <input id="qnOptionD" ng-model="qn.options[3]" type="text" class="form-control" placeholder="Option D">
+                        <input id="qnOptionD" ng-model="qn['options'][0]['3	']" type="text" class="form-control" placeholder="Option D">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row question-property">
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Correct Option:</label>
             </div>
@@ -68,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="row question-property">
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Explanation:</label>
             </div>
@@ -76,7 +95,7 @@
 				<text-angular ng-model="qn.explanation"></text-angular>
             </div>
         </div>
-        <div class="row question-property">
+        <div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Level:</label>
             </div>
@@ -97,7 +116,7 @@
                 </div>
             </div>
 		</div>
-		<div class="row question-property">
+		<div class="row question-property hiddenEditDelQnProperties">
             <div class="col-md-2">
                 <label class="question-property-label">Add tags</label>
             </div>
@@ -108,11 +127,11 @@
 				</div>
             </div>
         </div>
-        <div class="row">
+        <div class="row hiddenEditDelQnProperties">
             <div class="col-md-2">
             </div>
             <div class="col-md-10">
-                <button class="btn btn-default" ng-click="addQuestionFn()">ADD QUESTION</button>
+                <button class="btn btn-warning" ng-click="updateQuestionFn()">UPDATE QUESTION</button>
             </div>
         </div>
     </form>

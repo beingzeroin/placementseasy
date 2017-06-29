@@ -24,6 +24,7 @@ router.route('/api')
 
 router.route('/api/:id')
     .get(questionLib.getQuestion)
-    .delete(questionLib.deleteQuestion);
+    .delete(questionLib.deleteQuestion)
+	.put(questionLib.editQuestion)
 
 module.exports = router;
