@@ -384,13 +384,33 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 }]);
 
+peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
+
+    
+     $http({
+            url: '/Interview/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+
+}]);
+
 
 
 /* SAHITHI END */
 
 
 
-peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http, $scope, $timeout) {
 
 
 		$scope.authorTest = function() {
@@ -407,15 +427,15 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                     console.log("FAILURE" + JSON.stringify(a));
                 });
     }
-
 }]);
 
 
 
-// 0903608f280327a5aa489bee233f422f61fab9e8
+
+
 
 /* VAMSHI START */
-//>>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
+
 
 
 /* VAMSHI START */
@@ -436,10 +456,69 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
                 data: qn
             })
             .then(function (response) {
-                    console.log("SUCCESS" + JSON.stringify(qn));
+                    console.log("SUCCESS IN POST" + JSON.stringify(qn));
                 },
                 function (error) {
-                    console.log("FAILURE" + JSON.stringify(qn));
+                    console.log("FAILURE IN POST" + JSON.stringify(qn));
+                });
+    }
+
+}]);
+
+
+//TO EDIT
+
+peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
+	var questionId=$scope.qId;
+    $scope.showQuestionFn = function () {
+	
+        $http({
+                url: '/question/api/'+questionId,
+                method: "GET",
+            })
+            .then(function (response) {
+					var qn=response.data;
+                    console.log("SUCCESS IN GET" + JSON.stringify(qn));
+					$scope.qn=qn;
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                });
+		
+		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}
+				
+    }
+
+    $scope.updateQuestionFn = function () {
+        var questionId=$scope.qId;
+		var qn = $scope.qn;
+        $http({
+                url: '/question/api/'+questionId,
+                method: "PUT",
+				data:qn
+            })
+           .then(function (response) {
+                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                });
+    }
+
+    $scope.deleteQuestionFn = function () {
+        var qn = $scope.qn;
+        $http({
+                url: '/question/api'+questionId,
+                method: "DELETE",
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN DELETE" + JSON.stringify(qn));
+                },
+                function (error) {
+                    console.log("FAILURE IN DELETE" + JSON.stringify(qn));
                 });
     }
 
@@ -487,6 +566,6 @@ function startedTyping(x, radioId) {
         }
     }
  */
-//=======
-//>>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
+
+
 /* VAMSHI END */
