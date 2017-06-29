@@ -7,18 +7,11 @@ const mongoose = require('mongoose')
 
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
-
 const companyRouter = require('./backend/routes/companyRoute')
-
-
 const authorTestRouter = require('./backend/routes/authorTestRoute')
-
 const interviewRouter = require('./backend/routes/interviewRoutes')
-
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
-
-
-
+const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
 
 mongoose.connect('mongodb://localhost/peasy')
 var db = mongoose.connection;
@@ -36,22 +29,11 @@ app.use(bodyParser.json())
 /* ROUTES */
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
-
 app.use('/company', companyRouter);
-
 app.use('/authorTest', authorTestRouter);
-
 app.use('/interview', interviewRouter);
-
-
-
 app.use('/quizSum',quizSumRouter);
-
-
-
-
-
-
+app.use('/submitQuiz',submitQuizRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
@@ -60,14 +42,21 @@ app.get('/', function(req, res) {
 app.get('/partials/:partialPath', function(req, res) {
     res.sendFile(__dirname + '/frontend/partials/' + req.params.partialPath)
 })
+
 app.get('/data/:dataFileName', function(req, res) {
     res.sendFile(__dirname + '/frontend/static/data/' + req.params.dataFileName)
 })
+
 app.get('*', function(req, res) {
     res.send({ message: 'INVALID REQUEST' })
 })
 
-app.listen(9000, function() {
-    console.log('Example app listening on port 9000!')
+/* ROUTES END */
+
+
+/* Express Server */
+const PORT = 3000;
+app.listen(PORT, function() {
+    console.log('Example app listening on port: ' + PORT);
 })
 
