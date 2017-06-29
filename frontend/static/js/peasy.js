@@ -558,7 +558,6 @@ function setCorrespondingAnsRadio(x,radioId){
 }
 */
 
-<<<<<<< HEAD
 function startedTyping(x, radioId) {
     this.off;
     if (typeof x.value != 'null') {

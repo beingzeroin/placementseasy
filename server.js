@@ -16,7 +16,7 @@ const authorTestRouter = require('./backend/routes/authorTestRoute')
 const interviewRouter = require('./backend/routes/interviewRoutes')
 
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
-const viewcompRouter = require('./backend/routes/viewcompRoute')
+
 
 
 
@@ -47,7 +47,7 @@ app.use('/interview', interviewRouter);
 
 app.use('/quizSum',quizSumRouter);
 
-app.use('/viewcomp',viewcompRouter);
+
 
 
 
