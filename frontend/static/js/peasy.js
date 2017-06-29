@@ -16,65 +16,11 @@ peMod.config(function ($routeProvider) {
         .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
         .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
         .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
+        .when('/viewcomp', { templateUrl: '/partials/viewcomp.html', controller: 'viewcompCtrl' })
         .when('/notfound', { templateUrl: '/partials/404.html' })
         .otherwise({ redirectTo: '/notfound' })
 
-        .when('/', {
-            templateUrl: '/partials/main.html'
-        })
-        .when('/login', {
-            templateUrl: '/partials/login.html'
-        })
-        .when('/register', {
-            templateUrl: '/partials/register.html'
-        })
-        .when('/takeQuiz', {
-            templateUrl: '/partials/takeQuiz.html',
-            controller: 'takeQuizCtrl'
-        })
-        .when('/company', {
-            templateUrl: '/partials/company.html',
-            controller: 'compayWiseCtrl'
-        })
-        .when('/bzTemplateAdd', {
-            templateUrl: '/partials/bzTemplateAdd.html',
-            controller: 'bzAddTemplateCtrl'
-        })
-        .when('/bzTemplateList', {
-            templateUrl: '/partials/bzTemplateList.html',
-            controller: 'bzListTemplateCtrl'
-        })
-        .when('/quizSummary', {
-            templateUrl: '/partials/quizSummary.html',
-            controller: 'quizSummaryCtrl'
-        })
-        .when('/topicwise', {
-            templateUrl: '/partials/topicwise.html'
-        })
-        .when('/authortest', {
-            templateUrl: '/partials/authorTest.html'
-        })
-        .when('/dashboard', {
-            templateUrl: '/partials/dashboard.html',
-            controller: 'dashboardCtrl'
-        })
-        .when('/addInterviewExperience', {
-            templateUrl: '/partials/addInterviewExperience.html',
-            controller: 'addInterviewExpCtrl'
-        })
-        .when('/viewInterviewExperience', {
-            templateUrl: '/partials/viewInterviewExperience.html'
-        })
-        .when('/addQuestion', {
-            templateUrl: '/partials/addQuestion.html',
-            controller: 'addQtnCtrl'
-        })
-        .when('/notfound', {
-            templateUrl: '/partials/404.html'
-        })
-        .otherwise({
-            redirectTo: '/notfound'
-        })
+        
 });
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
@@ -111,6 +57,26 @@ peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) 
     
 
 }]);
+
+
+peMod.controller('viewcompCtrl', function ($scope, $http) {
+
+ $http({
+            url: '/company/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+
+});
 /* SATYA END*/
 
 
@@ -445,12 +411,11 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 }]);
 
 
-<<<<<<< HEAD
+
 // 0903608f280327a5aa489bee233f422f61fab9e8
-=======
 
 /* VAMSHI START */
->>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
+//>>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
 
 
 /* VAMSHI START */
@@ -490,7 +455,7 @@ function setCorrespondingAnsRadio(x,radioId){
 }
 */
 
-<<<<<<< HEAD
+
 function startedTyping(x, radioId) {
     this.off;
     if (typeof x.value != 'null') {
@@ -522,6 +487,6 @@ function startedTyping(x, radioId) {
         }
     }
  */
-=======
->>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
+//=======
+//>>>>>>> 5a0417c3bbf36bcca84e0b4d13a36e12ba8d7138
 /* VAMSHI END */
