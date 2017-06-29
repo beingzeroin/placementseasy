@@ -368,7 +368,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
     $scope.addInterviewExpFn = function () {
         
         var ie = $scope.ie;
-        console.log(JSON.stringify(ie));
+    
         $http({
                 url: '/interview/api',
                 method: "POST",
@@ -380,6 +380,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
                 function (error) {
                     console.log("FAILURE" + JSON.stringify(ie));
                 });
+        alert("submitted successfully");
     }
 
 }]);
@@ -400,6 +401,7 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
             function (error) {
                 console.log("FAILURE");
             });
+    
 
 
 }]);
