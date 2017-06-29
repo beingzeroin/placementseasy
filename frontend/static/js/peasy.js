@@ -1,70 +1,26 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
 peMod.config(function ($routeProvider) {
     $routeProvider
-     
-	
-        .when('/', {
-            templateUrl: '/partials/main.html'
-        })
-        .when('/login', {
-            templateUrl: '/partials/login.html'
-        })
-        .when('/register', {
-            templateUrl: '/partials/register.html'
-        })
-        .when('/takeQuiz', {
-            templateUrl: '/partials/takeQuiz.html',
-            controller: 'takeQuizCtrl'
-        })
-        .when('/company', {
-            templateUrl: '/partials/company.html',
-            controller: 'compayWiseCtrl'
-        })
-        .when('/bzTemplateAdd', {
-            templateUrl: '/partials/bzTemplateAdd.html',
-            controller: 'bzAddTemplateCtrl'
-        })
-        .when('/bzTemplateList', {
-            templateUrl: '/partials/bzTemplateList.html',
-            controller: 'bzListTemplateCtrl'
-        })
-        .when('/quizSummary', {
-            templateUrl: '/partials/quizSummary.html',
-            controller: 'quizSummaryCtrl'
-        })
-        .when('/topicwise', {
-            templateUrl: '/partials/topicwise.html'
-        })
-        .when('/authortest', {
-            templateUrl: '/partials/authorTest.html',
-        controller: 'authorTestCtrl'
-        })
-        .when('/dashboard', {
-            templateUrl: '/partials/dashboard.html',
-            controller: 'dashboardCtrl'
-        })
-        .when('/addInterviewExperience', {
-            templateUrl: '/partials/addInterviewExperience.html',
-            controller: 'addInterviewExpCtrl'
-        })
-        .when('/viewInterviewExperience', {
-            templateUrl: '/partials/viewInterviewExperience.html',
-            controller: 'viewInterviewExpCtrl'
-        })
-        .when('/addQuestion', {
-            templateUrl: '/partials/addQuestion.html',
-            controller: 'addQtnCtrl'
-        })
-        .when('/editDeleteQuestion', {
-            templateUrl: '/partials/editDeleteQuestion.html',
-            controller: 'editDeleteQtnCtrl'
-        })
-        .when('/notfound', {
-            templateUrl: '/partials/404.html'
-        })
-        .otherwise({
-            redirectTo: '/notfound'
-        })
+        .when('/', { templateUrl: '/partials/main.html' })
+        .when('/login', { templateUrl: '/partials/login.html' })
+        .when('/register', { templateUrl: '/partials/register.html' })
+        .when('/takeQuiz', { templateUrl: '/partials/takeQuiz.html', controller: 'takeQuizCtrl' })
+        .when('/company', { templateUrl: '/partials/company.html', controller: 'compayWiseCtrl' })
+        .when('/bzTemplateAdd', { templateUrl: '/partials/bzTemplateAdd.html', controller: 'bzAddTemplateCtrl' })
+        .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
+        .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
+        .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
+        .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
+        .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
+        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
+        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
+        .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
+        .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
+        .when('/viewcomp', { templateUrl: '/partials/viewcomp.html', controller: 'viewcompCtrl' })
+        .when('/notfound', { templateUrl: '/partials/404.html' })
+        .otherwise({ redirectTo: '/notfound' })
+
+        
 });
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
@@ -101,6 +57,26 @@ peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) 
     
 
 }]);
+
+
+peMod.controller('viewcompCtrl', function ($scope, $http) {
+
+ $http({
+            url: '/company/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+
+});
 /* SATYA END*/
 
 
@@ -557,6 +533,7 @@ function setCorrespondingAnsRadio(x,radioId){
 			document.getElementById(radioId).disabled=false;
 }
 */
+
 
 function startedTyping(x, radioId) {
     this.off;
