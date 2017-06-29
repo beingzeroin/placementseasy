@@ -2,6 +2,7 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap','ngTagsInput','textAngular']);
 peMod.config(function($routeProvider) {
     $routeProvider
+     
 	
         .when('/', {
             templateUrl: '/partials/main.html'
@@ -36,7 +37,8 @@ peMod.config(function($routeProvider) {
             templateUrl: '/partials/topicwise.html'
         })
         .when('/authortest', {
-            templateUrl: '/partials/authorTest.html'
+            templateUrl: '/partials/authorTest.html',
+        controller: 'authorTestCtrl'
         })
         .when('/dashboard', {
             templateUrl: '/partials/dashboard.html',
@@ -408,7 +410,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 
 
-peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http, $scope, $timeout) {
 
 
 		$scope.authorTest = function() {
@@ -425,8 +427,11 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                     console.log("FAILURE" + JSON.stringify(a));
                 });
     }
-
 }]);
+
+
+
+
 
 
 /* VAMSHI START */
