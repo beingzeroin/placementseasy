@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', { templateUrl: '/partials/main.html' })
@@ -12,8 +12,8 @@ peMod.config(function ($routeProvider) {
         .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
         .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
         .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
-        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html' })
-        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html' })
+        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html', controller: 'addInterviewExpCtrl' })
+        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html', controller: 'viewInterviewExpCtrl' })
         .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
         .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
         .when('/viewcomp', { templateUrl: '/partials/viewcomp.html', controller: 'viewcompCtrl' })
