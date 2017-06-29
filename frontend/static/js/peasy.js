@@ -80,36 +80,7 @@ peMod.controller('viewcompCtrl', function ($scope, $http) {
 /* SATYA END*/
 
 
-peMod.controller('TimepickerDemoCtrl', function ($scope, $log) {
-    $scope.mytime = new Date();
 
-    $scope.hstep = 1;
-    $scope.mstep = 5;
-
-    $scope.ismeridian = true;
-    $scope.toggleMode = function () {
-        $scope.ismeridian = !$scope.ismeridian;
-    };
-
-    $scope.clear = function () {
-        $scope.mytime = null;
-    };
-});
-
-peMod.controller('TimepickerDemo', function ($scope, $log) {
-    $scope.mytime = new Date();
-    $scope.hstep = 1;
-    $scope.mstep = 5;
-
-    $scope.ismeridian = true;
-    $scope.toggleMode = function () {
-        $scope.ismeridian = !$scope.ismeridian;
-    };
-
-    $scope.clear = function () {
-        $scope.mytime = null;
-    };
-});
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function ($scope, $http) {
@@ -410,7 +381,7 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
 
 
 
-peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http, $scope, $timeout) {
+peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 
 
 		$scope.authorTest = function() {
@@ -427,14 +398,31 @@ peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http
                     console.log("FAILURE" + JSON.stringify(a));
                 });
     }
-}]);
+
+            $scope.add = function () 
+            {
+                
+                if (angular.isDefined($scope.name) && $scope.name != '' && $scope.title != '') 
+                {
+                    // ADD A NEW ELEMENT.
+                    $scope.list.push({ name: $scope.name, title: $scope.title });
+
+                    // CLEAR THE FIELDS.
+                    $scope.name = '';
+                    $scope.title = '';
+                }
+            }
+       
+    
+    $scope.Delete = function (index) {
+            
+            $scope.list.splice(index,1);
+        }
+     }]
+    );
 
 
 
-
-
-
-/* VAMSHI START */
 
 
 
