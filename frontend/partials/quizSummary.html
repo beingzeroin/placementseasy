@@ -21,16 +21,16 @@
                    </div>
                      <div class="row">
                             <div class="col-md-3">
-                            {{sc[0].attempted}}
+                            {{sc[1].attempted}}
                            </div>
                            <div class="col-md-3">
-                            {{sc[0].correct}}
+                            {{sc[1].correct}}
                           </div>
                             <div class="col-md-3">
-                            {{sc[0].incorrect}}
+                            {{sc[1].incorrect}}
                            </div>
                             <div class="col-md-3">
-                             {{sc[0].notAttempted}}
+                             {{sc[1].notAttempted}}
                              </div>
                    </div>
 
@@ -44,7 +44,7 @@
                   <h3>Your Score :</h3>
             </div>
             <div class="col-md-1">
-                  <h3>{{sc.score}}</h3> 
+                  <h3>{{sc[1].score}}</h3> 
              </div>
          </div> 
 
@@ -56,7 +56,7 @@
 
          <div class="row" >
              <div class="col-md-1" ng-repeat="q in questions" >
-                 <button type="button" class="btn btn-default " ng-click="showDetails(q)">{{Shown below}}</button>
+                 <button type="button" class="btn btn-default " ng-click="showDetails(q)">{{q.qNo}}</button>
              </div>
           </div>
          </div>

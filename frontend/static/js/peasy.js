@@ -153,6 +153,22 @@ peMod.controller('quizSummaryCtrl', function ($scope, $http) {
             function (error) {
                 console.log("FAILURE");
             });
+    
+    $http({
+                url: '/submitQuiz/api',
+                method: "GET",
+            
+                
+            })
+            .then(function(response) {
+                    console.log("SUCCESS"+ JSON.stringify(response.data));
+                   $scope.questions=response.data.items;
+                },
+                function(error) {
+                    console.log("FAILURE");
+                });
+    
+	
 
     /*
 
