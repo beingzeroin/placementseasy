@@ -15,6 +15,10 @@ var authorTestSchema = new mongoose.Schema
     {
         "type":"number"
     },
+    "DateExam":
+    {
+        "type":"date"
+    },
     "start_time":
     {
         "type":"date"
@@ -22,7 +26,7 @@ var authorTestSchema = new mongoose.Schema
     "end_time":
     {
         "type":"date"
-    },
+    }
     
 })
 
