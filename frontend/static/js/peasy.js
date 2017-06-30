@@ -113,31 +113,7 @@ peMod.controller('TimepickerDemo', function ($scope, $log) {
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function ($scope, $http) {
-    /*
-    $scope.score = 40;
-    $scope.Attempted = 50;
-    $scope.correct = 40;
-    $scope.inCorrect = 10;
-    $scope.NotAttempted = 50;
-*/
-    /*
-	
-	$http({
-                url: '/question/api',
-                method: "POST",
-                data: qn
-            })
-            .then(function(response) {
-                    console.log("SUCCESS" + JSON.stringify(qn));
-                },
-                function(error) {
-                    console.log("FAILURE" + JSON.stringify(qn));
-                });
-    }
-
-	
-	*/
-
+ 
 
 
     $http({
@@ -154,36 +130,6 @@ peMod.controller('quizSummaryCtrl', function ($scope, $http) {
                 console.log("FAILURE");
             });
     
-    $http({
-                url: '/submitQuiz/api',
-                method: "GET",
-            
-                
-            })
-            .then(function(response) {
-                    console.log("SUCCESS"+ JSON.stringify(response.data));
-                   $scope.questions=response.data.items;
-                },
-                function(error) {
-                    console.log("FAILURE");
-                });
-    
-	
-
-    /*
-
-	
-    $http.get('/data/quiz-summary-data.json')
-        .then(function(response) {
-         console.log("SUCCESS"+ JSON.stringify(response.data));
-            $scope.question = response.data;
-        }, function(error) {
-            $scope.error = error;
-        });
-	
-
-    */
-
     $scope.showDetails = function (quesNo) {
         $scope.selectedQuestion = quesNo;
     }
@@ -270,7 +216,7 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
             question.Options.forEach(function (element, index, array) {
                 if (element.Id != option.Id) {
                     element.Selected = false;
-                    //question.Answered = element.Id;
+                    question.Answered = element.Id;
                 }
             });
         }
@@ -280,7 +226,10 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
     }
 
     $scope.onSubmit = function () {
-        var answers = [];
+        
+         var myobj ={};
+         var answers=[];
+        
         $scope.questions.forEach(function (q, index) {
             answers.push({
                 'QuizId': $scope.quiz.Id,
@@ -288,13 +237,37 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
                 'Answered': q.Answered
             });
         });
+        
+        myobj.answers = answers;
+        
+        alert("submitted successfully");
+        console.log($scope.questions);
+        $scope.mode = 'result';
+        console.log("SUCCESS" + JSON.stringify(myobj));
+            
+        $http({
+                url: 'submitQuiz/api',
+                method: "POST",
+                data: myobj
+            })
+            .then(function (response) {
+                    console.log("SUCCESS" + JSON.stringify(myobj));
+                },
+                function (error) {
+                    console.log("FAILURE" + JSON.stringify(myobj));
+                });
+   
+        
+        
+         }
+    
         // Post your data to the server here. answers contains the questionId and the users' answer.
         //$http.post('api/Quiz/Submit', answers).success(function (data, status) {
         //    alert(data);
         //});
-        console.log($scope.questions);
-        $scope.mode = 'result';
-    }
+    
+        
+    
 
     $scope.pageCount = function () {
         return Math.ceil($scope.questions.length / $scope.itemsPerPage);
@@ -332,10 +305,12 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
     $scope.loadQuiz($scope.quizName);
 
     $scope.isAnswered = function (index) {
+        
         var answered = 'Not Answered';
         $scope.questions[index].Options.forEach(function (element, index, array) {
             if (element.Selected == true) {
                 answered = 'Answered';
+                
                 return false;
             }
         });
