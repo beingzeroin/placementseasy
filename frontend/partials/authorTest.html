@@ -18,7 +18,7 @@
         <div class="col-md-2"><label>Company:</label></div>
         <div class="col-md-10">
 
-             <select class="form-control" ng-model="a.company">
+             <select class="form-control" ng-model="a.company" >
   <option value="INFOSYS" >INFOSYS</option>
   <option value="AMAZON" >AMAZON</option>
   <option value="TCS" >TCS</option>
@@ -49,7 +49,7 @@
                 <label >Date </label>
             </div>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="dd/mm/yyyy" ng-model="a.DateExam">
+                <input type="text" class="form-control" placeholder="yyyy-mm-dd" ng-model="a.DateExam">
             </div>
 
               </div> </div>  
@@ -78,7 +78,8 @@
                 <input type="text" class="form-control" placeholder="HH:MM" ng-model="a.end_time">
             </div>
 
-              </div> </div>  
+              </div> </div> 
+    <br>
 
     <div class="container">
         <div class="row">
@@ -116,11 +117,11 @@
         </div>
         <div class="col-md-9">
        
-            <input type="text" ng-model="name" class="form-control" placeholder="Enter id" /> 
+            <input type="text" ng-model="a.name" class="form-control" placeholder="Enter id" /> 
         </div>
     </div>
     <br>
-    <div class="row">
+   <!-- <div class="row">
         <div class="col-md-3">
             <label>Add Title</label>
         </div>
@@ -128,28 +129,28 @@
        
             <input type="text" ng-model="title" class="form-control" placeholder="Enter question" /> 
         </div>
-    </div>
+    </div>-->
     
 <br>
 
-            <p align="center" ><button class="btn btn-info" ng-click="add()">Add Question</button></p>
+            <p align="center" ><button class="btn btn-info" ng-click="add(a.name)">Add Question</button></p>
         
     
      
-    </div>
+    </div><br>
      
 <div class="container">
-            <!-- LOOP.-->
+            
 
 
-            <ul ng-repeat="books in list">
+            <ul ng-repeat="l in list">
                 <div class="row">
                     
                 <li>
-                    <div class="col-md-2">
-                        {{ books.name + '     -       ' + books.title}} 
+                    <div class="col-md-3">
+                        {{ l.name }}</div><div class="col-md-3">{{l.title}} 
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-6">
                         <button class="btn btn-danger" ng-click="Delete($index)">Delete</button><br>
                     </div></li>
                 </div>
@@ -157,19 +158,21 @@
             </ul>
     
     </div>
+     
         </div>
 
         
     
    
     <br><br>
- <div class="row">
-             <div class="col-md-2">
+    <div class="container">
+ <div class="row" align="center">
+             <div class="col-md-0">
              </div>
-             <div class="col-md-10">
-                 <button class="btn btn-default" ng-click="authorTest()">Submit</button>
+             <div class="col-md-12">
+                 <button class="btn btn-primary" ng-click="authorTest()">Submit</button>
 
-             </div>
+     </div></div>
  
 </div>
  

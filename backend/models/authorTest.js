@@ -21,11 +21,15 @@ var authorTestSchema = new mongoose.Schema
     },
     "start_time":
     {
-        "type":"date"
+        "type":"string"
     },
     "end_time":
     {
-        "type":"date"
+        "type":"string"
+    },
+    "name":
+    {
+        "type":"string"
     }
     
 })
