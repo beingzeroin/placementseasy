@@ -1,27 +1,87 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular']);
 peMod.config(function ($routeProvider) {
     $routeProvider
-        .when('/', { templateUrl: '/partials/main.html' })
-        .when('/login', { templateUrl: '/partials/login.html' })
-        .when('/register', { templateUrl: '/partials/register.html' })
-        .when('/takeQuiz', { templateUrl: '/partials/takeQuiz.html', controller: 'takeQuizCtrl' })
-        .when('/company', { templateUrl: '/partials/company.html', controller: 'compayWiseCtrl' })
-        .when('/bzTemplateAdd', { templateUrl: '/partials/bzTemplateAdd.html', controller: 'bzAddTemplateCtrl' })
-        .when('/bzTemplateList', { templateUrl: '/partials/bzTemplateList.html', controller: 'bzListTemplateCtrl' })
-        .when('/quizSummary', { templateUrl: '/partials/quizSummary.html', controller: 'quizSummaryCtrl' })
-        .when('/topicwise', { templateUrl: '/partials/topicwise.html' })
-        .when('/authortest', { templateUrl: '/partials/authorTest.html',controller:'authorTestCtrl' })
-        .when('/dashboard', { templateUrl: '/partials/dashboard.html',controller: 'dashboardCtrl' })
-        .when('/addInterviewExperience', { templateUrl: '/partials/addInterviewExperience.html', controller: 'addInterviewExpCtrl' })
-        .when('/viewInterviewExperience', { templateUrl: '/partials/viewInterviewExperience.html', controller: 'viewInterviewExpCtrl' })
-        .when('/addQuestion', { templateUrl: '/partials/addQuestion.html', controller: 'addQtnCtrl' })
-        .when('/comdesc', { templateUrl: '/partials/comdesc.html', controller: 'companydescCtrl' })
-        .when('/viewcomp', { templateUrl: '/partials/viewcomp.html', controller: 'viewcompCtrl' })
-        .when('/notfound', { templateUrl: '/partials/404.html' })
-        .otherwise({ redirectTo: '/notfound' })
+        .when('/', { 
+			templateUrl: '/partials/main.html' })
+	
+        .when('/login', { 
+			templateUrl: '/partials/login.html' })
+	
+        .when('/register', { 
+			templateUrl: '/partials/register.html' })
+        
+		.when('/takeQuiz', { 
+			templateUrl: '/partials/takeQuiz.html', 
+			controller: 'takeQuizCtrl' })
+        
+		.when('/company', { 
+			templateUrl: '/partials/company.html', 
+			controller: 'compayWiseCtrl' })
+		
+		.when('/bzTemplateAdd', { 
+			templateUrl: '/partials/bzTemplateAdd.html', 
+			controller: 'bzAddTemplateCtrl' })
+   	
+		.when('/bzTemplateList', { 
+			templateUrl: '/partials/bzTemplateList.html', 
+			controller: 'bzListTemplateCtrl' })
+        
+		.when('/quizSummary', { 
+			templateUrl: '/partials/quizSummary.html', 
+			controller: 'quizSummaryCtrl' })
+        
+		.when('/topicwise', { 
+			templateUrl: '/partials/topicwise.html' })
+        
+		.when('/authortest', { 
+			templateUrl: '/partials/authorTest.html',
+			controller:'authorTestCtrl' })
+        
+		.when('/dashboard', { 
+			templateUrl: '/partials/dashboard.html',
+			controller: 'dashboardCtrl' })
+        
+		.when('/addInterviewExperience', { 
+			templateUrl: '/partials/addInterviewExperience.html', 
+			controller: 'addInterviewExpCtrl' })
+        
+		.when('/viewInterviewExperience', { 
+			templateUrl: '/partials/viewInterviewExperience.html', 
+			controller: 'viewInterviewExpCtrl' })
+        
+		.when('/questionAdd', { 
+			templateUrl: '/partials/questionAdd.html', 
+			controller: 'addQtnCtrl' })
+	
+		.when('/questionEditDelete', { 
+			templateUrl: '/partials/questionEditDelete.html', 
+			controller: 'editDeleteQtnCtrl' })
+  	
+		.when('/questionEditDeletePreFilled', { 
+			templateUrl: '/partials/questionEditDeletePreFilled.html', 
+			controller: 'preFilledEditDeleteQtnCtrl' })
+        		
+        .when('/questionsList', { 
+			templateUrl: '/partials/questionsList.html', 
+			controller: 'editDeleteQtnCtrl' })
+        
+		.when('/comdesc', { 
+			templateUrl: '/partials/comdesc.html', 
+			controller: 'companydescCtrl' })
+        
+		.when('/viewcomp', { 
+			templateUrl: '/partials/viewcomp.html', 
+			controller: 'viewcompCtrl' })
+        
+		.when('/notfound', { 
+			templateUrl: '/partials/404.html' })
+        
+		.otherwise({ 
+			redirectTo: '/notfound' })
 
         
 });
+
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
@@ -113,32 +173,6 @@ peMod.controller('TimepickerDemo', function ($scope, $log) {
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function ($scope, $http) {
-    /*
-    $scope.score = 40;
-    $scope.Attempted = 50;
-    $scope.correct = 40;
-    $scope.inCorrect = 10;
-    $scope.NotAttempted = 50;
-*/
-    /*
-	
-	$http({
-                url: '/question/api',
-                method: "POST",
-                data: qn
-            })
-            .then(function(response) {
-                    console.log("SUCCESS" + JSON.stringify(qn));
-                },
-                function(error) {
-                    console.log("FAILURE" + JSON.stringify(qn));
-                });
-    }
-
-	
-	*/
-
-
 
     $http({
             url: '/quizSum/api',
@@ -154,25 +188,9 @@ peMod.controller('quizSummaryCtrl', function ($scope, $http) {
                 console.log("FAILURE");
             });
 
-    /*
-
-	
-    $http.get('/data/quiz-summary-data.json')
-        .then(function(response) {
-         console.log("SUCCESS"+ JSON.stringify(response.data));
-            $scope.question = response.data;
-        }, function(error) {
-            $scope.error = error;
-        });
-	
-
-    */
-
-    $scope.showDetails = function (quesNo) {
+    	$scope.showDetails = function (quesNo) {
         $scope.selectedQuestion = quesNo;
     }
-
-
 
 
 });
@@ -436,17 +454,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope','$timeout', function($http
 
 /* VAMSHI START */
 
-
-
-/* VAMSHI START */
-/*$(document).ready(function() {
-			$("#txtEditor1").Editor();
-			$("#txtEditor2").Editor();
-		});
-*/
 peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
-    CKEDITOR.replace('qnDescription');
-    CKEDITOR.replace('qnExplanation');
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
@@ -469,9 +477,9 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 //TO EDIT
 
 peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
-	var questionId=$scope.qId;
-    $scope.showQuestionFn = function () {
 	
+    $scope.showQuestionFn = function (questionId) {
+        $scope.qId=questionId;
         $http({
                 url: '/question/api/'+questionId,
                 method: "GET",
@@ -490,7 +498,7 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope
 			elems[i].style.display = 'inline';
 		}
 				
-    }
+    }	
 
     $scope.updateQuestionFn = function () {
         var questionId=$scope.qId;
@@ -508,64 +516,72 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope
                 });
     }
 
-    $scope.deleteQuestionFn = function () {
-        var qn = $scope.qn;
+    $scope.deleteQuestionFn = function (questionId) {
+        //var questionId=$scope.qId;
+		//var qn = $scope.qn;
         $http({
-                url: '/question/api'+questionId,
+                url: '/question/api/'+questionId,
                 method: "DELETE",
             })
             .then(function (response) {
-                    console.log("SUCCESS IN DELETE" + JSON.stringify(qn));
+                    console.log("SUCCESS IN DELETE" + questionId);
                 },
                 function (error) {
-                    console.log("FAILURE IN DELETE" + JSON.stringify(qn));
+                    console.log("FAILURE IN DELETE" + questionId);
                 });
+    }
+
+	
+    $scope.showAllQuestionsFn = function () {
+        $http({
+                url: '/question/api',
+                method: "GET",
+            })
+            .then(function (response) {
+					var allQuestions=response.data.items;
+                    console.log("SUCCESS IN GETTING ALL" + JSON.stringify(allQuestions));
+					$scope.allQuestions=allQuestions;
+                },
+                function (error) {
+                    console.log("FAILURE IN GETTING ALL" + JSON.stringify(allQuestions));
+                });
+                    
+		}
+		$scope.showAllQuestionsFn();
+    
+
+    $scope.editQuestionFn = function (qn) {
+        $scope.qn=qn;
+        var url = "#!/questionEditDeletePreFilled";
+        window.location.href=url;
     }
 
 }]);
 
-/*
-function setCorrespondingAnsRadio(x,radioId){
-		var xstr = x.value;
-		if(xstr.length==0)
-			document.getElementById(radioId).disabled=true;
-		else
-			document.getElementById(radioId).disabled=false;
-}
-*/
 
+peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
 
-function startedTyping(x, radioId) {
-    this.off;
-    if (typeof x.value != 'null') {
-        document.getElementById(radioId).disabled = 'false';
-    } else {
-        document.getElementById(radioId).checked = 'false';
-        document.getElementById(radioId).disabled = 'true';
+    $scope.showQuestionPreFilledFn = function ($scope) {
+        qn=$scope.qn;
+        // $http({
+        //         url: '/question/api/'+questionId,
+        //         method: "GET",
+        //     })
+        //     .then(function (response) {
+		// 			var qn=response.data;
+        //             console.log("SUCCESS IN GET IN PREFILLED PAGE " + JSON.stringify(qn));
+		// 			$scope.qn=qn;
+        //         },
+        //         function (error) {
+        //             console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+        //         });
+		
+		var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}
+				
     }
-}
-/*
-    function stoppedTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = true;
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
-    function againTyping(x,radioId){
-		this.off;
-        if(typeof x.value == 'undefined' || typeof x.value == 'null' ) { 
-    		document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'true';
-        } else if(x.value.length>0) { 
-			document.getElementById(radioId).checked = 'false'; 
-            document.getElementById(radioId).disabled = 'false';
-        }
-    }
- */
-
-
+    $scope.showQuestionPreFilledFn($scope.qn_id);
+}]);
 /* VAMSHI END */
