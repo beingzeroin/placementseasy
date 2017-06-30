@@ -15,14 +15,22 @@ var authorTestSchema = new mongoose.Schema
     {
         "type":"number"
     },
-    "start_time":
+    "DateExam":
     {
         "type":"date"
+    },
+    "start_time":
+    {
+        "type":"string"
     },
     "end_time":
     {
-        "type":"date"
+        "type":"string"
     },
+    "name":
+    {
+        "type":"string"
+    }
     
 })
 

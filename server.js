@@ -23,8 +23,9 @@ app.use(morgan('dev'))
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express.static('frontend'))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 /* ROUTES */
 app.use('/bzTemplate', bzTemplateRouter);
