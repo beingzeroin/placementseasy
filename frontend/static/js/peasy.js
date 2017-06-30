@@ -434,18 +434,37 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                     console.log("FAILURE" + JSON.stringify(a));
                 });
     }
-
-            $scope.add = function () 
-            {
+        
+        $scope.add = function (questionId) {
+        $scope.name=questionId;
+        $http({
+                url: '/question/api/'+questionId,
+                method: "GET",
+            })
+            .then(function (response) {
+					var qn=response.data;
+                    console.log("SUCCESS IN GET" + JSON.stringify(qn));
+					$scope.qn=qn;
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                });
+		
+		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}
+				
+    
                 
-                if (angular.isDefined($scope.name) && $scope.name != '' && $scope.title != '') 
+                if (angular.isDefined($scope.name) && $scope.name != '' ) 
                 {
                     // ADD A NEW ELEMENT.
-                    $scope.list.push({ name: $scope.name, title: $scope.title });
+                    $scope.list.push({ name: $scope.name });
 
                     // CLEAR THE FIELDS.
                     $scope.name = '';
-                    $scope.title = '';
+                
                 }
             }
        
