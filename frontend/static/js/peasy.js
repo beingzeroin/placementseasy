@@ -566,34 +566,36 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
 					var qn=response.data;
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
 					$scope.qn=qn;
-                },
-                function (error) {
-                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
-                });
-		
-		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-		for (var i=0;i<elems.length;i+=1){
-			elems[i].style.display = 'inline';
-		}
-				
-    
-                
-                if (angular.isDefined($scope.name) && $scope.name != '' ) 
+             
+                if (angular.isDefined($scope.name) && $scope.name != ''  ) 
                 {
                     // ADD A NEW ELEMENT.
-                    $scope.list.push({ name: $scope.name });
+                    $scope.list.push({ name: $scope.name , title:$scope.qn.title});
 
                     // CLEAR THE FIELDS.
                     $scope.name = '';
                 
                 }
-            }
-       
+            
     
     $scope.Delete = function (index) {
             
             $scope.list.splice(index,1);
         }
+        
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                });
+        }
+		
+		/*var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		for (var i=0;i<elems.length;i+=1){
+			elems[i].style.display = 'inline';
+		}*/
+				
+    
+               
      }]
     );
 
