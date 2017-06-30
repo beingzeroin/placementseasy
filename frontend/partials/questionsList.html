@@ -1,4 +1,6 @@
 <h1>SHOWING ALL QUESTIONS</h1>
+<div class="alert alert-success" id="qnDelSuccess"><strong>Great!</strong> Question Deleted Successfully.</div>
+<div class="alert alert-danger" id="qnDelFailed"><strong>Oops!</strong> Question NOT deleted. Try deleting again.</div>
 <div class="row">
     <div class="col-md-10">
         <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
@@ -28,9 +30,9 @@
                         <td>{{qn.created_at}} </td>
                         <td>{{qn.updated_at}} </td>
                         <td>{{qn.deleted}}</td>
-                        <td><button class="btn btn-warning" ng-click="editQuestionFn(qn._id)">EDIT</button></th>
-                        <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></th>
-                
+                        <td><a href="#!/questionEditDeletePreFilled/{{qn._id}}">EDIT</a></td>
+                        <!--<td><button class="btn btn-warning" ng-click="editQuestionFn(qn._id)">EDIT</button></th-->
+                        <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></th> 
                     </tr>
                 </tbody>
             </thead>

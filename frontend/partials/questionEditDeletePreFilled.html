@@ -1,12 +1,14 @@
 <div class="container">
     <h1>Edit / Delete a Question</h1>
     <form class="form-horizontal">
+        <div class="alert alert-success" id="qnPreFilledUpdateSuccess"><strong>Great!</strong> Question Updated/Deleted Successfully.</div>
+        <div class="alert alert-danger" id="qnPreFilledUpdateFailed"><strong>Oops!</strong> Question NOT updated/deleted. Try updating/deleting again.</div>
 		<div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Question ID:</label>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id">
+                <input type="text" id="qnIdPreFilledInput" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id">
             </div>
         </div>
         <div class="row">
@@ -130,7 +132,7 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-10">
-                <button class="btn btn-warning" ng-click="updateQuestionFn()">UPDATE QUESTION</button>
+                <button class="btn btn-warning" ng-click="updateQuestionFn(qn._id)">UPDATE QUESTION</button>
             </div>
         </div>
     </form>

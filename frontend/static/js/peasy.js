@@ -57,7 +57,7 @@ peMod.config(function ($routeProvider) {
 			templateUrl: '/partials/questionEditDelete.html', 
 			controller: 'editDeleteQtnCtrl' })
   	
-		.when('/questionEditDeletePreFilled', { 
+		.when('/questionEditDeletePreFilled/:id', { 
 			templateUrl: '/partials/questionEditDeletePreFilled.html', 
 			controller: 'preFilledEditDeleteQtnCtrl' })
         		
@@ -471,16 +471,19 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
             })
             .then(function (response) {
                     console.log("SUCCESS IN POST" + JSON.stringify(qn));
+                    document.getElementById('qnAddSuccess').style.display="block";
+                    $scope.qn=undefined;
+                    window.scrollTo(0,0);
+                    
                 },
                 function (error) {
                     console.log("FAILURE IN POST" + JSON.stringify(qn));
+                    document.getElementById('qnAddFailed').style.display="block";
+                    window.scrollTo(0,0);
                 });
     }
 
 }]);
-
-
-//TO EDIT
 
 peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
 	
@@ -516,29 +519,21 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope
             })
            .then(function (response) {
                     console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                    document.getElementById('qnEditSuccess').style.display="block";
+                    $scope.qn=undefined;
+                    var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		            for (var i=0;i<elems.length;i+=1){
+			        elems[i].style.display = 'none';}
+                    window.scrollTo(0,0);
                 },
                 function (error) {
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                    document.getElementById('qnEditFailed').style.display="block";
+                    window.scrollTo(0,0);
                 });
     }
 
-    $scope.deleteQuestionFn = function (questionId) {
-        //var questionId=$scope.qId;
-		//var qn = $scope.qn;
-        $http({
-                url: '/question/api/'+questionId,
-                method: "DELETE",
-            })
-            .then(function (response) {
-                    console.log("SUCCESS IN DELETE" + questionId);
-                },
-                function (error) {
-                    console.log("FAILURE IN DELETE" + questionId);
-                });
-    }
-
-	
-    $scope.showAllQuestionsFn = function () {
+        $scope.showAllQuestionsFn = function () {
         $http({
                 url: '/question/api',
                 method: "GET",
@@ -554,40 +549,109 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope
                     
 		}
 		$scope.showAllQuestionsFn();
-    
 
-    $scope.editQuestionFn = function (qn) {
-        $scope.qn=qn;
-        var url = "#!/questionEditDeletePreFilled";
-        window.location.href=url;
+    $scope.deleteQuestionFn = function (questionId) {
+        $http({
+                url: '/question/api/'+questionId,
+                method: "DELETE",
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN DELETE" + questionId);
+                    document.getElementById('qnEditSuccess').style.display="block";
+                    //document.getElementById('qnDelSuccess').style.display="block";
+                    var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+		            for (var i=0;i<elems.length;i+=1){
+			        elems[i].style.display = 'none';}
+                    window.scrollTo(0,0);
+                },
+                function (error) {
+                    console.log("FAILURE IN DELETE" + questionId);
+                    document.getElementById('qnEditSuccess').style.display="none";
+                    document.getElementById('qnEditFailed').style.display="block";
+                    //document.getElementById('qnDelFailed').style.display="block";
+                    window.scrollTo(0,0);
+                });
+            
+		$scope.showAllQuestionsFn();
     }
 
+	
+
+    
 }]);
 
 
-peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
+peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams) {
 
-    $scope.showQuestionPreFilledFn = function ($scope) {
-        qn=$scope.qn;
-        // $http({
-        //         url: '/question/api/'+questionId,
-        //         method: "GET",
-        //     })
-        //     .then(function (response) {
-		// 			var qn=response.data;
-        //             console.log("SUCCESS IN GET IN PREFILLED PAGE " + JSON.stringify(qn));
-		// 			$scope.qn=qn;
-        //         },
-        //         function (error) {
-        //             console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
-        //         });
-		
-		var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
-		for (var i=0;i<elems.length;i+=1){
-			elems[i].style.display = 'inline';
-		}
-				
+    var questionId=$routeParams.id;
+    console.log("Able to fetch ID : " + questionId);
+    $http({
+        url: '/question/api/'+questionId,
+        method: "GET",
+    })
+    .then(function (response) {
+            var qn=response.data;
+            console.log("SUCCESS IN GETTING QN TO EDIT" + JSON.stringify(qn));
+            $scope.qn=qn;
+        },
+        function (error) {
+            console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+        });
+
+
+    var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
+    for (var i=0;i<elems.length;i+=1){
+        elems[i].style.display = 'inline';
     }
-    $scope.showQuestionPreFilledFn($scope.qn_id);
+
+    $scope.updateQuestionFn = function (questionId) {
+        var qn=$scope.qn;
+        $http({
+                url: '/question/api/'+questionId,
+                method: "PUT",
+				data:qn
+            })
+           .then(function (response) {
+                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display="block";
+                    $scope.qn=undefined;
+                    var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
+                    for (var i=0;i<elems.length;i+=1){
+                        elems[i].style.display = 'none';
+                    }
+                    window.scrollTo(0,0);
+                },
+                function (error) {
+                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display="none";
+                    document.getElementById('qnPreFilledUpdateFailed').style.display="block";
+                    window.scrollTo(0,0);
+                });
+    }
+
+    $scope.deleteQuestionFn = function (questionId) {
+        $http({
+                url: '/question/api/'+questionId,
+                method: "DELETE",
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN DELETE" + questionId);
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display="block";
+                    $scope.qn=undefined;
+                    var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
+                    for (var i=0;i<elems.length;i+=1){
+                        elems[i].style.display = 'none';
+                    }
+                    var qnIdInput=document.getElementById('qnIdPreFilledInput');
+                    qnIdInput.style.display="block";
+                    window.scrollTo(0,0);
+                },
+                function (error) {
+                    console.log("FAILURE IN DELETE" + questionId);
+                    document.getElementById('qnPreFilledUpdateFailed').style.display="block";
+                    window.scrollTo(0,0);
+                });
+    }
+
 }]);
 /* VAMSHI END */
