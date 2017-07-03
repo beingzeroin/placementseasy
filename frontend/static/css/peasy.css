@@ -365,9 +365,40 @@ div.review>div {
     display: inline;
 }
 
-
-/* -- VAMSHI -- */
-
 .hiddenEditDelQnProperties {
     display: none;
 }
+
+#qnAddSuccess {
+    display: none;
+}
+
+#qnAddFailed {
+    display: none;
+}
+
+#qnEditSuccess {
+    display: none;
+}
+
+#qnEditFailed {
+    display: none;
+}
+
+#qnDelSuccess {
+    display: none;
+}
+
+#qnDelFailed {
+    display: none;
+}
+
+#qnPreFilledUpdateSuccess {
+    display: none;
+}
+
+#qnPreFilledUpdateFailed {
+    display: none;
+}
+
+/* -- VAMSHI -- */
