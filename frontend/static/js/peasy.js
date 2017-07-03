@@ -648,6 +648,12 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
+        qn.options=[];
+        qn.options.push($scope.optionA);
+        qn.options.push($scope.optionB);
+        qn.options.push($scope.optionC);
+        qn.options.push($scope.optionD);      
+
         $http({
                 url: '/question/api',
                 method: "POST",
