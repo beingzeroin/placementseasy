@@ -1,89 +1,111 @@
 var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular']);
 peMod.config(function ($routeProvider) {
     $routeProvider
-        .when('/', { 
-			templateUrl: '/partials/main.html' })
-	
-        .when('/login', { 
-			templateUrl: '/partials/login.html' })
-	
-        .when('/register', { 
-			templateUrl: '/partials/register.html' })
-        
-       	.when('/takeQuiz', { 
-			templateUrl: '/partials/takeQuiz.html', 
-			controller: 'takeQuizCtrl' })
+        .when('/', {
+            templateUrl: '/partials/main.html'
+        })
 
-      	.when('/takeQuizwithtimer', {
-                       templateUrl: '/partials/timer.html', 
-       	               controller: 'takeQuiztimerCtrl' })
-        
-    	.when('/company', { 
-    		templateUrl: '/partials/company.html', 
-    		controller: 'compayWiseCtrl' })
-    	
-        .when('/bzTemplateAdd', { 
-            templateUrl: '/partials/bzTemplateAdd.html', 
-            controller: 'bzAddTemplateCtrl' })
+        .when('/login', {
+            templateUrl: '/partials/login.html'
+        })
 
-        .when('/bzTemplateList', { 
-            templateUrl: '/partials/bzTemplateList.html', 
-            controller: 'bzListTemplateCtrl' })
+        .when('/register', {
+            templateUrl: '/partials/register.html'
+        })
 
-        .when('/quizSummary', { 
-            templateUrl: '/partials/quizSummary.html', 
-            controller: 'quizSummaryCtrl' })
+        .when('/takeQuiz', {
+            templateUrl: '/partials/takeQuiz.html',
+            controller: 'takeQuizCtrl'
+        })
 
-        .when('/topicwise', { 
-            templateUrl: '/partials/topicwise.html' })
+        .when('/takeQuizwithtimer', {
+            templateUrl: '/partials/timer.html',
+            controller: 'takeQuiztimerCtrl'
+        })
 
-        .when('/authortest', { 
+        .when('/company', {
+            templateUrl: '/partials/company.html',
+            controller: 'compayWiseCtrl'
+        })
+
+        .when('/bzTemplateAdd', {
+            templateUrl: '/partials/bzTemplateAdd.html',
+            controller: 'bzAddTemplateCtrl'
+        })
+
+        .when('/bzTemplateList', {
+            templateUrl: '/partials/bzTemplateList.html',
+            controller: 'bzListTemplateCtrl'
+        })
+
+        .when('/quizSummary', {
+            templateUrl: '/partials/quizSummary.html',
+            controller: 'quizSummaryCtrl'
+        })
+
+        .when('/topicwise', {
+            templateUrl: '/partials/topicwise.html'
+        })
+
+        .when('/authortest', {
             templateUrl: '/partials/authorTest.html',
-            controller:'authorTestCtrl' })
+            controller: 'authorTestCtrl'
+        })
 
-        .when('/dashboard', { 
+        .when('/dashboard', {
             templateUrl: '/partials/dashboard.html',
-            controller: 'dashboardCtrl' })
+            controller: 'dashboardCtrl'
+        })
 
-        .when('/addInterviewExperience', { 
-            templateUrl: '/partials/addInterviewExperience.html', 
-            controller: 'addInterviewExpCtrl' })
+        .when('/addInterviewExperience', {
+            templateUrl: '/partials/addInterviewExperience.html',
+            controller: 'addInterviewExpCtrl'
+        })
 
-        .when('/viewInterviewExperience', { 
-            templateUrl: '/partials/viewInterviewExperience.html', 
-            controller: 'viewInterviewExpCtrl' })
+        .when('/viewInterviewExperience', {
+            templateUrl: '/partials/viewInterviewExperience.html',
+            controller: 'viewInterviewExpCtrl'
+        })
 
-        .when('/questionAdd', { 
-            templateUrl: '/partials/questionAdd.html', 
-            controller: 'addQtnCtrl' })
+        .when('/questionAdd', {
+            templateUrl: '/partials/questionAdd.html',
+            controller: 'addQtnCtrl'
+        })
 
 
-		.when('/questionEditDelete', { 
-			templateUrl: '/partials/questionEditDelete.html', 
-			controller: 'editDeleteQtnCtrl' })
-  	
-		.when('/questionEditDeletePreFilled/:id', { 
-			templateUrl: '/partials/questionEditDeletePreFilled.html', 
-			controller: 'preFilledEditDeleteQtnCtrl' })
-        		
-        .when('/questionsList', { 
-			templateUrl: '/partials/questionsList.html', 
-			controller: 'editDeleteQtnCtrl' })
-        
-		.when('/comdesc', { 
-			templateUrl: '/partials/comdesc.html', 
-			controller: 'companydescCtrl' })
-        
-		.when('/viewcomp', { 
-			templateUrl: '/partials/viewcomp.html', 
-			controller: 'viewcompCtrl' })
-        
-		.when('/notfound', { 
-			templateUrl: '/partials/404.html' })
-        
-		.otherwise({ 
-			redirectTo: '/notfound' })
-        
+        .when('/questionEditDelete', {
+            templateUrl: '/partials/questionEditDelete.html',
+            controller: 'editDeleteQtnCtrl'
+        })
+
+        .when('/questionEditDeletePreFilled/:id', {
+            templateUrl: '/partials/questionEditDeletePreFilled.html',
+            controller: 'preFilledEditDeleteQtnCtrl'
+        })
+
+        .when('/questionsList', {
+            templateUrl: '/partials/questionsList.html',
+            controller: 'editDeleteQtnCtrl'
+        })
+
+        .when('/comdesc', {
+            templateUrl: '/partials/comdesc.html',
+            controller: 'companydescCtrl'
+        })
+
+        .when('/viewcomp', {
+            templateUrl: '/partials/viewcomp.html',
+            controller: 'viewcompCtrl'
+        })
+
+        .when('/notfound', {
+            templateUrl: '/partials/404.html'
+        })
+
+        .otherwise({
+            redirectTo: '/notfound'
+        })
+
 });
 
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
@@ -101,30 +123,30 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) 
 
 /* SATYA START*/
 
-peMod.controller('companydescCtrl', ['$http', '$scope', function($http, $scope) {
-	$scope.addCompanydescFn = function() {
-		var c = $scope.c;
+peMod.controller('companydescCtrl', ['$http', '$scope', function ($http, $scope) {
+    $scope.addCompanydescFn = function () {
+        var c = $scope.c;
 
 
-		$http({
-			url: '/company/api',
-			method: "POST",
-			data: c
-		    })
-		    .then(function(response) {
-			    console.log("SUCCESS" + JSON.stringify(c));
-			},
-			function(error) {
-			    console.log("FAILURE" + JSON.stringify(c));
-		});
-	}	
-    
+        $http({
+                url: '/company/api',
+                method: "POST",
+                data: c
+            })
+            .then(function (response) {
+                    console.log("SUCCESS" + JSON.stringify(c));
+                },
+                function (error) {
+                    console.log("FAILURE" + JSON.stringify(c));
+                });
+    }
+
 }]);
 
 
 peMod.controller('viewcompCtrl', function ($scope, $http) {
 
- $http({
+    $http({
             url: '/company/api',
             method: "GET",
 
@@ -147,7 +169,7 @@ peMod.controller('viewcompCtrl', function ($scope, $http) {
 
 /* AJAY START */
 peMod.controller('quizSummaryCtrl', function ($scope, $http) {
- 
+
 
 
     $http({
@@ -163,7 +185,7 @@ peMod.controller('quizSummaryCtrl', function ($scope, $http) {
             function (error) {
                 console.log("FAILURE");
             });
-    
+
     $scope.showDetails = function (quesNo) {
         $scope.selectedQuestion = quesNo;
     }
@@ -258,10 +280,10 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
     }
 
     $scope.onSubmit = function () {
-        
-         var myobj ={};
-         var answers=[];
-        
+
+        var myobj = {};
+        var answers = [];
+
         $scope.questions.forEach(function (q, index) {
             answers.push({
                 'QuizId': $scope.quiz.Id,
@@ -269,14 +291,14 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
                 'Answered': q.Answered
             });
         });
-        
+
         myobj.answers = answers;
-        
+
         alert("submitted successfully");
         console.log($scope.questions);
         $scope.mode = 'result';
         console.log("SUCCESS" + JSON.stringify(myobj));
-            
+
         $http({
                 url: 'submitQuiz/api',
                 method: "POST",
@@ -288,18 +310,18 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
                 function (error) {
                     console.log("FAILURE" + JSON.stringify(myobj));
                 });
-   
-        
-        
-         }
-    
-        // Post your data to the server here. answers contains the questionId and the users' answer.
-        //$http.post('api/Quiz/Submit', answers).success(function (data, status) {
-        //    alert(data);
-        //});
-    
-        
-    
+
+
+
+    }
+
+    // Post your data to the server here. answers contains the questionId and the users' answer.
+    //$http.post('api/Quiz/Submit', answers).success(function (data, status) {
+    //    alert(data);
+    //});
+
+
+
 
     $scope.pageCount = function () {
         return Math.ceil($scope.questions.length / $scope.itemsPerPage);
@@ -337,12 +359,12 @@ peMod.controller('takeQuizCtrl', function ($scope, $http, helperService) {
     $scope.loadQuiz($scope.quizName);
 
     $scope.isAnswered = function (index) {
-        
+
         var answered = 'Not Answered';
         $scope.questions[index].Options.forEach(function (element, index, array) {
             if (element.Selected == true) {
                 answered = 'Answered';
-                
+
                 return false;
             }
         });
@@ -507,9 +529,9 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 
     $scope.addInterviewExpFn = function () {
-        
+
         var ie = $scope.ie;
-    
+
         $http({
                 url: '/interview/api',
                 method: "POST",
@@ -528,8 +550,8 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
 
 peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
 
-    
-     $http({
+
+    $http({
             url: '/Interview/api',
             method: "GET",
 
@@ -542,7 +564,7 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
             function (error) {
                 console.log("FAILURE");
             });
-    
+
 
 
 }]);
@@ -553,63 +575,71 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
 
 
 
-peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
+peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
+    $scope.list = [];
+    $scope.listDb = [];
+    $scope.authorTest = function () {
+        console.log(" 8888  a ****** " + JSON.stringify($scope.a));
 
-
-		$scope.authorTest = function() {
-        var a = $scope.a;
+        $scope.a.questions = $scope.listDb;
+        console.log(JSON.stringify($scope.a));
         $http({
                 url: '/authorTest/api',
                 method: "POST",
-                data: a
+                data: $scope.a
             })
-            .then(function(response) {
+            .then(function (response) {
                     console.log("SUCCESS" + JSON.stringify(a));
                 },
-                function(error) {
+                function (error) {
                     console.log("FAILURE" + JSON.stringify(a));
                 });
     }
+
+
+
+    $scope.Delete = function (index) {
+        $scope.list.splice(index, 1);
+        $scope.listDb.splice(index, 1);
         
-        $scope.add = function (questionId) {
-        $scope.name=questionId;
+    }
+
+
+    $scope.add = function (questionId) {
+        $scope.name = questionId;
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "GET",
             })
             .then(function (response) {
-					var qn=response.data;
+                    var qn = response.data;
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
-					$scope.qn=qn;
-             
-                if (angular.isDefined($scope.name) && $scope.name != '' ) 
-                {
-                    // ADD A NEW ELEMENT.
-                    $scope.list.push({ name: $scope.name , title:$scope.qn.title});
+                    $scope.qn = qn;
 
-                    // CLEAR THE FIELDS.
-                    $scope.name = '';
-                
-                }
-            
-    
-    $scope.Delete = function (index) {
-            
-            $scope.list.splice(index,1);
-        }
-        
+                    if (qn._id) {
+                        // ADD A NEW ELEMENT.
+                        $scope.list.push({
+                            name: $scope.name,
+                            title: $scope.qn.title
+                        });
+                        $scope.listDb.push($scope.name);
+
+                        // CLEAR THE FIELDS.
+                        $scope.name = '';
+
+                    }
+
                 },
                 function (error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
                 });
-        }
-		
-		
-				
-    
-               
-     }]
-    );
+    }
+
+
+
+
+
+     }]);
 
 
 
@@ -625,185 +655,187 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
             })
             .then(function (response) {
                     console.log("SUCCESS IN POST" + JSON.stringify(qn));
-                    document.getElementById('qnAddSuccess').style.display="block";
-                    $scope.qn=undefined;
-                    window.scrollTo(0,0);
-                    
+                    document.getElementById('qnAddSuccess').style.display = "block";
+                    $scope.qn = undefined;
+                    window.scrollTo(0, 0);
+
                 },
                 function (error) {
                     console.log("FAILURE IN POST" + JSON.stringify(qn));
-                    document.getElementById('qnAddFailed').style.display="block";
-                    window.scrollTo(0,0);
+                    document.getElementById('qnAddFailed').style.display = "block";
+                    window.scrollTo(0, 0);
                 });
     }
 
 }]);
 
-peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function($http, $scope) {
-	
+peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scope) {
+
     $scope.showQuestionFn = function (questionId) {
-        $scope.qId=questionId;
+        $scope.qId = questionId;
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "GET",
             })
             .then(function (response) {
-					var qn=response.data;
+                    var qn = response.data;
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
-					$scope.qn=qn;
+                    $scope.qn = qn;
                 },
                 function (error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
                 });
-		
-		var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-		for (var i=0;i<elems.length;i+=1){
-			elems[i].style.display = 'inline';
-		}
-				
-    }	
+
+        var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+        for (var i = 0; i < elems.length; i += 1) {
+            elems[i].style.display = 'inline';
+        }
+
+    }
 
     $scope.updateQuestionFn = function () {
-        var questionId=$scope.qId;
-		var qn = $scope.qn;
+        var questionId = $scope.qId;
+        var qn = $scope.qn;
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "PUT",
-				data:qn
+                data: qn
             })
-           .then(function (response) {
+            .then(function (response) {
                     console.log("SUCCESS IN PUT" + JSON.stringify(qn));
-                    document.getElementById('qnEditSuccess').style.display="block";
-                    $scope.qn=undefined;
+                    document.getElementById('qnEditSuccess').style.display = "block";
+                    $scope.qn = undefined;
                     var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-		            for (var i=0;i<elems.length;i+=1){
-			        elems[i].style.display = 'none';}
-                    window.scrollTo(0,0);
+                    for (var i = 0; i < elems.length; i += 1) {
+                        elems[i].style.display = 'none';
+                    }
+                    window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
-                    document.getElementById('qnEditFailed').style.display="block";
-                    window.scrollTo(0,0);
+                    document.getElementById('qnEditFailed').style.display = "block";
+                    window.scrollTo(0, 0);
                 });
     }
 
-        $scope.showAllQuestionsFn = function () {
+    $scope.showAllQuestionsFn = function () {
         $http({
                 url: '/question/api',
                 method: "GET",
             })
             .then(function (response) {
-					var allQuestions=response.data.items;
+                    var allQuestions = response.data.items;
                     console.log("SUCCESS IN GETTING ALL" + JSON.stringify(allQuestions));
-					$scope.allQuestions=allQuestions;
+                    $scope.allQuestions = allQuestions;
                 },
                 function (error) {
                     console.log("FAILURE IN GETTING ALL" + JSON.stringify(allQuestions));
                 });
-                    
-		}
-		$scope.showAllQuestionsFn();
+
+    }
+    $scope.showAllQuestionsFn();
 
     $scope.deleteQuestionFn = function (questionId) {
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "DELETE",
             })
             .then(function (response) {
                     console.log("SUCCESS IN DELETE" + questionId);
-                    document.getElementById('qnEditSuccess').style.display="block";
+                    document.getElementById('qnEditSuccess').style.display = "block";
                     //document.getElementById('qnDelSuccess').style.display="block";
                     var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-		            for (var i=0;i<elems.length;i+=1){
-			        elems[i].style.display = 'none';}
-                    window.scrollTo(0,0);
+                    for (var i = 0; i < elems.length; i += 1) {
+                        elems[i].style.display = 'none';
+                    }
+                    window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN DELETE" + questionId);
-                    document.getElementById('qnEditSuccess').style.display="none";
-                    document.getElementById('qnEditFailed').style.display="block";
+                    document.getElementById('qnEditSuccess').style.display = "none";
+                    document.getElementById('qnEditFailed').style.display = "block";
                     //document.getElementById('qnDelFailed').style.display="block";
-                    window.scrollTo(0,0);
+                    window.scrollTo(0, 0);
                 });
-            
-		$scope.showAllQuestionsFn();
+
+        $scope.showAllQuestionsFn();
     }
 
-	
 
-    
+
+
 }]);
 
 
-peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams) {
+peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
 
-    var questionId=$routeParams.id;
+    var questionId = $routeParams.id;
     console.log("Able to fetch ID : " + questionId);
     $http({
-        url: '/question/api/'+questionId,
-        method: "GET",
-    })
-    .then(function (response) {
-            var qn=response.data;
-            console.log("SUCCESS IN GETTING QN TO EDIT" + JSON.stringify(qn));
-            $scope.qn=qn;
-        },
-        function (error) {
-            console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
-        });
+            url: '/question/api/' + questionId,
+            method: "GET",
+        })
+        .then(function (response) {
+                var qn = response.data;
+                console.log("SUCCESS IN GETTING QN TO EDIT" + JSON.stringify(qn));
+                $scope.qn = qn;
+            },
+            function (error) {
+                console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+            });
 
 
     var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
-    for (var i=0;i<elems.length;i+=1){
+    for (var i = 0; i < elems.length; i += 1) {
         elems[i].style.display = 'inline';
     }
 
     $scope.updateQuestionFn = function (questionId) {
-        var qn=$scope.qn;
+        var qn = $scope.qn;
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "PUT",
-				data:qn
+                data: qn
             })
-           .then(function (response) {
+            .then(function (response) {
                     console.log("SUCCESS IN PUT" + JSON.stringify(qn));
-                    document.getElementById('qnPreFilledUpdateSuccess').style.display="block";
-                    $scope.qn=undefined;
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    $scope.qn = undefined;
                     var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
-                    for (var i=0;i<elems.length;i+=1){
+                    for (var i = 0; i < elems.length; i += 1) {
                         elems[i].style.display = 'none';
                     }
-                    window.scrollTo(0,0);
+                    window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
-                    document.getElementById('qnPreFilledUpdateSuccess').style.display="none";
-                    document.getElementById('qnPreFilledUpdateFailed').style.display="block";
-                    window.scrollTo(0,0);
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display = "none";
+                    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
+                    window.scrollTo(0, 0);
                 });
     }
 
     $scope.deleteQuestionFn = function (questionId) {
         $http({
-                url: '/question/api/'+questionId,
+                url: '/question/api/' + questionId,
                 method: "DELETE",
             })
             .then(function (response) {
                     console.log("SUCCESS IN DELETE" + questionId);
-                    document.getElementById('qnPreFilledUpdateSuccess').style.display="block";
-                    $scope.qn=undefined;
+                    document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    $scope.qn = undefined;
                     var elems = document.getElementsByClassName('preFilledEditDelQnProperties');
-                    for (var i=0;i<elems.length;i+=1){
+                    for (var i = 0; i < elems.length; i += 1) {
                         elems[i].style.display = 'none';
                     }
-                    var qnIdInput=document.getElementById('qnIdPreFilledInput');
-                    qnIdInput.style.display="block";
-                    window.scrollTo(0,0);
+                    var qnIdInput = document.getElementById('qnIdPreFilledInput');
+                    qnIdInput.style.display = "block";
+                    window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN DELETE" + questionId);
-                    document.getElementById('qnPreFilledUpdateFailed').style.display="block";
-                    window.scrollTo(0,0);
+                    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
+                    window.scrollTo(0, 0);
                 });
     }
 
