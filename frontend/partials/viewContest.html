@@ -1,0 +1,44 @@
+<h1>SHOWING ALL CONTESTS</h1>
+
+
+<div class="row" align="center">
+    <a href="#!/authortest" class="btn btn-primary btn-lg" role="button">Create New Contest</a>
+</div><br>
+<div class="row">
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">SR </th>
+                    <th class="col-md-1">ID</th>
+                    <th class="col-md-1">Title </th>
+                    <th class="col-md-1">Company</th>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1">Start Time</th>
+                    <th class="col-md-1">End Time</th>  
+                    <th class="col-md-1">edit</th>  
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in data | filter:searchFilter ">
+                        <td>{{$index + 1}}</td>
+                        <td>{{d._id}}</td>
+                        <td>{{d.Test_Title}} </td>
+                        <td> {{d.company}}</td>
+                        <td>{{d.DateExam}} </td>
+                        <td>{{d.start_time}} </td>
+                        <td>{{d.end_time}}</td>
+                        <td><a href="#!/contestEditPreFilled/{{d._id}}">EDIT</a></td>
+                        
+                       <!-- <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></td> -->
+                    </tr>
+                </tbody>
+            
+        </table>
+    </div>
+</div>

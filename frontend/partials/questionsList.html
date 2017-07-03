@@ -21,6 +21,7 @@
                     <th class="col-md-1">Update</th>
                     <th class="col-md-1">Delete</th>        
                 </tr>
+                </thead>
                 <tbody>
                     <tr ng-repeat="qn in allQuestions | filter:searchFilter ">
                         <td>{{$index + 1}}</td>
@@ -32,10 +33,10 @@
                         <td>{{qn.deleted}}</td>
                         <td><a href="#!/questionEditDeletePreFilled/{{qn._id}}">EDIT</a></td>
                         <!--<td><button class="btn btn-warning" ng-click="editQuestionFn(qn._id)">EDIT</button></th-->
-                        <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></th> 
+                        <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></td> 
                     </tr>
                 </tbody>
-            </thead>
+            
         </table>
     </div>
 </div>

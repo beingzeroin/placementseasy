@@ -97,6 +97,14 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewcomp.html',
             controller: 'viewcompCtrl'
         })
+    .when('/viewContest', {
+            templateUrl: '/partials/viewContest.html',
+            controller: 'viewContestCtrl'
+        })
+    .when('/contestEditPreFilled/:id', {
+            templateUrl: '/partials/contestEditPreFilled.html',
+            controller: 'editContestCtrl'
+        })
 
         .when('/notfound', {
             templateUrl: '/partials/404.html'
@@ -641,6 +649,76 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
 
      }]);
 
+
+peMod.controller('viewContestCtrl', function ($scope, $http) {
+
+    $http({
+            url: '/authorTest/api',
+            method: "GET",
+
+
+        })
+        .then(function (response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function (error) {
+                console.log("FAILURE");
+            });
+
+
+});
+
+peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+
+    var questionId = $routeParams.id;
+    console.log("Able to fetch ID : " + questionId);
+    $http({
+            url: '/authorTest/api/' + questionId,
+            method: "GET",
+        })
+        .then(function (response) {
+                var qn = response.data;
+                console.log("SUCCESS IN GETTING TEST TO EDIT" + JSON.stringify(qn));
+                $scope.qn = qn;
+            },
+            function (error) {
+                console.log("FAILURE IN GET in finding the contest with id:" + questionId + JSON.stringify(qn));
+            });
+
+    var elems = document.getElementsByClassName('preFilledEditContest');
+    for (var i = 0; i < elems.length; i += 1) {
+        elems[i].style.display = 'inline';
+    }
+
+    $scope.updateContestFn = function (questionId) {
+        var qn = $scope.qn;
+        $http({
+                url: '/authorTest/api/' + questionId,
+                method: "PUT",
+                data: qn,
+            })
+            .then(function (response) {
+            alert("dfghhj");
+          //  var qn=response.data;
+                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+                   // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    $scope.qn = undefined;
+                    var elems = document.getElementsByClassName('preFilledEditContest');
+                    for (var i = 0; i < elems.length; i += 1) {
+                        elems[i].style.display = 'none';
+                    }
+                    window.scrollTo(0, 0);
+                },
+                function (error) {
+            
+                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                    //document.getElementById('qnPreFilledUpdateSuccess').style.display = "none";
+                //    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
+                    window.scrollTo(0, 0);
+                });
+    }
+}]);
 
 
 
