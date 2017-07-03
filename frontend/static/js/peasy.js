@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -66,6 +66,12 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewInterviewExperience.html',
             controller: 'viewInterviewExpCtrl'
         })
+<<<<<<< HEAD
+        .when('/demo', {
+            templateUrl: '/partials/demoQuiz.html',
+        })
+=======
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
 
         .when('/questionAdd', {
             templateUrl: '/partials/questionAdd.html',
@@ -580,9 +586,125 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
 
 
 /* SAHITHI END */
+/*sahithi start*/
+//var app = angular.module('quizApp', []);
+
+peMod.directive('quiz', function (quizFactory) {
+    return {
+        restrict: 'AE',
+        scope: {},
+        templateUrl: '/partials/demo.html',
+        link: function (scope, elem, attrs) {
+            scope.start = function () {
+                scope.id = 0;
+                scope.quizOver = false;
+                scope.inProgress = true;
+                scope.getQuestion();
+            };
+
+            scope.reset = function () {
+                scope.inProgress = false;
+                scope.score = 0;
+            }
+
+            scope.getQuestion = function () {
+                var q = quizFactory.getQuestion(scope.id);
+                console.log("getQuestion    : "+q);
+                if (q) {
+                    scope.question = q.description;
+                    scope.options = q.options;
+                    scope.answer = q.answer;
+                    scope.explanation=q.explanation;
+                    scope.answerMode = true;
+                } else {
+                    scope.quizOver = true;
+                }
+            };
+
+            scope.checkAnswer = function () {
+                if (!$('input[name=answer]:checked').length) return;
+
+<<<<<<< HEAD
+                var ans = $('input[name=answer]:checked').val();
+                var ca = 0;
+                if(scope.answer == "a"){
+                    ca = 0;
+                }
+                else if(scope.answer == "b"){
+                    ca = 1;
+                }
+                else if(scope.answer == "c"){
+                    ca = 2;
+                }
+                else if(scope.answer == "d"){
+                    ca = 3;
+                }
+                if (ans == scope.options[ca])
+                //ca=scope.answer
+                {
+                    scope.score++;
+                    scope.correctAns = true;
+                } else {
+                    scope.correctAns = false;
+                }
+                
+
+                scope.answerMode = false;
+            };
+
+            scope.nextQuestion = function () {
+                scope.id++;
+                scope.getQuestion();
+            }
+
+            scope.reset();
+        }
+    }
+});
 
 
 
+peMod.factory('quizFactory', ['$http', function ($http) {
+
+    var questions = [];
+
+    $http({
+            url: '/question/api',
+            method: "GET",
+        })
+        .then(
+            function (response) {
+                questions = response.data.items;
+                console.log("SUCCESS IN GETTING ALL" + JSON.stringify(questions));
+            },
+            function (error) {
+                console.log("FAILURE IN GETTING ALL" + JSON.stringify(questions));
+            }
+        );
+
+    return {
+        getQuestion: function (id) {
+            console.log(id+ " "+questions.length)
+            if (id < questions.length) {
+                return questions[id];
+            } else {
+                return false;
+            }
+        }
+    };
+
+}]);
+
+/*sahithi end*/
+
+
+
+peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
+
+
+    $scope.authorTest = function () {
+        var a = $scope.a;
+=======
 peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
     $scope.list = [];
     $scope.listDb = [];
@@ -591,6 +713,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
 
         $scope.a.questions = $scope.listDb;
         console.log(JSON.stringify($scope.a));
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
         $http({
                 url: '/authorTest/api',
                 method: "POST",
@@ -604,6 +727,8 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
                 });
     }
 
+<<<<<<< HEAD
+=======
 
 
     $scope.Delete = function (index) {
@@ -613,6 +738,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
     }
 
 
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
     $scope.add = function (questionId) {
         $scope.name = questionId;
         $http({
@@ -624,19 +750,35 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
                     $scope.qn = qn;
 
+<<<<<<< HEAD
+                    if (angular.isDefined($scope.name) && $scope.name != '') {
+=======
                     if (qn._id) {
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
                         // ADD A NEW ELEMENT.
                         $scope.list.push({
                             name: $scope.name,
                             title: $scope.qn.title
                         });
+<<<<<<< HEAD
+=======
                         $scope.listDb.push($scope.name);
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
 
                         // CLEAR THE FIELDS.
                         $scope.name = '';
 
                     }
 
+<<<<<<< HEAD
+
+                    $scope.Delete = function (index) {
+
+                        $scope.list.splice(index, 1);
+                    }
+
+=======
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
                 },
                 function (error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
@@ -726,6 +868,22 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
+<<<<<<< HEAD
+        qn.options = [];
+        qn.options.push($scope.optA);
+        qn.options.push($scope.optB);
+        qn.options.push($scope.optC);
+        qn.options.push($scope.optD);
+
+        //console.log(JSON.stringify(qn));
+=======
+        qn.options=[];
+        qn.options.push($scope.optionA);
+        qn.options.push($scope.optionB);
+        qn.options.push($scope.optionC);
+        qn.options.push($scope.optionD);      
+
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
         $http({
                 url: '/question/api',
                 method: "POST",
