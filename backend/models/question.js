@@ -3,7 +3,7 @@ var mongoose = require("mongoose"),
 
 var questionSchema = new mongoose.Schema({
     "answer": {
-            "type": "string"
+            "type": "number"
         },
 	    "tags": {          
   			"type": "array",

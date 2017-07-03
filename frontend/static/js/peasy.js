@@ -66,9 +66,12 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewInterviewExperience.html',
             controller: 'viewInterviewExpCtrl'
         })
+<<<<<<< HEAD
         .when('/demo', {
             templateUrl: '/partials/demoQuiz.html',
         })
+=======
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
 
         .when('/questionAdd', {
             templateUrl: '/partials/questionAdd.html',
@@ -613,6 +616,7 @@ peMod.directive('quiz', function (quizFactory) {
             scope.checkAnswer = function () {
                 if (!$('input[name=answer]:checked').length) return;
 
+<<<<<<< HEAD
                 var ans = $('input[name=answer]:checked').val();
                 var ca = 0;
                 if(scope.answer == "a"){
@@ -692,10 +696,20 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
 
     $scope.authorTest = function () {
         var a = $scope.a;
+=======
+peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
+    $scope.list = [];
+    $scope.listDb = [];
+    $scope.authorTest = function () {
+        console.log(" 8888  a ****** " + JSON.stringify($scope.a));
+
+        $scope.a.questions = $scope.listDb;
+        console.log(JSON.stringify($scope.a));
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
         $http({
                 url: '/authorTest/api',
                 method: "POST",
-                data: a
+                data: $scope.a
             })
             .then(function (response) {
                     console.log("SUCCESS" + JSON.stringify(a));
@@ -705,6 +719,18 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
                 });
     }
 
+<<<<<<< HEAD
+=======
+
+
+    $scope.Delete = function (index) {
+        $scope.list.splice(index, 1);
+        $scope.listDb.splice(index, 1);
+        
+    }
+
+
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
     $scope.add = function (questionId) {
         $scope.name = questionId;
         $http({
@@ -716,24 +742,35 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
                     $scope.qn = qn;
 
+<<<<<<< HEAD
                     if (angular.isDefined($scope.name) && $scope.name != '') {
+=======
+                    if (qn._id) {
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
                         // ADD A NEW ELEMENT.
                         $scope.list.push({
                             name: $scope.name,
                             title: $scope.qn.title
                         });
+<<<<<<< HEAD
+=======
+                        $scope.listDb.push($scope.name);
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
 
                         // CLEAR THE FIELDS.
                         $scope.name = '';
 
                     }
 
+<<<<<<< HEAD
 
                     $scope.Delete = function (index) {
 
                         $scope.list.splice(index, 1);
                     }
 
+=======
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
                 },
                 function (error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
@@ -753,6 +790,7 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
 
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
+<<<<<<< HEAD
         qn.options = [];
         qn.options.push($scope.optA);
         qn.options.push($scope.optB);
@@ -760,6 +798,14 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
         qn.options.push($scope.optD);
 
         //console.log(JSON.stringify(qn));
+=======
+        qn.options=[];
+        qn.options.push($scope.optionA);
+        qn.options.push($scope.optionB);
+        qn.options.push($scope.optionC);
+        qn.options.push($scope.optionD);      
+
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
         $http({
                 url: '/question/api',
                 method: "POST",

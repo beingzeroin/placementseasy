@@ -27,6 +27,7 @@
                 <div>
                     <div class="input-group">
                         <span class="input-group-addon">Option A</span>
+<<<<<<< HEAD
                         <input id="qnOptionA" ng-model="optA" type="text" class="form-control" placeholder="Option A">
                     </div>
                     <div class="input-group">	
@@ -40,6 +41,21 @@
                     <div class="input-group">
                         <span class="input-group-addon">Option D</span>
                         <input id="qnOptionD" ng-model="optD" type="text" class="form-control" placeholder="Option D">
+=======
+                        <input id="qnOptionA" ng-model="optionA" type="text" class="form-control" placeholder="Option A">
+                    </div>
+                    <div class="input-group">	
+                        <span class="input-group-addon">Option B</span>
+                        <input id="qnOptionB" ng-model="optionB" type="text" class="form-control" placeholder="Option B">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Option C</span>
+                        <input id="qnOptionC" ng-model="optionC" type="text" class="form-control" placeholder="Option C">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Option D</span>
+                        <input id="qnOptionD" ng-model="optionD" type="text" class="form-control" placeholder="Option D">
+>>>>>>> 8564c00c339412c9e0a96604f5f6d6b6c7248ba4
                     </div>
                 </div>
             </div>
@@ -51,19 +67,19 @@
             <div class="col-md-10">
                 <div class="funkyradio">
                     <div class="funkyradio-success qCorrectOptionRadio">
-                        <input type="radio" id="radio1" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="a" >
+                        <input type="radio" id="radio1" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=0 >
                         <label for="radio1">A</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio2" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="b" >
+                        <input type="radio" id="radio2" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=1 >
                         <label for="radio2">B</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio3" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="c" >
+                        <input type="radio" id="radio3" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=2 >
                         <label for="radio3">C</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio4" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="d" >
+                        <input type="radio" id="radio4" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=3 >
                         <label for="radio4">D</label>
                     </div>
                 </div>
@@ -104,7 +120,7 @@
             </div>
             <div class="col-md-10">
                 <div class="input-group">
-    				<span class="input-group-addon">Add tags</span>
+    				<span class="input-group-addon">Company, topic, etc</span>
     				<tags-input ng-model="qn.tags"></tags-input>
 				</div>
             </div>
