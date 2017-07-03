@@ -11,10 +11,7 @@ var authorTestSchema = new mongoose.Schema
     {
         "type":"string"
     },
-    "questions":
-    {
-        "type":"number"
-    },
+    
     "DateExam":
     {
         "type":"date"

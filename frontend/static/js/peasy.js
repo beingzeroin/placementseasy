@@ -582,7 +582,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
 					$scope.qn=qn;
              
-                if (angular.isDefined($scope.name) && $scope.name != ''  ) 
+                if (angular.isDefined($scope.name) && $scope.name != '' ) 
                 {
                     // ADD A NEW ELEMENT.
                     $scope.list.push({ name: $scope.name , title:$scope.qn.title});
@@ -604,10 +604,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                 });
         }
 		
-		/*var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-		for (var i=0;i<elems.length;i+=1){
-			elems[i].style.display = 'inline';
-		}*/
+		
 				
     
                
