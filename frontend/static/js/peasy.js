@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -1003,32 +1003,18 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
     }
 
    $scope.enableQuestionFn = function (questionId) {
-       var qn;
-        $http({
-            url: '/question/api/' + questionId,
-            method: "GET",
-        })
-        .then(function (response) {
-                qn = response.data;
-                console.log("SUCCESS IN GET DELETE-FALSE" + JSON.stringify(qn));
-			},
-            function (error) {
-                console.log("FAILURE IN GET in making the delete false of question with id:" + questionId + JSON.stringify(qn));
-            });
-       	qn.deleted=false;
-	   	$scope.qn=qn;
-            
-        $http({
+       var data={"deleted":false}
+               $http({
                 url: '/question/api/' + questionId,
                 method: "PUT",
-                data: $scope.qn
+                data: data
             })
             .then(function (response) {
-                    console.log("SUCCESS IN PUT DELETE-FALSE" + JSON.stringify(qn));
+                    console.log("SUCCESS IN PUT DELETE-FALSE");
                     window.scrollTo(0, 0);
                 },
                 function (error) {
-                    console.log("FAILURE IN STORING THE DELETE PARAM AS FALSE IN " + JSON.stringify(qn));
+                    console.log("FAILURE IN STORING THE DELETE PARAM AS FALSE IN ");
                     window.scrollTo(0, 0);
                 });
     }
