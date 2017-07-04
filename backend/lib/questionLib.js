@@ -69,20 +69,20 @@ exports.getQuestion = function(req, res) {
 exports.deleteQuestion = function(req, res) {
 
     console.log('Delete ' + req.params.id);
-    QuestionModel.findByIdAndRemove(req.params.id, function(err) {
+    QuestionModel.findById(req.params.id, function(err,qObj) {
         if (err)
             res.status(500).send(err);
-		else
-			res.status(200).send({"status":"SUCCESS"});
-       /* else {
-            cObj.deleted = true;
+        else {
+            qObj.deleted = true;
             // Save Updated Statement
-            cObj.save(function(err) {
+            qObj.save(function(err) {
                 if (err)
                     res.status(500).send(err);
-                else
+                else{
+                    res.status(200).send({"status":"SUCCESS in delete : "+qObj});
                     
+                }
             });
-        } */
+        }
     });
 };

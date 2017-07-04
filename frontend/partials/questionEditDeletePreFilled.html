@@ -1,22 +1,14 @@
 <div class="container">
     <h1>Edit / Delete a Question</h1>
     <form class="form-horizontal">
-        <div class="alert alert-success" id="qnPreFilledUpdateSuccess"><strong>Great!</strong> Question Updated/Deleted Successfully.</div>
-        <div class="alert alert-danger" id="qnPreFilledUpdateFailed"><strong>Oops!</strong> Question NOT updated/deleted. Try updating/deleting again.</div>
+        <div class="alert alert-success" id="qnPreFilledUpdateSuccess"><strong>Question Updated Successfully.</strong></div>
+        <div class="alert alert-danger" id="qnPreFilledUpdateFailed"><strong> Question NOT updated. Try updating again.</strong></div>
 		<div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Question ID:</label>
             </div>
             <div class="col-md-6">
-                <input type="text" id="qnIdPreFilledInput" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
-                <button class="btn btn-info" ng-click="showQuestionFn(qn._id)">SHOW QUESTION</button>
-                <button id="deleteQnBtn" class="btn btn-danger preFilledEditDelQnProperties" ng-click="deleteQuestionFn(qn._id)">DELETE QUESTION </button>
+                <input type="text" id="qnIdPreFilledInput" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id" disabled>
             </div>
         </div>
 		<br>

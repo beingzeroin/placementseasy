@@ -1,8 +1,8 @@
 <div class="container">
     <h1>Edit / Delete a Question</h1>
     <form class="form-horizontal">
-        <div class="alert alert-success" id="qnEditSuccess"><strong>Great!</strong> Question Updated/Deleted Successfully.</div>
-        <div class="alert alert-danger" id="qnEditFailed"><strong>Oops!</strong> Question NOT updated/deleted. Try updating/deleting again.</div>
+        <div class="alert alert-success" id="qnEditSuccess"><strong>Question Updated/Deleted Successfully.</strong></div>
+        <div class="alert alert-danger" id="qnEditFailed"><strong>Question NOT updated/deleted. Try updating/deleting again.</strong></div>
 		<div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Question ID:</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-10">
                 <button class="btn btn-info" ng-click="showQuestionFn(qId)">SHOW QUESTION</button>
-                <button id="deleteQnBtn" class="btn btn-danger hiddenEditDelQnProperties" ng-click="deleteQuestionFn(qId)">DELETE QUESTION </button>
+                <button id="qnEditDelDelBtn" class="btn btn-danger hiddenEditDelQnProperties" ng-click="deleteQuestionFn(qId)">DELETE QUESTION </button>
             </div>
         </div>
 		<br>
