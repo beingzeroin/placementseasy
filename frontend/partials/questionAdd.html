@@ -1,4 +1,6 @@
 <div class="container">
+    <br>
+    <br>
     <h1>Add a Question</h1>
     <form class="form-horizontal">
         <div class="alert alert-success" id="qnAddSuccess"><strong>Question Added Successfully.</strong></div>
@@ -11,6 +13,7 @@
                 <input type="text" class="form-control" placeholder="Title" ng-model="qn.title">
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Description:</label>
@@ -19,6 +22,7 @@
 				<text-angular ng-model="qn.description"></text-angular>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Options:</label>
@@ -44,6 +48,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Correct Option:</label>
@@ -69,6 +74,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Explanation:</label>
@@ -77,6 +83,7 @@
 				<text-angular ng-model="qn.explanation"></text-angular>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Level:</label>
@@ -98,6 +105,7 @@
                 </div>
             </div>
 		</div>
+        <br>
 		<div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Add tags</label>
@@ -109,11 +117,12 @@
 				</div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-10">
-                <button class="btn btn-default" ng-click="addQuestionFn()">ADD QUESTION</button>
+                <button class="btn-lg btn-primary" ng-click="addQuestionFn()">ADD QUESTION</button>
             </div>
         </div>
     </form>

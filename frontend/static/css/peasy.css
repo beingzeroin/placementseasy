@@ -365,6 +365,14 @@ div.review>div {
     display: inline;
 }
 
+.ieSelectedOrNot {
+    display: inline;
+}
+
+.ieOverallExp{
+    display: inline;
+}
+
 .hiddenEditDelQnProperties {
     display: none;
 }

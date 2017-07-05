@@ -538,12 +538,20 @@ peMod.controller("bzListTemplateCtrl", function ($http, $window, $scope) {
 /* SAHITHI START */
 
 peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
-
+    
+    var ieQnNo = 0;
+    $scope.add_ieQnFields = function () {
+        ieQnNo++;
+        var objTo = document.getElementById('question_fields')
+        var newQnDiv = document.createElement("div");
+        
+        newQnDiv.innerHTML = '<label class="question-property-label">Question : '+ (ieQnNo+1)+ '</label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="ieQn.qn['+ieQnNo+']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ie.qnAns[]" placeholder="Write answer here. Use links and format text if necessary." ></text-angular>';
+        
+        objTo.appendChild(newQnDiv)
+    }
 
     $scope.addInterviewExpFn = function () {
-
         var ie = $scope.ie;
-
         $http({
                 url: '/interview/api',
                 method: "POST",
@@ -892,6 +900,7 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
 
     $scope.showQuestionFn = function (questionId) {
         $scope.qId = questionId;
+        if (questionId!=null) {
         $http({
                 url: '/question/api/' + questionId,
                 method: "GET",
@@ -910,7 +919,7 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
         for (var i = 0; i < elems.length; i += 1) {
             elems[i].style.display = 'inline';
         }
-
+    }
     }
 
     $scope.updateQuestionFn = function () {
@@ -933,6 +942,7 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
                 },
                 function (error) {
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                    document.getElementById('qnEditSuccess').style.display = "none";
                     document.getElementById('qnEditFailed').style.display = "block";
                     window.scrollTo(0, 0);
                 });
@@ -962,41 +972,15 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
             })
             .then(function (response) {
                     console.log("SUCCESS IN DELETE" + questionId);
-                    document.getElementById('qnDelSuccess').style.display = "block";
-                    //document.getElementById('qnDelSuccess').style.display="block";
                     var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
                     for (var i = 0; i < elems.length; i += 1) {
                         elems[i].style.display = 'none';
                     }
                     $scope.showAllQuestionsFn();
-                    console.log("\n762\n")
-                    /* 
-                    window.onload=function(){
-                        console.log("\n764\n")
-                        var qnListDelBtnClass=document.getElementById("qnListDelBtn").className;
-                        if(qnListDelBtnClass="btn btn-danger"){
-                            console.log("\n767\n")
-                            document.getElementById(qnEditDelDelBtn).className="btn btn-success hiddenEditDelQnProperties";
-                            document.getElementById(qnEditDelDelBtn).innerHTML="Add Question";
-                            document.getElementById(qnListDelBtn).className="btn btn-success";
-                            document.getElementById(qnListDelBtn).innerHTML="Add";
-                            console.log("\nchanged to green\n")
-                        }
-                        else{
-                            document.getElementById(qnEditDelDelBtn).className="btn btn-danger hiddenEditDelQnProperties";
-                            document.getElementById(qnEditDelDelBtn).innerHTML="Delete Question";
-                            document.getElementById(qnListDelBtn).className="btn btn-danger";
-                            document.getElementById(qnListDelBtn).innerHTML="Delete";
-                            console.log("\nchanged to red\n")
-                        }
-                    }
-                    */
                     window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN DELETE" + questionId);
-                    document.getElementById('qnDelSuccess').style.display = "none";
-                    document.getElementById('qnDelFailed').style.display = "block";
                     $scope.showAllQuestionsFn();
                     window.scrollTo(0, 0);
                 });
@@ -1011,10 +995,12 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
             })
             .then(function (response) {
                     console.log("SUCCESS IN PUT DELETE-FALSE");
+                    $scope.showAllQuestionsFn();
                     window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE IN STORING THE DELETE PARAM AS FALSE IN ");
+                    $scope.showAllQuestionsFn();
                     window.scrollTo(0, 0);
                 });
     }
