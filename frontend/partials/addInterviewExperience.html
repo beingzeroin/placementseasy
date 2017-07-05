@@ -96,10 +96,10 @@
         <div id="question_fields">
             <div class="row question-property">
                 <div class="col-md-2">
-                    <label class="question-property-label">Question 1</label>
+                    <label class="question-property-label">Question 1: </label>
                 </div>
                 <div class="col-md-10">               
-                    <input type="text" class="form-control" placeholder="Question" ng-model="ie.qn1">
+                    <input type="text" class="form-control" placeholder="Question" ng-model="qn[0]">
                 </div>
             </div>
             <div class="row question-property">
@@ -107,9 +107,10 @@
                     <label class="question-property-label">Answer:</label>
                 </div>
                 <div class="col-md-10">
-                    <text-angular ng-model="ie.qn1Ans" placeholder="Write answer here. Use links and format text if necessary." ></text-angular>
+                    <text-angular ng-model="ans[0]" placeholder="Write answer here. Use links and format text if necessary." ></text-angular>
                 </div>
             </div>
+            
         </div>
 		<input type="button" id="more_question_fields" ng-click="add_ieQnFields()" value="Add another question" />
 

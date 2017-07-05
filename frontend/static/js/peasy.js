@@ -544,9 +544,7 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', function ($http, $sc
         ieQnNo++;
         var objTo = document.getElementById('question_fields')
         var newQnDiv = document.createElement("div");
-        
-        newQnDiv.innerHTML = '<label class="question-property-label">Question : '+ (ieQnNo+1)+ '</label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="ieQn.qn['+ieQnNo+']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ie.qnAns[]" placeholder="Write answer here. Use links and format text if necessary." ></text-angular>';
-        
+        newQnDiv.innerHTML = '<br><br><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Question '+(ieQnNo+1)+': </label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="qn['+ieQnNo+']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ans['+ieQnNo+']" placeholder="Write answer here. Use links and format text if necessary."></text-angular></div></div><br>'
         objTo.appendChild(newQnDiv)
     }
 
