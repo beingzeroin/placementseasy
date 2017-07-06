@@ -1,7 +1,7 @@
 var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
-var interviewSchema = new mongoose.Schema({
+var ieSchema = new mongoose.Schema({
     "CompanyName": {
             "type": "string"
         },
@@ -24,7 +24,7 @@ var interviewSchema = new mongoose.Schema({
     deleted: Boolean
 });
 
-interviewSchema.pre('save', function(next) {
+ieSchema.pre('save', function(next) {
     // get the current date
     var currentDate = new Date();
 
@@ -40,5 +40,5 @@ interviewSchema.pre('save', function(next) {
     next();
 });
 
-module.exports = mongoose.model('Interview', interviewSchema);
+module.exports = mongoose.model('ie', ieSchema);
 

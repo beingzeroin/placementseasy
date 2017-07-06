@@ -1,7 +1,7 @@
-var interviewModel = require('../models/interview');
+var ieModel = require('../models/ieModel');
 
 exports.getAllTemplates = function(req, res) {
-    interviewModel.find(req.query).exec(function(err, dbItems) {
+    ieModel.find(req.query).exec(function(err, dbItems) {
         //console.log(dbItems);
         if (err)
             res.status(500).send(err);
@@ -13,7 +13,7 @@ exports.getAllTemplates = function(req, res) {
 
 exports.createTemplate = function(req, res) {
     //console.log(req.body);
-    var ti = new interviewModel(req.body);
+    var ti = new ieModel(req.body);
     ti.save(function(err) {
         if (err)
             res.status(500).send(err);
@@ -24,7 +24,7 @@ exports.createTemplate = function(req, res) {
 
 exports.editTemplate = function(req, res) {
     console.log('Edit ' + req.body._id);
-    interviewModel.findById(req.body._id, function(err, cObj) {
+    ieModel.findById(req.body._id, function(err, cObj) {
         if (err)
             res.status(500).send(err);
         else {
@@ -48,10 +48,10 @@ exports.editTemplate = function(req, res) {
 
 exports.getTemplate = function(req, res) {
     console.log("Getting Group " + req.params.id);
-    interviewModel.findById(req.params.id, function(err, cObj) {
+    ieModel.findById(req.params.id, function(err, cObj) {
         // Return Object
         if (err) {
-            interviewModel.findOne({ 'title': req.params.title }, function(error, tObj) {
+            ieModel.findOne({ 'title': req.params.title }, function(error, tObj) {
                 if (error)
                     res.status(500).send(error);
                 else
@@ -66,7 +66,7 @@ exports.getTemplate = function(req, res) {
 exports.deleteTemplate = function(req, res) {
 
     console.log('Delete ' + req.params.id);
-    interviewModel.findById(req.params.id, function(err, cObj) {
+    ieModel.findById(req.params.id, function(err, cObj) {
         if (err)
             res.status(500).send(err);
         else {

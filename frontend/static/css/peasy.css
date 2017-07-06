@@ -409,4 +409,23 @@ div.review>div {
     display: none;
 }
 
+#ieQnAddSuccess{
+    display: none;
+}
+
+#ieQnAddFailed{
+    display: none;
+}
+
+.tagsFullWidth{
+    margin-left: -11px;
+    margin-right: -11px;
+}
+
+.tagsBackground {
+    background: white;
+    border: none;
+    border-color: transparent;
+}
+
 /* -- VAMSHI -- */
