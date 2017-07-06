@@ -12,6 +12,11 @@ peMod.config(function ($routeProvider) {
         .when('/register', {
             templateUrl: '/partials/register.html'
         })
+         .when('/afterlogin', { 
+	    templateUrl: '/partials/after login.html', 
+	    controller: 'afloginCtrl' 
+        })
+        
 
         .when('/takeQuiz', {
             templateUrl: '/partials/takeQuiz.html',
@@ -115,14 +120,18 @@ peMod.config(function ($routeProvider) {
         })
 
         .otherwise({
-            redirectTo: '/notfound'
-        })
+            redirectTo: '/notfound'        })
 
 });
 
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
+
+    peMod.controller('afloginCtrl', function() {
+    
+});
+
 
 peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('/data/company-wise-test-data.json')
@@ -703,13 +712,15 @@ peMod.factory('quizFactory', ['$http', '$routeParams', function ($http, $routePa
 /* SUPRIYA START */
 
 peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
-    $scope.list = [];
+$scope.time1 = new Date(); 
+$scope.list = [];
     $scope.listDb = [];
     $scope.authorTest = function () {
-        console.log(" 8888  a ****** " + JSON.stringify($scope.a));
+        
 
         $scope.a.questions = $scope.listDb;
-        console.log(JSON.stringify($scope.a));
+        var a=$scope.a;
+        
 
         $http({
                 url: '/authorTest/api',
@@ -807,19 +818,19 @@ peMod.controller('viewContestCtrl', function ($scope, $http) {
 
 peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
 
-    var questionId = $routeParams.id;
-    console.log("Able to fetch ID : " + questionId);
+    var contestId = $routeParams.id;
+    console.log("Able to fetch ID : " + contestId);
     $http({
-            url: '/authorTest/api/' + questionId,
+            url: '/authorTest/api/' + contestId,
             method: "GET",
         })
         .then(function (response) {
-                var qn = response.data;
-                console.log("SUCCESS IN GETTING TEST TO EDIT" + JSON.stringify(qn));
-                $scope.qn = qn;
+                var a = response.data;
+                console.log("SUCCESS IN GETTING TEST TO EDIT" + JSON.stringify(a));
+                $scope.a = a;
             },
             function (error) {
-                console.log("FAILURE IN GET in finding the contest with id:" + questionId + JSON.stringify(qn));
+                console.log("FAILURE IN GET in finding the contest with id:" + contestId + JSON.stringify(a));
             });
 
     var elems = document.getElementsByClassName('preFilledEditContest');
@@ -827,12 +838,15 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
         elems[i].style.display = 'inline';
     }
 
-    $scope.updateContestFn = function (questionId) {
-        var qn = $scope.qn;
+    $scope.updateContestFn = function (contestId) {
+        
+        var a = $scope.a;
+        //console.log("Able to fetch ID : " + questionId);
+    
         $http({
-                url: '/authorTest/api/' + questionId,
+                url: '/authorTest/api/' + contestId,
                 method: "PUT",
-                data: qn,
+                data: a
             })
             .then(function (response) {
                     alert("dfghhj");
