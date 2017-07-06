@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial','mdPickers','ngAria','ngMessages']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -849,11 +849,11 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
                 data: a
             })
             .then(function (response) {
-                    alert("dfghhj");
-                    //  var qn=response.data;
-                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
-                    // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
-                    $scope.qn = undefined;
+            alert("dfghhj");
+          
+                    console.log("SUCCESS IN PUT" + JSON.stringify(a));
+                   // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    $scope.a = undefined;
                     var elems = document.getElementsByClassName('preFilledEditContest');
                     for (var i = 0; i < elems.length; i += 1) {
                         elems[i].style.display = 'none';
