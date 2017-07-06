@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -67,7 +67,7 @@ peMod.config(function ($routeProvider) {
             controller: 'viewInterviewExpCtrl'
         })
 
-        .when('/demo', {
+        .when('/demo/:id', {
             templateUrl: '/partials/demoQuiz.html',
         })
 
@@ -101,11 +101,11 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewcomp.html',
             controller: 'viewcompCtrl'
         })
-    .when('/viewContest', {
+        .when('/viewContest', {
             templateUrl: '/partials/viewContest.html',
             controller: 'viewContestCtrl'
         })
-    .when('/contestEditPreFilled/:id', {
+        .when('/contestEditPreFilled/:id', {
             templateUrl: '/partials/contestEditPreFilled.html',
             controller: 'editContestCtrl'
         })
@@ -537,16 +537,16 @@ peMod.controller("bzListTemplateCtrl", function ($http, $window, $scope) {
 
 /* SAHITHI START */
 
-peMod.controller("addInterviewExpCtrl", ['$http', '$scope','$compile', function ($http, $scope,$compile) {
-    
+peMod.controller("addInterviewExpCtrl", ['$http', '$scope', '$compile', function ($http, $scope, $compile) {
+
     var ieQnNo = 0;
     $scope.add_ieQnFields = function () {
         ieQnNo++;
         var objTo = document.getElementById('question_fields')
         var newQnDiv = document.createElement("div");
-        newQnDiv.innerHTML = '<div id="question_field'+ieQnNo+'"><br><br><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Question '+(ieQnNo+1)+': </label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="ie.qn['+ieQnNo+']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ie.ans['+ieQnNo+']" placeholder="Write answer here. Use links and format text if necessary."></text-angular></div></div><br></div>';
+        newQnDiv.innerHTML = '<div id="question_field' + ieQnNo + '"><br><br><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Question ' + (ieQnNo + 1) + ': </label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="ie.qn[' + ieQnNo + ']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ie.ans[' + ieQnNo + ']" placeholder="Write answer here. Use links and format text if necessary."></text-angular></div></div><br></div>';
         objTo.appendChild(newQnDiv);
-        $compile(document.getElementById('question_field'+ieQnNo))($scope);
+        $compile(document.getElementById('question_field' + ieQnNo))($scope);
     }
 
     $scope.addInterviewExpFn = function () {
@@ -592,7 +592,6 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
 
 /* SAHITHI END */
 /*sahithi start*/
-//var app = angular.module('quizApp', []);
 
 peMod.directive('quiz', function (quizFactory) {
     return {
@@ -614,12 +613,12 @@ peMod.directive('quiz', function (quizFactory) {
 
             scope.getQuestion = function () {
                 var q = quizFactory.getQuestion(scope.id);
-                console.log("getQuestion    : "+q);
+                console.log("getQuestion    : " + q);
                 if (q) {
                     scope.question = q.description;
                     scope.options = q.options;
                     scope.answer = q.answer;
-                    scope.explanation=q.explanation;
+                    scope.explanation = q.explanation;
                     scope.answerMode = true;
                 } else {
                     scope.quizOver = true;
@@ -632,16 +631,13 @@ peMod.directive('quiz', function (quizFactory) {
 
                 var ans = $('input[name=answer]:checked').val();
                 var ca = 0;
-                if(scope.answer == "a"){
+                if (scope.answer == "a") {
                     ca = 0;
-                }
-                else if(scope.answer == "b"){
+                } else if (scope.answer == "b") {
                     ca = 1;
-                }
-                else if(scope.answer == "c"){
+                } else if (scope.answer == "c") {
                     ca = 2;
-                }
-                else if(scope.answer == "d"){
+                } else if (scope.answer == "d") {
                     ca = 3;
                 }
                 if (ans == scope.options[ca])
@@ -652,7 +648,7 @@ peMod.directive('quiz', function (quizFactory) {
                 } else {
                     scope.correctAns = false;
                 }
-                
+
 
                 scope.answerMode = false;
             };
@@ -669,17 +665,17 @@ peMod.directive('quiz', function (quizFactory) {
 
 
 
-peMod.factory('quizFactory', ['$http', function ($http) {
-
+peMod.factory('quizFactory', ['$http', '$routeParams', function ($http, $routeParams) {
+    var quizId =$routeParams.id;
     var questions = [];
 
     $http({
-            url: '/question/api',
+            url: '/authorTest/api/' + quizId,
             method: "GET",
         })
         .then(
             function (response) {
-                questions = response.data.items;
+                questions = response.data.questions;
                 console.log("SUCCESS IN GETTING ALL" + JSON.stringify(questions));
             },
             function (error) {
@@ -688,8 +684,8 @@ peMod.factory('quizFactory', ['$http', function ($http) {
         );
 
     return {
-        getQuestion: function (id) {
-            console.log(id+ " "+questions.length)
+        getQuestion: function (id) { 
+            console.log(id + " " + questions.length)
             if (id < questions.length) {
                 return questions[id];
             } else {
@@ -733,7 +729,7 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
     $scope.Delete = function (index) {
         $scope.list.splice(index, 1);
         $scope.listDb.splice(index, 1);
-        
+
     }
 
 
@@ -749,32 +745,33 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) 
                     console.log("SUCCESS IN GET" + JSON.stringify(qn));
                     $scope.qn = qn;
 
-                if (angular.isDefined($scope.name) && $scope.name != '') {
+                    if (angular.isDefined($scope.name) && $scope.name != '') {
 
-                    if (qn._id) {
+                        if (qn._id) {
 
-                        // ADD A NEW ELEMENT.
-                        $scope.list.push({
-                            name: $scope.name,
-                            title: $scope.qn.title
-                        });
+                            // ADD A NEW ELEMENT.
+                            $scope.list.push({
+                                name: $scope.name,
+                                title: $scope.qn.title
+                            });
 
-                        $scope.listDb.push($scope.name);
+                            $scope.listDb.push($scope.name);
 
 
-                        // CLEAR THE FIELDS.
-                        $scope.name = '';
+                            // CLEAR THE FIELDS.
+                            $scope.name = '';
+
+                        }
+
+
+                        $scope.Delete = function (index) {
+
+                            $scope.list.splice(index, 1);
+                        }
+
 
                     }
-
-
-                    $scope.Delete = function (index) {
-
-                        $scope.list.splice(index, 1);
-                    }
-
-
-                }},
+                },
                 function (error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
                 });
@@ -838,10 +835,10 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
                 data: qn,
             })
             .then(function (response) {
-            alert("dfghhj");
-          //  var qn=response.data;
+                    alert("dfghhj");
+                    //  var qn=response.data;
                     console.log("SUCCESS IN PUT" + JSON.stringify(qn));
-                   // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
                     $scope.qn = undefined;
                     var elems = document.getElementsByClassName('preFilledEditContest');
                     for (var i = 0; i < elems.length; i += 1) {
@@ -850,10 +847,10 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
                     window.scrollTo(0, 0);
                 },
                 function (error) {
-            
+
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
                     //document.getElementById('qnPreFilledUpdateSuccess').style.display = "none";
-                //    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
+                    //    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
                     window.scrollTo(0, 0);
                 });
     }
@@ -868,11 +865,11 @@ peMod.controller('addQtnCtrl', ['$http', '$scope', function ($http, $scope) {
     $scope.addQuestionFn = function () {
         var qn = $scope.qn;
 
-        qn.options=[];
+        qn.options = [];
         qn.options.push($scope.optionA);
         qn.options.push($scope.optionB);
         qn.options.push($scope.optionC);
-        qn.options.push($scope.optionD);      
+        qn.options.push($scope.optionD);
 
         $http({
                 url: '/question/api',
@@ -899,26 +896,26 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
 
     $scope.showQuestionFn = function (questionId) {
         $scope.qId = questionId;
-        if (questionId!=null) {
-        $http({
-                url: '/question/api/' + questionId,
-                method: "GET",
-            })
-            .then(function (response) {
-                    var qn = response.data;
-                    console.log("SUCCESS IN GET" + JSON.stringify(qn));
-                    $scope.qn = qn;
-                },
-                function (error) {
-                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
-                });
-    
+        if (questionId != null) {
+            $http({
+                    url: '/question/api/' + questionId,
+                    method: "GET",
+                })
+                .then(function (response) {
+                        var qn = response.data;
+                        console.log("SUCCESS IN GET" + JSON.stringify(qn));
+                        $scope.qn = qn;
+                    },
+                    function (error) {
+                        console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
+                    });
 
-        var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-        for (var i = 0; i < elems.length; i += 1) {
-            elems[i].style.display = 'inline';
+
+            var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+            for (var i = 0; i < elems.length; i += 1) {
+                elems[i].style.display = 'inline';
+            }
         }
-    }
     }
 
     $scope.updateQuestionFn = function () {
@@ -985,9 +982,11 @@ peMod.controller('editDeleteQtnCtrl', ['$http', '$scope', function ($http, $scop
                 });
     }
 
-   $scope.enableQuestionFn = function (questionId) {
-       var data={"deleted":false}
-               $http({
+    $scope.enableQuestionFn = function (questionId) {
+        var data = {
+            "deleted": false
+        }
+        $http({
                 url: '/question/api/' + questionId,
                 method: "PUT",
                 data: data
@@ -1049,7 +1048,7 @@ peMod.controller('preFilledEditDeleteQtnCtrl', ['$http', '$scope', '$routeParams
                 function (error) {
                     console.log("FAILURE IN PUT" + JSON.stringify(qn));
                     document.getElementById('qnPreFilledUpdateSuccess').style.display = "none";
-                                      document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
+                    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
                     window.scrollTo(0, 0);
                 });
     }
