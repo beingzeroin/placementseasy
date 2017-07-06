@@ -12,6 +12,11 @@ peMod.config(function ($routeProvider) {
         .when('/register', {
             templateUrl: '/partials/register.html'
         })
+         .when('/afterlogin', { 
+	    templateUrl: '/partials/after login.html', 
+	    controller: 'afloginCtrl' 
+        })
+        
 
         .when('/takeQuiz', {
             templateUrl: '/partials/takeQuiz.html',
@@ -115,14 +120,18 @@ peMod.config(function ($routeProvider) {
         })
 
         .otherwise({
-            redirectTo: '/notfound'
-        })
+            redirectTo: '/notfound'        })
 
 });
 
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
+
+    peMod.controller('afloginCtrl', function() {
+    
+});
+
 
 peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('/data/company-wise-test-data.json')
