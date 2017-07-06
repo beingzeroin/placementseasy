@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial','mdPickers','ngAria','ngMessages']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -707,13 +707,15 @@ peMod.factory('quizFactory', ['$http', function ($http) {
 /* SUPRIYA START */
 
 peMod.controller('authorTestCtrl', ['$http', '$scope', function ($http, $scope) {
-    $scope.list = [];
+$scope.time1 = new Date(); 
+$scope.list = [];
     $scope.listDb = [];
     $scope.authorTest = function () {
-        console.log(" 8888  a ****** " + JSON.stringify($scope.a));
+        
 
         $scope.a.questions = $scope.listDb;
-        console.log(JSON.stringify($scope.a));
+        var a=$scope.a;
+        
 
         $http({
                 url: '/authorTest/api',
@@ -810,19 +812,19 @@ peMod.controller('viewContestCtrl', function ($scope, $http) {
 
 peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
 
-    var questionId = $routeParams.id;
-    console.log("Able to fetch ID : " + questionId);
+    var contestId = $routeParams.id;
+    console.log("Able to fetch ID : " + contestId);
     $http({
-            url: '/authorTest/api/' + questionId,
+            url: '/authorTest/api/' + contestId,
             method: "GET",
         })
         .then(function (response) {
-                var qn = response.data;
-                console.log("SUCCESS IN GETTING TEST TO EDIT" + JSON.stringify(qn));
-                $scope.qn = qn;
+                var a = response.data;
+                console.log("SUCCESS IN GETTING TEST TO EDIT" + JSON.stringify(a));
+                $scope.a = a;
             },
             function (error) {
-                console.log("FAILURE IN GET in finding the contest with id:" + questionId + JSON.stringify(qn));
+                console.log("FAILURE IN GET in finding the contest with id:" + contestId + JSON.stringify(a));
             });
 
     var elems = document.getElementsByClassName('preFilledEditContest');
@@ -830,19 +832,22 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
         elems[i].style.display = 'inline';
     }
 
-    $scope.updateContestFn = function (questionId) {
-        var qn = $scope.qn;
+    $scope.updateContestFn = function (contestId) {
+        
+        var a = $scope.a;
+        //console.log("Able to fetch ID : " + questionId);
+    
         $http({
-                url: '/authorTest/api/' + questionId,
+                url: '/authorTest/api/' + contestId,
                 method: "PUT",
-                data: qn,
+                data: a
             })
             .then(function (response) {
             alert("dfghhj");
-          //  var qn=response.data;
-                    console.log("SUCCESS IN PUT" + JSON.stringify(qn));
+          
+                    console.log("SUCCESS IN PUT" + JSON.stringify(a));
                    // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
-                    $scope.qn = undefined;
+                    $scope.a = undefined;
                     var elems = document.getElementsByClassName('preFilledEditContest');
                     for (var i = 0; i < elems.length; i += 1) {
                         elems[i].style.display = 'none';
@@ -851,7 +856,7 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
                 },
                 function (error) {
             
-                    console.log("FAILURE IN PUT" + JSON.stringify(qn));
+                    console.log("FAILURE IN PUT" + JSON.stringify(a));
                     //document.getElementById('qnPreFilledUpdateSuccess').style.display = "none";
                 //    document.getElementById('qnPreFilledUpdateFailed').style.display = "block";
                     window.scrollTo(0, 0);
