@@ -1,20 +1,16 @@
 <div class="container">
+    <br>
+    <br>
     <h1>Edit / Delete a Question</h1>
     <form class="form-horizontal">
+        <div class="alert alert-success" id="qnPreFilledUpdateSuccess"><strong>Question Updated Successfully.</strong></div>
+        <div class="alert alert-danger" id="qnPreFilledUpdateFailed"><strong> Question NOT updated. Try updating again.</strong></div>
 		<div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Question ID:</label>
+                <label class="question-property-label preFilledEditDelQnProperties">Question ID:</label>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-10">
-                <button class="btn btn-info" ng-click="showQuestionFn(qn._id)">SHOW QUESTION</button>
-                <button id="deleteQnBtn" class="btn btn-danger preFilledEditDelQnProperties" ng-click="deleteQuestionFn(qn._id)">DELETE QUESTION </button>
+                <input type="text" id="qnIdPreFilledInput" class="form-control preFilledEditDelQnProperties" placeholder="QUESTION ID" ng-model="qn._id" disabled>
             </div>
         </div>
 		<br>
@@ -44,19 +40,19 @@
                 <div>
                     <div class="input-group">
                         <span class="input-group-addon">Option A</span>
-                        <input id="qnOptionA" ng-model="qn['options'][0]['0']" type="text" class="form-control" placeholder="Option A">
+                        <input id="qnOptionA" ng-model="qn.options[0]" type="text" class="form-control" placeholder="Option A">
                     </div>
                     <div class="input-group">	
                         <span class="input-group-addon">Option B</span>
-                        <input id="qnOptionB" ng-model="qn['options'][0]['1']" type="text" class="form-control" placeholder="Option B">
+                        <input id="qnOptionB" ng-model="qn.options[1]" type="text" class="form-control" placeholder="Option B">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option C</span>
-                        <input id="qnOptionC" ng-model="qn['options'][0]['2']" type="text" class="form-control" placeholder="Option C">
+                        <input id="qnOptionC" ng-model="qn.options[2]" type="text" class="form-control" placeholder="Option C">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option D</span>
-                        <input id="qnOptionD" ng-model="qn['options'][0]['3']" type="text" class="form-control" placeholder="Option D">
+                        <input id="qnOptionD" ng-model="qn.options[3]" type="text" class="form-control" placeholder="Option D">
                     </div>
                 </div>
             </div>
@@ -68,19 +64,19 @@
             <div class="col-md-10">
                 <div class="funkyradio">
                     <div class="funkyradio-success qCorrectOptionRadio">
-                        <input type="radio" id="radio8" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName	" ng-model="qn.answer" value="a" >
+                        <input type="radio" id="radio8" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName"  ng-model="qn.answer" ng-value="0">
                         <label for="radio8">A</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio9" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" value="b" >
+                        <input type="radio" id="radio9" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" ng-value="1">
                         <label for="radio9">B</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio10" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" value="c" >
+                        <input type="radio" id="radio10" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" ng-value="2">
                         <label for="radio10">C</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio11" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" value="d" >
+                        <input type="radio" id="radio11" class="editQnCorrectOptionRadioClass" name="editQnCorrectOptionRadioName" ng-model="qn.answer" ng-value="3">
                         <label for="radio11">D</label>
                     </div>
                 </div>
@@ -130,7 +126,7 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-10">
-                <button class="btn btn-warning" ng-click="updateQuestionFn()">UPDATE QUESTION</button>
+                <button class="btn btn-warning" ng-click="updateQuestionFn(qn._id)">UPDATE QUESTION</button>
             </div>
         </div>
     </form>

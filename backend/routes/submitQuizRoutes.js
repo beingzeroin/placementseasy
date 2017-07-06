@@ -6,8 +6,8 @@ var submitQuizModel = require('../models/submitQuizModel')
 
 router.route('/api')
      .get(submitQuizLib.getAllTemplates)
-     .put(submitQuizLib.editTemplate)
-     .post(submitQuizLib.createTemplate);
+    .put(submitQuizLib.editTemplate)
+   .post(submitQuizLib.createTemplate);
 
 router.route('/api/:id')
     .get(submitQuizLib.getTemplate)

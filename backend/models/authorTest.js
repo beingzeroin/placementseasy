@@ -1,41 +1,30 @@
 var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
-var authorTestSchema = new mongoose.Schema
-({
-    "Test_Title":
-    {
-        "type":"string"
+var authorTestSchema = new mongoose.Schema({
+    "Test_Title": {
+        "type": "string"
     },
-    "company":
-    {
-        "type":"string"
+    "company": {
+        "type": "string"
     },
-    "questions":
-    {
-        "type":"number"
+    "DateExam": {
+        "type": "date"
     },
-    "DateExam":
-    {
-        "type":"date"
+    "start_time": {
+        "type": "string"
     },
-    "start_time":
-    {
-        "type":"string"
+    "end_time": {
+        "type": "string"
     },
-    "end_time":
-    {
-        "type":"string"
-    },
-    "name":
-    {
-        "type":"string"
-    }
-    
+    "questions": [{
+        type: Schema.Types.ObjectId,
+        ref: 'Question'
+    }]
 })
 
 
-authorTestSchema.pre('save', function(next) {
+authorTestSchema.pre('save', function (next) {
     // get the current date
     var currentDate = new Date();
 
@@ -52,4 +41,3 @@ authorTestSchema.pre('save', function(next) {
 });
 
 module.exports = mongoose.model('authorTest', authorTestSchema);
-

@@ -13,7 +13,13 @@ const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
 
-mongoose.connect('mongodb://localhost/peasy')
+var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
+
+if(dbConnectionString === 'mongodb://localhost/peasy' )
+    console.log('Using Local Database');
+
+mongoose.connect(dbConnectionString)
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', function() {
@@ -60,4 +66,3 @@ const PORT = 3000;
 app.listen(PORT, function() {
     console.log('Example app listening on port: ' + PORT);
 })
-

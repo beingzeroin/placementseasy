@@ -1,74 +1,118 @@
 <div class="container">
+    <br>
+    <br>
     <form class="form-horizontal">
         <h1>Interview Experience</h1>
         <br>
 
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Company name</label>
+                <label class="question-property-label">Which Company?</label>
             </div>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="Name" ng-model="ie.CompanyName">
+                <input type="text" class="form-control" placeholder="Company Name" ng-model="ie.CompanyName">
             </div>
 
         </div>
         <br>
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Date visited</label>
+                <label class="question-property-label">Interview Date</label>
             </div>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="dd/mm/yyyy" ng-model="ie.DateVisited">
+                 <md-datepicker ng-model="ie.DateVisited" md-placeholder="Enter date"></md-datepicker>
             </div>
 
         </div>
         <br>
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">College name</label>
+                <label class="question-property-label">In Which College?</label>
             </div>
             <div class="col-md-10">
-                <input type="text" class="form-control" placeholder="college" ng-model="ie.CollegeName">
+                <input type="text" class="form-control" placeholder="Write 'Offcampus' if you have applied for offcampus interview" ng-model="ie.CollegeName">
             </div>
-
         </div>
         <br>
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Description</label>
+                <label class="question-property-label">Selected?</label>
             </div>
-            <div class="col-md-10">
-
-                <textarea class="form-control" id="input" placeholder="Description" ng-model="ie.Description"></textarea>
-
+            <div class="col-md-10 funkyradio">
+                <div class="funkyradio-success ieSelectedOrNot">
+                    <input type="radio" id="radio12" class="ieSelectedOrNotClass" name="ieSelectedOrNotRadioName" ng-model="ie.selected" value=true >
+                    <label for="radio12">Yes</label>
+                </div>
+                <div class="funkyradio-success ieSelectedOrNot">
+                    <input type="radio" id="radio13" class="ieSelectedOrNotClass" name="ieSelectedOrNotRadioName" ng-model="ie.selected" value=false >
+                    <label for="radio13">No <Selected> </Selected></label>
+                </div>
             </div>
-
+        </div>
+        <br>    
+        <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Overall Experience?</label>
+            </div>
+            <div class="col-md-10 funkyradio">
+                <div class="funkyradio-success ieOverallExp">
+                    <input type="radio" id="radio14" class="ieOverallExpClass" name="ieOverallExpRadioName" ng-model="ie.overallExp" value="Good" >
+                    <label for="radio14">Good</label>
+                </div>
+                <div class="funkyradio-warning ieSelectedOrNot">
+                    <input type="radio" id="radio15" class="ieOverallExpClass" name="ieOverallExpRadioName" ng-model="ie.overallExp" value="Neutral" >
+                    <label for="radio15">Neutral</label>
+                </div>
+                <div class="funkyradio-danger ieSelectedOrNot">
+                    <input type="radio" id="radio16" class="ieOverallExpClass" name="ieOverallExpRadioName" ng-model="ie.overallExp" value="Bad" >
+                    <label for="radio16">Bad</label>
+                </div>
+            </div>
         </div>
         <br>
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Add</label>
+                <label class="question-property-label">Areas/topics focused on? (Press Enter)</label>
             </div>
             <div class="col-md-10">
-
-                <a href=Addquestion.html>Add question</a>
-
+                <div class="input-group">
+    				<span class="input-group-addon">Eg: Data Structures, DBMS, etc.</span>
+    				<tags-input ng-model="ie.topicsFocusedOn"></tags-input>
+				</div>
             </div>
-
         </div>
         <br>
-
-
         <div class="row question-property">
             <div class="col-md-2">
-                <label class="question-property-label">Explanation:</label>
+                <label class="question-property-label">Description:</label>
             </div>
             <div class="col-md-10">
-
-                <textarea class="form-control" id="input" placeholder="Explanation" ng-model="ie.Explanation"></textarea>
+				<text-angular ng-model="ie.description" placeholder="Post applied for? No. of rounds? Describe rounds. Please write question and answers in the next text area."></text-angular>
             </div>
-
         </div>
+        <br>
+        <br>
+        
+        <div id="question_fields">
+            <div class="row question-property">
+                <div class="col-md-2">
+                    <label class="question-property-label">Question 1: </label>
+                </div>
+                <div class="col-md-10">               
+                    <input type="text" class="form-control" placeholder="Question" ng-model="ie.qn[0]">
+                </div>
+            </div>
+            <div class="row question-property">
+                <div class="col-md-2">
+                    <label class="question-property-label">Answer:</label>
+                </div>
+                <div class="col-md-10">
+                    <text-angular ng-model="ie.ans[0]" placeholder="Write answer here. Use links and format text if necessary." ></text-angular>
+                </div>
+            </div>
+            
+        </div>
+		<input type="button" id="more_question_fields" ng-click="add_ieQnFields()" value="Add another question" />
 
         <br>
         <div class="row">
@@ -76,10 +120,17 @@
             </div>
             <div class="col-md-10">
                 <button class="btn btn-default" ng-click="addInterviewExpFn()">Submit</button>
-                <!--button type="submit" ng-click="addInterviewExpFn()" class="btn btn-default">Submit</button-->
             </div>
 
         </div>
 
     </form>
 </div>
+
+ <!--<div class="col-md-10">
+                <div class="input-group">
+    				<span class="input-group-addon">Eg: Linked List, Graphs, etc.</span>
+                    <label>PROBLEM IN STORING MANY QUESTIONS, WHAT SHOULD BE THE NG-MODEL</label>
+    				<tags-input ng-model="ie.questionTag"></tags-input>
+				</div>
+</div>-->

@@ -22,6 +22,7 @@ exports.createTemplate = function(req, res) {
     });
 };
 
+
 exports.editTemplate = function(req, res) {
     console.log('Edit ' + req.body._id);
     quizSumModel.findById(req.body._id, function(err, cObj) {

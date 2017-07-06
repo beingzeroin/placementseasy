@@ -1,6 +1,10 @@
 <div class="container">
+    <br>
+    <br>
     <h1>Add a Question</h1>
     <form class="form-horizontal">
+        <div class="alert alert-success" id="qnAddSuccess"><strong>Question Added Successfully.</strong></div>
+        <div class="alert alert-danger" id="qnAddFailed"><strong>Question NOT added. Try adding again.</strong></div>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Title:</label>
@@ -9,6 +13,7 @@
                 <input type="text" class="form-control" placeholder="Title" ng-model="qn.title">
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Description:</label>
@@ -17,6 +22,7 @@
 				<text-angular ng-model="qn.description"></text-angular>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Options:</label>
@@ -25,23 +31,24 @@
                 <div>
                     <div class="input-group">
                         <span class="input-group-addon">Option A</span>
-                        <input id="qnOptionA" ng-model="qn.options[0]" type="text" class="form-control" placeholder="Option A">
+                        <input id="qnOptionA" ng-model="optionA" type="text" class="form-control" placeholder="Option A">
                     </div>
                     <div class="input-group">	
                         <span class="input-group-addon">Option B</span>
-                        <input id="qnOptionB" ng-model="qn.options[1]" type="text" class="form-control" placeholder="Option B">
+                        <input id="qnOptionB" ng-model="optionB" type="text" class="form-control" placeholder="Option B">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option C</span>
-                        <input id="qnOptionC" ng-model="qn.options[2]" type="text" class="form-control" placeholder="Option C">
+                        <input id="qnOptionC" ng-model="optionC" type="text" class="form-control" placeholder="Option C">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Option D</span>
-                        <input id="qnOptionD" ng-model="qn.options[3]" type="text" class="form-control" placeholder="Option D">
-                    </div>
+                        <input id="qnOptionD" ng-model="optionD" type="text" class="form-control" placeholder="Option D">
+					</div>
                 </div>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Correct Option:</label>
@@ -49,24 +56,25 @@
             <div class="col-md-10">
                 <div class="funkyradio">
                     <div class="funkyradio-success qCorrectOptionRadio">
-                        <input type="radio" id="radio1" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="a" >
+                        <input type="radio" id="radio1" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=0 >
                         <label for="radio1">A</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio2" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="b" >
+                        <input type="radio" id="radio2" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=1 >
                         <label for="radio2">B</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio3" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="c" >
+                        <input type="radio" id="radio3" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=2 >
                         <label for="radio3">C</label>
                     </div>
                     <div class="funkyradio-success qDiffLevelRadio">
-                        <input type="radio" id="radio4" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value="d" >
+                        <input type="radio" id="radio4" class="qCorrectOptionRadioClass" name="qCorrectOptionRadioName" ng-model="qn.answer" value=3 >
                         <label for="radio4">D</label>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Explanation:</label>
@@ -75,6 +83,7 @@
 				<text-angular ng-model="qn.explanation"></text-angular>
             </div>
         </div>
+        <br>
         <div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Level:</label>
@@ -96,22 +105,24 @@
                 </div>
             </div>
 		</div>
+        <br>
 		<div class="row question-property">
             <div class="col-md-2">
                 <label class="question-property-label">Add tags</label>
             </div>
             <div class="col-md-10">
                 <div class="input-group">
-    				<span class="input-group-addon">Add tags</span>
+    				<span class="input-group-addon">Company, topic, etc</span>
     				<tags-input ng-model="qn.tags"></tags-input>
 				</div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-10">
-                <button class="btn btn-default" ng-click="addQuestionFn()">ADD QUESTION</button>
+                <button class="btn-lg btn-primary" ng-click="addQuestionFn()">ADD QUESTION</button>
             </div>
         </div>
     </form>

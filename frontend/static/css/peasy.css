@@ -365,9 +365,48 @@ div.review>div {
     display: inline;
 }
 
+.ieSelectedOrNot {
+    display: inline;
+}
 
-/* -- VAMSHI -- */
+.ieOverallExp{
+    display: inline;
+}
 
 .hiddenEditDelQnProperties {
     display: none;
 }
+
+#qnAddSuccess {
+    display: none;
+}
+
+#qnAddFailed {
+    display: none;
+}
+
+#qnEditSuccess {
+    display: none;
+}
+
+#qnEditFailed {
+    display: none;
+}
+
+#qnDelSuccess {
+    display: none;
+}
+
+#qnDelFailed {
+    display: none;
+}
+
+#qnPreFilledUpdateSuccess {
+    display: none;
+}
+
+#qnPreFilledUpdateFailed {
+    display: none;
+}
+
+/* -- VAMSHI -- */

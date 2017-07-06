@@ -1,3 +1,5 @@
+<br>
+<br>
 <h1>SHOWING ALL QUESTIONS</h1>
 <div class="row">
     <div class="col-md-10">
@@ -10,30 +12,32 @@
             <thead>
                 <tr>
                     <th class="col-md-1">SR </th>
-                    <th class="col-md-1">_id </th>
+                    <th class="col-md-1">ID </th>
                     <th class="col-md-1">Title </th>
                     <th class="col-md-2">Description </th>
                     <th class="col-md-1">Created At </th>
                     <th class="col-md-1">Updated At </th>
-                    <th class="col-md-1">Deleted</th>
                     <th class="col-md-1">Update</th>
-                    <th class="col-md-1">Delete</th>        
+                    <th class="col-md-1">Delete</th>  
+                    <th class="col-md-1">Deleted</th>
+                    <th class="col-md-1">Add</th>      
                 </tr>
+                </thead>
                 <tbody>
                     <tr ng-repeat="qn in allQuestions | filter:searchFilter ">
                         <td>{{$index + 1}}</td>
                         <td>{{qn._id}}</td>
                         <td>{{qn.title}} </td>
-                        <td> {{qn.description}}</td>
+                        <td ng-bind-html="qn.description"></td>
                         <td>{{qn.created_at}} </td>
                         <td>{{qn.updated_at}} </td>
+                        <td><a href="#!/questionEditDeletePreFilled/{{qn._id}}">EDIT</a></td>
+                        <td><button id="qnListDelBtn" class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></td> 
                         <td>{{qn.deleted}}</td>
-                        <td><button class="btn btn-warning" ng-click="editQuestionFn(qn._id)">EDIT</button></th>
-                        <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></th>
-                
+                        <td><button id="qnListAddBtn" class="btn btn-success" ng-click="enableQuestionFn(qn._id)">ADD</button></td> 
                     </tr>
                 </tbody>
-            </thead>
+            
         </table>
     </div>
 </div>
