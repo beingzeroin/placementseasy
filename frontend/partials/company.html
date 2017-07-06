@@ -1,15 +1,13 @@
 <input type="text" ng-model="query" placeholder="search here" class="form-control" />
-<div class="container-fluid">
-    <div class="col-md-4" ng-repeat="i in info | filter: query">
-        <div class="jumbotron clour">
-            <h4>{{i.companyName}}</h4>
-            <p class="badge badge-success">dur:{{i.durationInMinutes}} mins</p>
-            
-            <div>
-                <p><a href=''>Aptitude</a>
-                    <a href=''>technical</a></p>
-            </div>
 
-        </div>
-    </div>
+     <div class="container" >
+        <div class="col-md-10" ng-repeat="i in info | filter: query" >
+            <div class="jumbotron">
+                 <h4>{{i.companyName}}</h4>
+                  <h4 class="badge">{{i.durationInMinutes}}min</h4>
+             </div>
+         </div>
 </div>
+            
+         
+

@@ -9,6 +9,10 @@ peMod.config(function ($routeProvider) {
 	
         .when('/register', { 
 			templateUrl: '/partials/register.html' })
+    
+       	.when('/afterlogin', { 
+			templateUrl: '/partials/after login.html', 
+			controller: 'afloginctrl' })
         
        	.when('/takeQuiz', { 
 			templateUrl: '/partials/takeQuiz.html', 
@@ -31,8 +35,7 @@ peMod.config(function ($routeProvider) {
 		controller: 'bzListTemplateCtrl' })
 
 	.when('/quizSummary', { 
-		templateUrl: '/partials/quizSummary.html', 
-		controller: 'quizSummaryCtrl' })
+		templateUrl: '/partials/quizSummary.html', 		controller: 'quizSummaryCtrl' })
 
 	.when('/topicwise', { 
 		templateUrl: '/partials/topicwise.html' })
@@ -89,6 +92,11 @@ peMod.config(function ($routeProvider) {
 peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
+
+    peMod.controller('afloginCtrl', function() {
+    
+});
+
 
 peMod.controller('compayWiseCtrl', ['$scope', '$http', function ($scope, $http) {
     $http.get('/data/company-wise-test-data.json')
