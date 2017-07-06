@@ -14,7 +14,7 @@ peMod.config(function ($routeProvider) {
         })
          .when('/afterlogin', { 
 	    templateUrl: '/partials/after login.html', 
-	    controller: 'afloginctrl' 
+	    controller: 'afloginCtrl' 
         })
         
 
