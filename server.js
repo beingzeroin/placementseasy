@@ -12,6 +12,7 @@ const authorTestRouter = require('./backend/routes/authorTestRoute')
 const interviewRouter = require('./backend/routes/interviewRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
+const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
 
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
 
@@ -41,6 +42,7 @@ app.use('/authorTest', authorTestRouter);
 app.use('/interview', interviewRouter);
 app.use('/quizSum',quizSumRouter);
 app.use('/submitQuiz',submitQuizRouter);
+app.use('/historyofTests',historyofTestsRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')

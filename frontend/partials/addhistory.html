@@ -1,0 +1,43 @@
+<div class="container">
+    <br>
+    <br>
+    <h1>Add a Question</h1>
+    <form class="form-horizontal">
+        <div class="alert alert-success" id="qnAddSuccess"><strong>Data Added Successfully.</strong></div>
+        <div class="alert alert-danger" id="qnAddFailed"><strong>Data NOT added. Try adding again.</strong></div>
+        <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Userid:</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="userid" ng-model="h.userid">
+            </div>
+        </div>
+        <br>
+        <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">quizid:</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="quizid" ng-model="h.quizid">
+            </div>
+        </div>
+        <br>
+         <div class="row question-property">
+            <div class="col-md-2">
+                <label class="question-property-label">Score:</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" placeholder="score" ng-model="h.score">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <button class="btn-lg btn-primary" ng-click="addhistoryFn()">ADD Data</button>
+            </div>
+        </div>
+    </form>
+</div>
