@@ -47,8 +47,7 @@ exports.editTemplate = function(req, res) {
 };
 
 exports.getTemplate = function(req, res) {
-    console.log("Getting Group " + req.params.id);
-    authorTest.findById(req.params.id, function(err, cObj) {
+    authorTest.findById(req.params.id).populate('questions').exec( function(err, cObj) {
         // Return Object
         if (err) {
             authorTest.findOne({ 'title': req.params.title }, function(error, tObj) {
