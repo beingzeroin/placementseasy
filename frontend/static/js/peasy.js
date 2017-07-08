@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular','ngSanitize','ngMaterial','mdPickers','ngAria','ngMessages']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial', 'ngAria', 'ngMessages','md.time.picker']);
 peMod.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
@@ -12,11 +12,11 @@ peMod.config(function ($routeProvider) {
         .when('/register', {
             templateUrl: '/partials/register.html'
         })
-         .when('/afterlogin', { 
-	    templateUrl: '/partials/after login.html', 
-	    controller: 'afloginCtrl' 
+        .when('/afterlogin', {
+            templateUrl: '/partials/after login.html',
+            controller: 'afloginCtrl'
         })
-        
+
 
         .when('/takeQuiz', {
             templateUrl: '/partials/takeQuiz.html',
@@ -120,7 +120,8 @@ peMod.config(function ($routeProvider) {
         })
 
         .otherwise({
-            redirectTo: '/notfound'        })
+            redirectTo: '/notfound'
+        })
 
 });
 
@@ -128,8 +129,8 @@ peMod.controller('peasyCtrl', ['$scope', function ($scope) {
     $scope.message = 'Test Message';
 }]);
 
-    peMod.controller('afloginCtrl', function() {
-    
+peMod.controller('afloginCtrl', function () {
+
 });
 
 
@@ -675,7 +676,7 @@ peMod.directive('quiz', function (quizFactory) {
 
 
 peMod.factory('quizFactory', ['$http', '$routeParams', function ($http, $routeParams) {
-    var quizId =$routeParams.id;
+    var quizId = $routeParams.id;
     var questions = [];
 
     $http({
@@ -693,7 +694,7 @@ peMod.factory('quizFactory', ['$http', '$routeParams', function ($http, $routePa
         );
 
     return {
-        getQuestion: function (id) { 
+        getQuestion: function (id) {
             console.log(id + " " + questions.length)
             if (id < questions.length) {
                 return questions[id];
@@ -719,8 +720,8 @@ $scope.list = [];
         
 
         $scope.a.questions = $scope.listDb;
-        var a=$scope.a;
-        
+        var a = $scope.a;
+
 
         $http({
                 url: '/authorTest/api',
@@ -773,13 +774,6 @@ $scope.list = [];
                             $scope.name = '';
 
                         }
-
-
-                        $scope.Delete = function (index) {
-
-                            $scope.list.splice(index, 1);
-                        }
-
 
                     }
                 },
@@ -837,22 +831,23 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
     for (var i = 0; i < elems.length; i += 1) {
         elems[i].style.display = 'inline';
     }
+     
 
     $scope.updateContestFn = function (contestId) {
         
         var a = $scope.a;
         //console.log("Able to fetch ID : " + questionId);
-    
+
         $http({
                 url: '/authorTest/api/' + contestId,
                 method: "PUT",
                 data: a
             })
             .then(function (response) {
-            alert("dfghhj");
+           
           
                     console.log("SUCCESS IN PUT" + JSON.stringify(a));
-                   // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
+                    // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
                     $scope.a = undefined;
                     var elems = document.getElementsByClassName('preFilledEditContest');
                     for (var i = 0; i < elems.length; i += 1) {
