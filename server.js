@@ -9,9 +9,10 @@ const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
 const companyRouter = require('./backend/routes/companyRoute')
 const authorTestRouter = require('./backend/routes/authorTestRoute')
-const interviewRouter = require('./backend/routes/interviewRoutes')
+const ieRouter = require('./backend/routes/ieRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
+const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
 
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
 
@@ -38,9 +39,10 @@ app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
 app.use('/company', companyRouter);
 app.use('/authorTest', authorTestRouter);
-app.use('/interview', interviewRouter);
+app.use('/ie', ieRouter);
 app.use('/quizSum',quizSumRouter);
 app.use('/submitQuiz',submitQuizRouter);
+app.use('/historyofTests',historyofTestsRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')

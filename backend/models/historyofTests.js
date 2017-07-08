@@ -1,30 +1,24 @@
 var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
-var interviewSchema = new mongoose.Schema({
-    "CompanyName": {
-            "type": "string"
+var historyofTestsSchema = new mongoose.Schema({
+    
+        "userid":{
+            "type": "number"
         },
-	    "DateVisited": {          
-  			"type": "date"
-		},
-        "CollegeName": {
-            "type": "string"
+        "quizid":{
+            "type": "number"
         },
-        "Description": {
-            "type": "string"
+         "score":{
+           "type" : "number"
         },
-        
-        "Explanation": {
-            "type": "string"
-        },
-        
+    //users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     created_at: Date,
     updated_at: Date,
     deleted: Boolean
 });
 
-interviewSchema.pre('save', function(next) {
+historyofTestsSchema.pre('save', function(next) {
     // get the current date
     var currentDate = new Date();
 
@@ -40,5 +34,4 @@ interviewSchema.pre('save', function(next) {
     next();
 });
 
-module.exports = mongoose.model('Interview', interviewSchema);
-
+module.exports = mongoose.model('historyofTests', historyofTestsSchema);

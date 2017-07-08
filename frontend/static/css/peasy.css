@@ -33,6 +33,22 @@ mainpage {
     background-color: gainsboro;
 }
 
+.color1 {
+    background-color: aquamarine;
+}
+
+.color2 {
+    background-color: bisque;
+}
+
+.color3 {
+    background-color: coral;
+}
+
+.color4 {
+    background-color:salmon;
+}
+
 .spinner {
     width: 100px;
 }
@@ -407,6 +423,25 @@ div.review>div {
 
 #qnPreFilledUpdateFailed {
     display: none;
+}
+
+#ieQnAddSuccess{
+    display: none;
+}
+
+#ieQnAddFailed{
+    display: none;
+}
+
+.tagsFullWidth{
+    margin-left: -11px;
+    margin-right: -11px;
+}
+
+.tagsBackground {
+    background: white;
+    border: none;
+    border-color: transparent;
 }
 
 /* -- VAMSHI -- */

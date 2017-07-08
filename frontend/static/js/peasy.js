@@ -62,14 +62,14 @@ peMod.config(function ($routeProvider) {
             controller: 'dashboardCtrl'
         })
 
-        .when('/addInterviewExperience', {
-            templateUrl: '/partials/addInterviewExperience.html',
-            controller: 'addInterviewExpCtrl'
+        .when('/ieAdd', {
+            templateUrl: '/partials/ieAdd.html',
+            controller: 'ieAddCtrl'
         })
 
-        .when('/viewInterviewExperience', {
-            templateUrl: '/partials/viewInterviewExperience.html',
-            controller: 'viewInterviewExpCtrl'
+        .when('/ieView', {
+            templateUrl: '/partials/ieView.html',
+            controller: 'ieViewCtrl'
         })
 
         .when('/demo/:id', {
@@ -106,7 +106,15 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewcomp.html',
             controller: 'viewcompCtrl'
         })
-        .when('/viewContest', {
+       .when('/addhistory', {
+            templateUrl: '/partials/addhistory.html',
+            controller: 'addhistoryCtrl'
+        })
+       .when('/viewhistory', {
+            templateUrl: '/partials/viewhistory.html',
+            controller: 'viewhistoryCtrl'
+        })
+    .when('/viewContest', {
             templateUrl: '/partials/viewContest.html',
             controller: 'viewContestCtrl'
         })
@@ -184,6 +192,70 @@ peMod.controller('viewcompCtrl', function ($scope, $http) {
 
 
 });
+peMod.controller('addhistoryCtrl', ['$http', '$scope', function ($http, $scope) {
+
+    $scope.addhistoryFn = function () {
+        var h = $scope.h;
+
+        $http({
+                url: '/historyofTests/api',
+                method: "POST",
+                data: h
+            })
+            .then(function (response) {
+                    console.log("SUCCESS IN POST" + JSON.stringify(h));
+                    document.getElementById('qnAddSuccess').style.display = "block";
+                    window.scrollTo(0, 0);
+
+                },
+                function (error) {
+                    console.log("FAILURE IN POST" + JSON.stringify(h));
+                    document.getElementById('qnAddFailed').style.display = "block";
+                    window.scrollTo(0, 0);
+                });
+    }
+
+}]);
+peMod.controller('viewhistoryCtrl', ['$http', '$scope', function ($http, $scope) {
+$scope.list = [];
+    $scope.enter = function (questionId) {
+        $scope.name = questionId;
+        if (questionId!=null) {
+        $http({
+                url: '/historyofTests/api/' + questionId,
+                method: "GET",
+            })
+            .then(function (response) {
+                    var h = response.data;
+                    console.log("SUCCESS IN GET" + JSON.stringify(h));
+                    $scope.h = h;
+            
+                if (angular.isDefined($scope.name) && $scope.name != '') {
+
+                    if (h.userid==$scope.name) {
+
+                        // ADD A NEW ELEMENT.
+                        $scope.list.push({
+                            userid: $scope.name,
+                            quizid: $scope.h.quizid,
+                            score: $scope.h.score
+                        });
+
+                        } 
+                    if (h.userid!=$scope.name)
+                        {
+                            
+document.getElementById('qnAddFailed').style.display = "block";
+                        }
+                }
+                },
+                function (error) {
+                    console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(h));
+                });
+    
+
+            }
+    }}]);
 /* SATYA END*/
 
 
@@ -545,16 +617,30 @@ peMod.controller("bzListTemplateCtrl", function ($http, $window, $scope) {
         });
 });
 
-/* SAHITHI START */
+/* SAHITHI / VAMSHI START */
 
-peMod.controller("addInterviewExpCtrl", ['$http', '$scope', '$compile', function ($http, $scope, $compile) {
+peMod.controller("ieAddCtrl", ['$http', '$scope','$compile', function ($http, $scope,$compile) {
+    $scope.ie={
+        company:'',
+        date:'',
+        college:'',
+        gotSelected:'',
+        overallExperience:'',
+        topicsFocusedOn:[],
+        generalDescription:'',
+        questionsArray:[{
+            ieQuestion:'',
+            ieQnTags:[],
+            ieQnDesc:''
+        }]
+    };
 
     var ieQnNo = 0;
     $scope.add_ieQnFields = function () {
         ieQnNo++;
         var objTo = document.getElementById('question_fields')
         var newQnDiv = document.createElement("div");
-        newQnDiv.innerHTML = '<div id="question_field' + ieQnNo + '"><br><br><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Question ' + (ieQnNo + 1) + ': </label></div><div class="col-md-10"><input type="text" class="form-control" placeholder="Question" ng-model="ie.qn[' + ieQnNo + ']"></div></div><div class="row question-property"><div class="col-md-2"><label class="question-property-label">Answer:</label></div><div class="col-md-10"><text-angular ng-model="ie.ans[' + ieQnNo + ']" placeholder="Write answer here. Use links and format text if necessary."></text-angular></div></div><br></div>';
+        newQnDiv.innerHTML = '<div id="question_field'+ieQnNo+'"><br><br><div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Question '+(ieQnNo+1)+': </label> </div> <div class="col-md-10"> <input type="text" class="form-control" placeholder="Question" ng-model="ie.questionsArray['+ieQnNo+'].ieQuestion"> </div> </div> <div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Tag topics for this question:</label> </div> <div class="col-md-10"> <div class="input-group"> <span class="input-group-addon tagsBackground"><tags-input class="tagsFullWidth" placeholder="Eg: Linked Lists, Graphs, General Knowledge, etc" ng-model="ie.questionsArray['+ieQnNo+'].ieQnTags" use-strings="true"></tags-input> </span> </div> </div> </div> <div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Description/Approach:</label> </div> <div class="col-md-10"> <text-angular ng-model="ie.questionsArray['+ieQnNo+'].ieQnDesc" placeholder="Write answer here. Use links and format text if necessary." ></text-angular> </div> </div></div>';
         objTo.appendChild(newQnDiv);
         $compile(document.getElementById('question_field' + ieQnNo))($scope);
     }
@@ -562,26 +648,32 @@ peMod.controller("addInterviewExpCtrl", ['$http', '$scope', '$compile', function
     $scope.addInterviewExpFn = function () {
         var ie = $scope.ie;
         $http({
-                url: '/interview/api',
+                url: '/ie/api',
                 method: "POST",
                 data: ie
             })
             .then(function (response) {
                     console.log("SUCCESS" + JSON.stringify(ie));
+                    document.getElementById('ieQnAddSuccess').style.display = "block";
+                    $scope.ie = undefined;
+                    window.scrollTo(0, 0);
                 },
                 function (error) {
                     console.log("FAILURE" + JSON.stringify(ie));
+                    document.getElementById('ieQnAddSuccess').style.display = "none";
+                    document.getElementById('ieQnAddFailed').style.display = "block";
+                    window.scrollTo(0, 0);
                 });
         alert("submitted successfully");
     }
 
 }]);
 
-peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $scope) {
+peMod.controller("ieViewCtrl", ['$http', '$scope', function ($http, $scope) {
 
 
     $http({
-            url: '/Interview/api',
+            url: '/ie/api',
             method: "GET",
 
 
@@ -600,7 +692,7 @@ peMod.controller("viewInterviewExpCtrl", ['$http', '$scope', function ($http, $s
 
 
 
-/* SAHITHI END */
+/* SAHITHI / VAMSHI END */
 /*sahithi start*/
 
 peMod.directive('quiz', function (quizFactory) {
