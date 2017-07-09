@@ -5,7 +5,8 @@ const model = require('../models/movieModel')
 
 router.route('/')
     .get(function(req, res) {
-        model.find({}, function(err, allQuestions) {
+        var query = {}; //{ deleted: false };
+        model.find(query, function(err, allQuestions) {
             if (err)
                 res.json({ 'message': 'error occured ' + err })
             else
@@ -52,13 +53,21 @@ router.route('/:id')
 
     })
     .delete(function(req, res) {
-        model.findByIdAndRemove(req.params.id, function(err) {
+        model.findById(req.params.id, function(err, qObj) {
             if (err)
-                res.json(err)
+                res.status(500).send(err);
             else {
-                res.json({ 'msg': 'deleted' })
+                qObj.deleted = true;
+                // Save Updated Statement
+                qObj.save(function(err) {
+                    if (err)
+                        res.status(500).send(err);
+                    else {
+                        res.status(200).send({ "status": "SUCCESS in delete : " + qObj });
+                    }
+                });
             }
-        })
+        });
     })
 
 module.exports = router;
