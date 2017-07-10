@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
+const registerRouter = require('./backend/routes/registerRoute')
+const loginRouter = require('./backend/routes/loginRoute');
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
 const companyRouter = require('./backend/routes/companyRoute')
@@ -13,6 +15,9 @@ const ieRouter = require('./backend/routes/ieRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
 const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
+
+
+
 
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
 
@@ -43,6 +48,8 @@ app.use('/ie', ieRouter);
 app.use('/quizSum',quizSumRouter);
 app.use('/submitQuiz',submitQuizRouter);
 app.use('/historyofTests',historyofTestsRouter);
+app.use('/register',registerRouter);
+app.use('/login',loginRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
