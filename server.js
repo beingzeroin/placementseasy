@@ -30,6 +30,8 @@ db.once('open', function() {
     console.log('DB Connection Opened')
 })
 app.use(morgan('dev'))
+app.set('view engine', 'pug')
+app.set('views', './frontend/views')
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express.static('frontend'))
@@ -54,6 +56,9 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
 })
 
+app.get('/index', function(req, res) {
+    res.render('index');
+})
 app.get('/partials/:partialPath', function(req, res) {
     res.sendFile(__dirname + '/frontend/partials/' + req.params.partialPath)
 })
