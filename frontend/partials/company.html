@@ -1,8 +1,8 @@
 <input type="text" ng-model="query" placeholder="search here" class="form-control" />
 
      <div class="container" >
-        <div class="col-md-10" ng-repeat="i in info | filter: query" >
-            <div class="jumbotron">
+        <div class="col-md-10 " ng-repeat="i in info | filter: query">
+            <div class="jumbotron" ng-class="'color'+($index%4 + 1)">
                  <h4>{{i.companyName}}</h4>
                   <h4 class="badge">{{i.durationInMinutes}}min</h4>
              </div>

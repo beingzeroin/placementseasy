@@ -8,7 +8,7 @@ var authorTestSchema = new mongoose.Schema({
     "company": {
         "type": "string"
     },
-    "DateExam": {
+    "DateVisited": {
         "type": "date"
     },
     "start_time": {

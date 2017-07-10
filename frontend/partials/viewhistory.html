@@ -1,0 +1,48 @@
+<br><br><br><br>
+<div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <label>enter userId</label>
+            </div>
+            <div class="col-md-9">
+
+                <input type="text" ng-model="name" class="form-control" placeholder="Enter id" />
+            </div>
+        </div>
+        <br>
+        <br>
+        <p align="center"><button class="btn btn-info" ng-click="enter(name)">enter</button></p>
+        <br>
+		<br>
+		<br>
+        <div class="container">
+        <ul ng-repeat="l in list">
+            <div class="row">
+                <li>
+                    <div class="col-md-4">
+                        <h4> userid:</h4></div>
+                    <div class="col-md-3">{{l.userid}}
+                    </div>
+                </li>
+            </div>
+            <div class="row">
+                <li>
+                    <div class="col-md-4">
+                        <h4> quizid:</h4></div>
+                    <div class="col-md-3">{{l.quizid}}
+                    </div>
+                </li>
+            </div><div class="row">
+                <li>
+                    <div class="col-md-4">
+                        <h4>score</h4></div>
+                    <div class="col-md-3">{{l.score}}
+                    </div>
+                </li>
+            </div>
+            
+        </ul>
+
+    </div>
+<div class="alert alert-danger" id="qnAddFailed"><strong>user did not attempt any tests yet.</strong></div>
+    </div>

@@ -1,4 +1,5 @@
 {
+
     "name": "peasy",
     "description": "",
     "main": "index.js",
@@ -26,6 +27,7 @@
         "ng-tags-input": "^3.2.0",
         "textAngular": "^1.5.16",
         "angular-material": "^1.1.4",
-        "mdPickers": "^0.7.5",
+        "angular-material-time-picker": "^1.0.6",
+        "angular-resource": "^1.6.5"
     }
 }

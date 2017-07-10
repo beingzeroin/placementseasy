@@ -19,11 +19,11 @@ router.route('/edit/:id')
 
 router.route('/api')
     .get(authorTest.getAllTemplates)
-    .put(authorTest.editTemplate)
     .post(authorTest.createTemplate);
 
 router.route('/api/:id')
     .get(authorTest.getTemplate)
+    .put(authorTest.editTemplate)
     .delete(authorTest.deleteTemplate);
 
 

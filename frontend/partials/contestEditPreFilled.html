@@ -114,7 +114,7 @@
             </div>
         </div>
         <br>
-        <!-- <div class="ro-->
+        
 
         <br>
 
@@ -122,21 +122,22 @@
     </div><br>
 
     <div class="container">
-        <ul ng-repeat="l in a.questions">
+       
             <div class="row preFilledEditContest">
+                 <ul ng-repeat="l in a.questions">
 
                 <li>
                     <div class="col-md-3">
-                        {{ l.name }}</div>
+                        {{l._id}}</div>
                     <div class="col-md-3">{{l.title}}
                     </div>
                     <div class="col-md-6">
                         <button class="btn btn-danger" ng-click="Delete($index)">Delete</button><br>
                     </div>
-                </li>
+                </li> </ul>
             </div>
 
-        </ul>
+       
 
     </div>
 

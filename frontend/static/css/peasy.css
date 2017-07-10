@@ -33,6 +33,22 @@ mainpage {
     background-color: gainsboro;
 }
 
+.color1 {
+    background-color: aquamarine;
+}
+
+.color2 {
+    background-color: bisque;
+}
+
+.color3 {
+    background-color: coral;
+}
+
+.color4 {
+    background-color:salmon;
+}
+
 .spinner {
     width: 100px;
 }

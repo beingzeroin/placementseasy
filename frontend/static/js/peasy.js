@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial', 'mdPickers', 'ngAria', 'ngMessages']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial', 'ngAria', 'ngMessages', 'md.time.picker']);
 peMod.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -6,10 +6,25 @@ peMod.config(function($routeProvider) {
         })
 
     .when('/login', {
-        templateUrl: '/partials/login.html'
-    })
-
-    .when('/register', {
+            templateUrl: '/partials/login.html'
+        })
+        .when('/movies', {
+            templateUrl: '/partials/movies.html',
+            controller: 'moviesCtrl'
+        })
+        .when('/movies/:id/view', {
+            templateUrl: '/partials/movies-view.html',
+            controller: 'moviesViewController'
+        })
+        .when('/movies/:id/edit', {
+            templateUrl: '/partials/movies-edit.html',
+            controller: 'moviesEditController'
+        })
+        .when('/movies/create', {
+            templateUrl: '/partials/movies-add.html',
+            controller: 'moviesCreateController'
+        })
+        .when('/register', {
             templateUrl: '/partials/register.html'
         })
         .when('/afterlogin', {
@@ -106,6 +121,14 @@ peMod.config(function($routeProvider) {
             templateUrl: '/partials/viewcomp.html',
             controller: 'viewcompCtrl'
         })
+        .when('/addhistory', {
+            templateUrl: '/partials/addhistory.html',
+            controller: 'addhistoryCtrl'
+        })
+        .when('/viewhistory', {
+            templateUrl: '/partials/viewhistory.html',
+            controller: 'viewhistoryCtrl'
+        })
         .when('/viewContest', {
             templateUrl: '/partials/viewContest.html',
             controller: 'viewContestCtrl'
@@ -129,10 +152,13 @@ peMod.controller('peasyCtrl', ['$scope', function($scope) {
     $scope.message = 'Test Message';
 }]);
 
-peMod.controller('afloginCtrl', function() {
+peMod.controller('dashboardCtrl', function() {
 
 });
 
+peMod.controller('afloginCtrl', function() {
+
+});
 
 peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
     $http.get('/data/company-wise-test-data.json')
@@ -184,6 +210,70 @@ peMod.controller('viewcompCtrl', function($scope, $http) {
 
 
 });
+peMod.controller('addhistoryCtrl', ['$http', '$scope', function($http, $scope) {
+
+    $scope.addhistoryFn = function() {
+        var h = $scope.h;
+
+        $http({
+                url: '/historyofTests/api',
+                method: "POST",
+                data: h
+            })
+            .then(function(response) {
+                    console.log("SUCCESS IN POST" + JSON.stringify(h));
+                    document.getElementById('qnAddSuccess').style.display = "block";
+                    window.scrollTo(0, 0);
+
+                },
+                function(error) {
+                    console.log("FAILURE IN POST" + JSON.stringify(h));
+                    document.getElementById('qnAddFailed').style.display = "block";
+                    window.scrollTo(0, 0);
+                });
+    }
+
+}]);
+peMod.controller('viewhistoryCtrl', ['$http', '$scope', function($http, $scope) {
+    $scope.list = [];
+    $scope.enter = function(questionId) {
+        $scope.name = questionId;
+        if (questionId != null) {
+            $http({
+                    url: '/historyofTests/api/' + questionId,
+                    method: "GET",
+                })
+                .then(function(response) {
+                        var h = response.data;
+                        console.log("SUCCESS IN GET" + JSON.stringify(h));
+                        $scope.h = h;
+
+                        if (angular.isDefined($scope.name) && $scope.name != '') {
+
+                            if (h.userid == $scope.name) {
+
+                                // ADD A NEW ELEMENT.
+                                $scope.list.push({
+                                    userid: $scope.name,
+                                    quizid: $scope.h.quizid,
+                                    score: $scope.h.score
+                                });
+
+                            }
+                            if (h.userid != $scope.name) {
+
+                                document.getElementById('qnAddFailed').style.display = "block";
+                            }
+                        }
+                    },
+                    function(error) {
+                        console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(h));
+                    });
+
+
+        }
+    }
+}]);
 /* SATYA END*/
 
 
@@ -598,6 +688,7 @@ peMod.controller("ieAddCtrl", ['$http', '$scope', '$compile', function($http, $s
 }]);
 
 peMod.controller("ieViewCtrl", ['$http', '$scope', function($http, $scope) {
+
     $http({
             url: '/ie/api',
             method: "GET",
@@ -803,14 +894,6 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                             $scope.name = '';
 
                         }
-
-
-                        $scope.Delete = function(index) {
-
-                            $scope.list.splice(index, 1);
-                        }
-
-
                     }
                 },
                 function(error) {
@@ -879,8 +962,6 @@ peMod.controller('editContestCtrl', ['$http', '$scope', '$routeParams', function
                 data: a
             })
             .then(function(response) {
-                    alert("dfghhj");
-
                     console.log("SUCCESS IN PUT" + JSON.stringify(a));
                     // document.getElementById('qnPreFilledUpdateSuccess').style.display = "block";
                     $scope.a = undefined;
