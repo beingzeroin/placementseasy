@@ -1,4 +1,4 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial', 'ngAria', 'ngMessages', 'md.time.picker']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngMaterial', 'ngAria', 'ngMessages', 'md.time.picker']);
 peMod.config(function($routeProvider) {
     $routeProvider
         .when('/', {
