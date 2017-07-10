@@ -1,31 +1,31 @@
 {
-  "name": "peasy",
-  "description": "",
-  "main": "index.js",
-  "authors": [
-    "beingzeroin@gmail.com"
-  ],
-  "license": "ISC",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "^3.2.1",
-    "bootstrap": "^3.3.7",
-    "angular": "^1.6.4",
-    "angular-route": "^1.6.4",
-    "font-awesome": "fontawesome#^4.7.0",
-    "angular-bootstrap": "^2.5.0",
-    "angular-animate": "^1.6.4",
-    "angular-sanitize": "^1.6.4",
-    "ng-tags-input": "^3.2.0",
-    "textAngular": "^1.5.16",
-    "angular-material": "^1.1.4",
-    "mdPickers": "^0.7.5"
-  }
+    "name": "peasy",
+    "description": "",
+    "main": "index.js",
+    "authors": [
+        "beingzeroin@gmail.com"
+    ],
+    "license": "ISC",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "^3.2.1",
+        "bootstrap": "^3.3.7",
+        "angular": "^1.6.4",
+        "angular-route": "^1.6.4",
+        "font-awesome": "fontawesome#^4.7.0",
+        "angular-bootstrap": "^2.5.0",
+        "angular-animate": "^1.6.4",
+        "angular-sanitize": "^1.6.4",
+        "ng-tags-input": "^3.2.0",
+        "textAngular": "^1.5.16",
+        "angular-material": "^1.1.4",
+        "mdPickers": "^0.7.5",
+    }
 }

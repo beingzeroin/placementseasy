@@ -2,23 +2,50 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema;
 
 var ieSchema = new mongoose.Schema({
-    "CompanyName": {
+    "college": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "date": {
+      "type": Date
+    },
+    "generalDescription": {
+      "type": "string"
+    },
+    "gotSelected": {
+      "type": Boolean
+    },
+    "overallExperience": {
+      "type": "string"
+    },
+    "questionsArray": {
+      "items": {
+        "properties": {
+          "ieQnDesc": {
             "type": "string"
-        },
-	    "DateVisited": {          
-  			"type": "date"
-		},
-        "CollegeName": {
+          },
+          "ieQnTags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "ieQuestion": {
             "type": "string"
+          }
         },
-        "Description": {
-            "type": "string"
-        },
-        
-        "Explanation": {
-            "type": "string"
-        },
-        
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "topicsFocusedOn": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
     created_at: Date,
     updated_at: Date,
     deleted: Boolean
