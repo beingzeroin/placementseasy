@@ -385,7 +385,7 @@ div.review>div {
     display: inline;
 }
 
-.ieOverallExp {
+.ieOverallExp{
     display: inline;
 }
 
@@ -425,15 +425,15 @@ div.review>div {
     display: none;
 }
 
-#ieQnAddSuccess {
+#ieQnAddSuccess{
     display: none;
 }
 
-#ieQnAddFailed {
+#ieQnAddFailed{
     display: none;
 }
 
-.tagsFullWidth {
+.tagsFullWidth{
     margin-left: -11px;
     margin-right: -11px;
 }
@@ -444,57 +444,14 @@ div.review>div {
     border-color: transparent;
 }
 
-.ieListClass {
-    position: static;
-    width: 95%;
-}
-
-.ieListClass .head {
-    font-size: 15pt;
-    background: #6F6F6F;
-    color: white;
-}
-
-.ieListClass li {
-    list-style: none;
-    background-color: #E8E8E8;
-    margin: 5px 10px;
-    text-align: left;
-    padding: 10px 0 10px 20px;
-    border-radius: 5px 5px;
-    cursor: pointer;
-}
-
-.ieListClass li a {
-    text-decoration: none;
-    color: black !important;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.head:hover {
-    background: 6F6F6F !important;
-    cursor: initial;
-}
-
-.ieListClass li:hover {
-    background: #D2D2D2;
-    color: black;
-}
-
-
 /* -- VAMSHI -- */
-
-
 /* */
-
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
-
 #content {
-    height: 100%;
+  height: 100%;
 }
-
-#content>md-content {
-    background-color: #eee;
+#content > md-content {
+  background-color: #eee;
 }

@@ -1,12 +1,14 @@
-var peMod = angular.module('peasy', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngSanitize', 'ngMaterial', 'ngAria', 'ngMessages', 'md.time.picker']);
+var peMod = angular.module('peasy', ['ngRoute', 'ngResource', 'ngAnimate', 'ngSanitize', 'ui.bootstrap', 'ngTagsInput', 'textAngular', 'ngMaterial', 'ngAria', 'ngMessages', 'md.time.picker']);
 peMod.config(function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: '/partials/main.html'
         })
 
-    .when('/login', {
-            templateUrl: '/partials/login.html'
+        .when('/login', {
+            templateUrl: '/partials/login.html',
+            controller:'mainCtrl',
+            controllerAs:'login'
         })
         .when('/movies', {
             templateUrl: '/partials/movies.html',
@@ -25,7 +27,9 @@ peMod.config(function($routeProvider) {
             controller: 'moviesCreateController'
         })
         .when('/register', {
-            templateUrl: '/partials/register.html'
+            templateUrl: '/partials/register.html',
+            controller:'regCtrl',
+            controllerAs:'register' 
         })
         .when('/afterlogin', {
             templateUrl: '/partials/after login.html',
@@ -171,6 +175,74 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
             $scope.error = error;
         });
 }]);
+
+peMod.controller('regCtrl',function($http,$location,$timeout)
+{
+    var app=this;
+    this.regUser=function(regData)
+    {
+        app.loading=true;
+        app.errorMsg=false;
+       // console.log(this.regData);
+        $http({
+            url: '/register/api',
+            method: "POST",
+            data: this.regData
+        }).then(function(data)
+        {
+            console.log(data.data.success);
+            console.log(data.data.message);
+
+            if(data.data.success)
+            {
+                app.loading=false;
+                app.successMsg=data.data.message+'....Redirecting';
+                $timeout(function() 
+                {
+                    $location.path('/');
+                }, 2000);
+            }
+            else
+            {
+                app.loading=false;
+                app.errorMsg=data.data.message;
+            }
+        })
+    }
+});
+peMod.controller('mainCtrl',function($http,$location,$timeout)
+{
+       // console.log("testing main controller");
+        var app=this;
+        this.logUser=function(logData)
+        {
+            //console.log(this.logData);
+            $http({
+                url: '/login/api',
+                method: "POST",
+                data: this.logData
+            }).then(function(data)
+            {
+               // console.log(data.data.success);
+                //console.log(data.data.message);
+
+                if(data.data.success)
+                {
+                    app.loading=false;
+                    app.successMsg=data.data.message+'....Redirecting';
+                    $timeout(function() 
+                    {
+                        $location.path('/');
+                    }, 2000);
+                }
+                else
+                {
+                    app.loading=false;
+                    app.errorMsg=data.data.message;
+                }
+        })
+        }
+});
 
 /* SATYA START*/
 
