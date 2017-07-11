@@ -1,0 +1,43 @@
+<br>
+<br>
+<h1>SHOWING ALL INTERVIEW EXPERIENCES</h1>
+<div class="row">
+    <div class="col-md-12">
+        <input type="text" class="form-control " placeholder="Search" ng-model="searchFilter">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">SR </th>
+                    <th class="col-md-1">ID </th>
+                    <th class="col-md-1">COMPANY </th>
+                    <th class="col-md-2">USER </th>
+                    <th class="col-md-1">Created At </th>
+                    <th class="col-md-1">Updated At </th>
+                    <th class="col-md-1">Update</th>
+                    <th class="col-md-1">Delete</th>
+                    <th class="col-md-1">LIVE</th>
+                    <th class="col-md-1">Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ie in allIEs | filter:searchFilter ">
+                    <td>{{$index + 1}}</td>
+                    <td>{{ie._id}}</td>
+                    <td>{{ie.company}} </td>
+                    <td>{{}}</td>
+                    <td>{{ie.created_at}} </td>
+                    <td>{{ie.updated_at}} </td>
+                    <td><a href="#!/ieEdit/{{ie._id}}">EDIT</a></td>
+                    <td><button id="ieListDelBtn" class="btn btn-danger" ng-click="ieDelFn(ie._id)">DONT SHOW</button></td>
+                    <td>{{!ie.deleted}}</td>
+                    <td><button id="ieListAddBtn" class="btn btn-success" ng-click="ieEnableFn(ie._id)">SHOW</button></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
