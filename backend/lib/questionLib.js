@@ -69,7 +69,7 @@ exports.getQuestion = function(req, res) {
 exports.deleteQuestion = function(req, res) {
 
     console.log('Delete ' + req.params.id);
-    QuestionModel.findById(req.params.id, function(err,qObj) {
+    QuestionModel.findById(req.params.id, function(err, qObj) {
         if (err)
             res.status(500).send(err);
         else {
@@ -78,9 +78,9 @@ exports.deleteQuestion = function(req, res) {
             qObj.save(function(err) {
                 if (err)
                     res.status(500).send(err);
-                else{
-                    res.status(200).send({"status":"SUCCESS in delete : "+qObj});
-                    
+                else {
+                    res.status(200).send({ "status": "SUCCESS in delete : " + qObj });
+
                 }
             });
         }

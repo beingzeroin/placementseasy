@@ -87,9 +87,13 @@ peMod.config(function($routeProvider) {
         controller: 'ieViewCtrl'
     })
 
-    .when('/demo/:id', {
-        templateUrl: '/partials/demoQuiz.html',
-    })
+    .when('/ieList', {
+            templateUrl: '/partials/ieList.html',
+            controller: 'ieListCtrl'
+        })
+        .when('/demo/:id', {
+            templateUrl: '/partials/demoQuiz.html',
+        })
 
     .when('/questionAdd', {
         templateUrl: '/partials/questionAdd.html',
@@ -118,7 +122,6 @@ peMod.config(function($routeProvider) {
     })
 
     .when('/viewcomp', {
-            templateUrl: '/partials/viewcomp.html',
             controller: 'viewcompCtrl'
         })
         .when('/addhistory', {
@@ -717,6 +720,162 @@ peMod.controller("ieViewCtrl", ['$http', '$scope', function($http, $scope) {
 
 
 }]);
+
+peMod.controller("ieListCtrl", ['$http', '$scope', function($http, $scope) {
+
+
+    // **
+    // **
+    // **
+    // **
+    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+    // **
+    // **
+    // **
+    // **
+    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+    // **
+    // **
+    // **
+    // **
+    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+
+
+
+
+
+
+    $scope.ieShowFn = function(ieId) {
+        $scope.ieId = ieId;
+        if (ieId != null) {
+            $http({
+                    url: '/ie/api/' + ieId,
+                    method: "GET",
+                })
+                .then(function(response) {
+                        var ie = response.data;
+                        console.log("SUCCESS IN GET" + JSON.stringify(ie));
+                        $scope.ie = ie;
+                    },
+                    function(error) {
+                        console.log("FAILURE IN GET in finding the Interview Experience with id:" + ieId + JSON.stringify(ie));
+                    });
+
+        }
+    }
+
+    $scope.ieUpdateFn = function() {
+        var ieId = $scope.ieId;
+        var ie = $scope.ie;
+        $http({
+                url: '/ie/api/' + ieId,
+                method: "PUT",
+                data: ie
+            })
+            .then(function(response) {
+                    console.log("SUCCESS IN PUT" + JSON.stringify(ie));
+                    // document.getElementById('ieEditSuccess').style.display = "block";
+                    $scope.ie = undefined;
+                    // var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+                    // for (var i = 0; i < elems.length; i += 1) {
+                    //     elems[i].style.display = 'none';
+                    // }
+                    // window.scrollTo(0, 0);
+                },
+                function(error) {
+                    console.log("FAILURE IN PUT" + JSON.stringify(ie));
+                    // document.getElementById('qnEditSuccess').style.display = "none";
+                    // document.getElementById('qnEditFailed').style.display = "block";
+                    window.scrollTo(0, 0);
+                });
+    }
+
+    $scope.ieShowAllFn = function() {
+        $http({
+                url: '/ie/api',
+                method: "GET",
+            })
+            .then(function(response) {
+                    var allIEs = response.data.items;
+                    console.log("SUCCESS IN GETTING ALL" + JSON.stringify(allIEs));
+                    $scope.allIEs = allIEs;
+                },
+                function(error) {
+                    console.log("FAILURE IN GETTING ALL" + JSON.stringify(allIEs));
+                });
+
+    }
+    $scope.ieShowAllFn();
+
+    $scope.ieDeleteFn = function(ieId) {
+        $http({
+                url: '/ie/api/' + ieId,
+                method: "DELETE",
+            })
+            .then(function(response) {
+                    console.log("SUCCESS IN DELETE" + ieId);
+                    // var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
+                    // for (var i = 0; i < elems.length; i += 1) {
+                    //     elems[i].style.display = 'none';
+                    // }
+                    $scope.ieShowAllFn();
+                    window.scrollTo(0, 0);
+                },
+                function(error) {
+                    console.log("FAILURE IN DELETE" + ieId);
+                    $scope.ieShowAllFn();
+                    window.scrollTo(0, 0);
+                });
+    }
+
+    $scope.ieEnableFn = function(ieId) {
+        var data = {
+            "deleted": false
+        }
+        $http({
+                url: '/ie/api/' + ieId,
+                method: "PUT",
+                data: data
+            })
+            .then(function(response) {
+                    console.log("SUCCESS IN PUT DELETE-FALSE");
+                    $scope.ieShowAllFn();
+                    window.scrollTo(0, 0);
+                },
+                function(error) {
+                    console.log("FAILURE IN STORING THE DELETE PARAM AS FALSE IN ");
+                    $scope.ieShowAllFn();
+                    window.scrollTo(0, 0);
+                });
+    }
+}]);
+
+
+
+
+
+// **
+// **
+// **
+// **
+// **
+// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+// **
+// **
+// **
+// **
+// **
+// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+// **
+// **
+// **
+// **
+// **
+// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
+
+
+
+
 
 
 
