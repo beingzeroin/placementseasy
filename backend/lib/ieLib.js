@@ -1,6 +1,6 @@
 var ieModel = require('../models/ieModel');
 
-exports.getAllTemplates = function(req, res) {
+exports.getAllIEs = function(req, res) {
     ieModel.find(req.query).exec(function(err, dbItems) {
         //console.log(dbItems);
         if (err)
@@ -11,7 +11,7 @@ exports.getAllTemplates = function(req, res) {
     });
 };
 
-exports.createTemplate = function(req, res) {
+exports.createIE = function(req, res) {
     //console.log(req.body);
     var ti = new ieModel(req.body);
     ti.save(function(err) {
@@ -22,7 +22,7 @@ exports.createTemplate = function(req, res) {
     });
 };
 
-exports.editTemplate = function(req, res) {
+exports.editIE = function(req, res) {
     console.log('Edit ' + req.body._id);
     ieModel.findById(req.body._id, function(err, cObj) {
         if (err)
@@ -46,7 +46,7 @@ exports.editTemplate = function(req, res) {
     });
 };
 
-exports.getTemplate = function(req, res) {
+exports.getIE = function(req, res) {
     console.log("Getting Group " + req.params.id);
     ieModel.findById(req.params.id, function(err, cObj) {
         // Return Object
@@ -63,7 +63,7 @@ exports.getTemplate = function(req, res) {
     });
 };
 
-exports.deleteTemplate = function(req, res) {
+exports.deleteIE = function(req, res) {
 
     console.log('Delete ' + req.params.id);
     ieModel.findById(req.params.id, function(err, cObj) {

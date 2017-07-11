@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 
+const registerRouter = require('./backend/routes/registerRoute')
+const loginRouter = require('./backend/routes/loginRoute');
 const bzTemplateRouter = require('./backend/routes/bztemplateRoutes')
 const questionRouter = require('./backend/routes/questionRoute')
 const companyRouter = require('./backend/routes/companyRoute')
@@ -13,10 +15,11 @@ const ieRouter = require('./backend/routes/ieRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
 const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
+const movieRoutes = require('./backend/routes/movieRoutes')
 
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
 
-if(dbConnectionString === 'mongodb://localhost/peasy' )
+if (dbConnectionString === 'mongodb://localhost/peasy')
     console.log('Using Local Database');
 
 mongoose.connect(dbConnectionString)
@@ -27,6 +30,8 @@ db.once('open', function() {
     console.log('DB Connection Opened')
 })
 app.use(morgan('dev'))
+app.set('view engine', 'pug')
+app.set('views', './frontend/views')
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 app.use(express.static('frontend'))
@@ -40,14 +45,20 @@ app.use('/question', questionRouter);
 app.use('/company', companyRouter);
 app.use('/authorTest', authorTestRouter);
 app.use('/ie', ieRouter);
-app.use('/quizSum',quizSumRouter);
-app.use('/submitQuiz',submitQuizRouter);
-app.use('/historyofTests',historyofTestsRouter);
+app.use('/quizSum', quizSumRouter);
+app.use('/submitQuiz', submitQuizRouter);
+app.use('/historyofTests', historyofTestsRouter);
+app.use('/api/movies', movieRoutes);
+app.use('/register',registerRouter);
+app.use('/login',loginRouter);
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/views/index.html')
 })
 
+app.get('/index', function(req, res) {
+    res.render('index');
+})
 app.get('/partials/:partialPath', function(req, res) {
     res.sendFile(__dirname + '/frontend/partials/' + req.params.partialPath)
 })

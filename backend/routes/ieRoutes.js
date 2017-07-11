@@ -18,13 +18,13 @@ router.route('/edit/:id')
     });
 
 router.route('/api')
-    .get(ieLib.getAllTemplates)
-    .put(ieLib.editTemplate)
-    .post(ieLib.createTemplate);
+    .get(ieLib.getAllIEs)
+    .put(ieLib.editIE)
+    .post(ieLib.createIE);
 
 router.route('/api/:id')
-    .get(ieLib.getTemplate)
-    .delete(ieLib.deleteTemplate);
+    .get(ieLib.getIE)
+    .delete(ieLib.deleteIE);
 
 
 module.exports = router;
