@@ -108,6 +108,10 @@ peMod.config(function ($routeProvider) {
             templateUrl: '/partials/viewhistory.html',
             controller: 'viewhistoryCtrl'
         })
+    .when('/viewallhistory', {
+            templateUrl: '/partials/viewallhistory.html',
+            controller: 'viewhistoryCtrl'
+        })
     .when('/viewContest', {
             templateUrl: '/partials/viewContest.html',
             controller: 'viewContestCtrl'
@@ -204,7 +208,8 @@ peMod.controller('addhistoryCtrl', ['$http', '$scope', function ($http, $scope) 
     }
 
 }]);
-peMod.controller('viewhistoryCtrl', ['$http', '$scope', function ($http, $scope) {
+
+    peMod.controller('viewhistoryCtrl', ['$http', '$scope', function ($http, $scope) {
 $scope.list = [];
     $scope.enter = function (questionId) {
         $scope.name = questionId;
@@ -220,17 +225,17 @@ $scope.list = [];
             
                 if (angular.isDefined($scope.name) && $scope.name != '') {
 
-                    if (h.userid==$scope.name) {
+                    if (h._id) {
 
                         // ADD A NEW ELEMENT.
                         $scope.list.push({
-                            userid: $scope.name,
+                            userid: $scope.h.userid,
                             quizid: $scope.h.quizid,
                             score: $scope.h.score
                         });
 
                         } 
-                    if (h.userid!=$scope.name)
+                    else
                         {
                             
 document.getElementById('qnAddFailed').style.display = "block";
@@ -242,11 +247,27 @@ document.getElementById('qnAddFailed').style.display = "block";
                 });
     
 
-            }
-    }}]);
+            }}
+        $scope.showTotalHistoryFn = function () {
+        $http({
+                url: '/historyofTests/api',
+                method: "GET",
+            })
+            .then(function (response) {
+                    var allHistory = response.data.items;
+                    console.log("SUCCESS IN GETTING ALL" + JSON.stringify(allHistory));
+                    $scope.allHistory = allHistory;
+                },
+                function (error) {
+                    console.log("FAILURE IN GETTING ALL" + JSON.stringify(allQuestions));
+                });
+    }
+    $scope.showTotalHistoryFn();
+
+    }]);
 /* SATYA END*/
 
-
+peMod.controller('dashboardCtrl', function ($scope, $http) {});
 
 
 /* AJAY START */

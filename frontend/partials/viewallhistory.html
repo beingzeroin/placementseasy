@@ -1,0 +1,39 @@
+<br>
+<br>
+<h1>SHOWING TOTAL HISTORY</h1>
+<div class="row">
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">SR </th>
+                    <th class="col-md-1">ID </th>
+                    <th class="col-md-1">userid </th>
+                    <th class="col-md-2">Quizid </th>
+                    <th class="col-md-2">Score </th>
+                    <th class="col-md-1">Created At </th>
+                    <th class="col-md-1">Updated At </th>
+                    <th class="col-md-2">Deleted</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="h in allHistory| filter:searchFilter ">
+                        <td>{{$index + 1}}</td>
+                        <td>{{h._id}}</td>
+                        <td>{{h.userid}} </td>
+                        <td>{{h.quizid}}</td>
+                        <td>{{h.score}}</td>
+                        <td>{{h.created_at}} </td>
+                        <td>{{h.updated_at}} </td>
+                        <td>{{h.deleted}}</td>
+                    </tr>
+                </tbody>
+            
+        </table>
+    </div>
+</div>
