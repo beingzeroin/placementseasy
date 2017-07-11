@@ -345,12 +345,13 @@ $scope.list = [];
                             
 document.getElementById('qnAddFailed').style.display = "block";
                         }
-                    },
+                    }},
                     function(error) {
                         console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(h));
                     });
-
-            }}
+        
+        }
+    }
         $scope.showTotalHistoryFn = function () {
         $http({
                 url: '/historyofTests/api',
@@ -366,7 +367,7 @@ document.getElementById('qnAddFailed').style.display = "block";
                 });
     }
     $scope.showTotalHistoryFn();
-
+        
     }]);
 /* SATYA END*/
 
