@@ -15,6 +15,7 @@ const ieRouter = require('./backend/routes/ieRoutes')
 const quizSumRouter = require('./backend/routes/quizSumRoutes')
 const submitQuizRouter = require('./backend/routes/submitQuizRoutes')
 const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
+const leaderRouter = require('./backend/routes/leaderRoute')
 const movieRoutes = require('./backend/routes/movieRoutes')
 
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
@@ -40,6 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 /* ROUTES */
+app.use('/leaderboard',leaderRouter); 
 app.use('/bzTemplate', bzTemplateRouter);
 app.use('/question', questionRouter);
 app.use('/company', companyRouter);

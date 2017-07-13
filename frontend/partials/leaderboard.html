@@ -1,0 +1,33 @@
+<html ng-app="peMod">
+    <head>
+    <body>
+        <h1> LEADERBOARD </h1>
+    <div class="row" ng-controller="leaderCtrl" >
+       <!-- <form ng-submit="func()">
+       Enter QUIZ Id <input type="text" ng-model="qid"/>
+       <input type="submit" value="submit"/>
+       </form> -->
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1"> SR </th>
+                    <th class="col-md-1">USER ID</th>
+                    <th class="col-md-1">SCORE</th>
+                   
+                </tr>
+            </thead>
+            <tr ng-repeat="x in details">
+               <div ng-repeat="r in x">
+                <td> {{$index+1}} </td>
+                <td>{{x._id}} </td>
+                <td> {{x.score}}</td>
+               </div> 
+            </tr>    
+
+        
+        </table>
+    </div>
+    </div>
+    </body>
+</html>

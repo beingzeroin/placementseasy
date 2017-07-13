@@ -148,6 +148,10 @@ peMod.config(function($routeProvider) {
             templateUrl: '/partials/contestEditPreFilled.html',
             controller: 'editContestCtrl'
         })
+        .when('/leaderboard',{
+            templateUrl:'/partials/leaderboard.html',
+            controller:'leaderCtrl'
+        })
 
     .when('/notfound', {
         templateUrl: '/partials/404.html'
@@ -179,6 +183,30 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
             $scope.error = error;
         });
 }]);
+
+peMod.controller('leaderCtrl',['$scope','$http',function($scope,$http){
+  /*  $scope.func =function(){
+    var qid = $scope.qid;
+    if(qid)
+    {
+      
+        var url='/leaderboard/api' + qid
+        $http.get(url).then(function(response){
+            $scope.details = response.data
+        },function(err){
+            $scope.error = err
+        })
+        }
+    }*/
+    
+    $http.get('/leaderboard/api')
+        .then(function(response){
+            $scope.details=response.data;
+        },function(err){
+            $scope.error=err
+        })
+
+}])
 
 peMod.controller('regCtrl',function($http,$location,$timeout)
 {
