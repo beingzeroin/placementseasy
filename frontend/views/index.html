@@ -1,4 +1,4 @@
-<html ng-app="peasy" ng-controller="peasyCtrl">
+<html ng-app="peasy">
 
 <head>
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
 
 </head>
 
-<body ng-cloak>
+<body ng-cloak ng-controller="peasyCtrl">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -71,7 +71,7 @@
                             <li>
                                 <a href="#!/addhistory"> Add History</a>
                             </li>
-			    <li>
+                            <li>
                                 <a href="#!/movies">Movies</a>
                             </li>
                             <li>
@@ -104,16 +104,16 @@
                             <li>
                                 <a href="#!/questionsList"> Show all Questions</a>
                             </li>
-                             <li>
-                                  <a href="#!/leaderboard">Leaderboard</a>      
-                            </li> 
+                            <li>
+                                <a href="#!/leaderboard">Leaderboard</a>
+                            </li>
                             <li>
                                 <a href="#!/ieAdd">Add IE</a>
                             </li>
                             <li>
                                 <a href="#!/ieView">View IE</a>
                             </li>
-                           
+
                             <li>
                                 <a href="#!/ieList"> Show all IEs</a>
                             </li>
@@ -160,11 +160,13 @@
     <script type="text/javascript" src="/vendor/angular-aria/angular-aria.min.js"></script>
     <!-- <script type="text/javascript" src="/vendor/mdPickers/dist/mdPickers.min.js"></script>-->
     <script type="text/javascript" src="/vendor/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="/vendor/ngstorage/ngStorage.min.js"></script>
 
     <script type="text/javascript" src="/vendor/angular-material-time-picker/dist/md-time-picker.js"></script>
 
     <script type="text/javascript" src="/static/js/peasy.js"></script>
     <script type="text/javascript" src="/static/js/movies.js"></script>
+    <script type="text/javascript" src="/static/js/services.js"></script>
 
 </body>
 
