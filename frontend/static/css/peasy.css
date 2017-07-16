@@ -444,6 +444,69 @@ div.review>div {
     border-color: transparent;
 }
 
+.ieListClass {
+    position: static;
+    width: 95%;
+}
+
+.ieListClass .head {
+    font-size: 15pt;
+    background: #6F6F6F;
+    color: white;
+}
+
+.ieListClass li {
+    list-style: none;
+    background-color: #E8E8E8;
+    margin: 5px 10px;
+    text-align: left;
+    padding: 10px 0 10px 20px;
+    border-radius: 5px 5px;
+    cursor: pointer;
+}
+
+.ieListClass li a {
+    text-decoration: none;
+    color: black !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.head:hover {
+    background: 6F6F6F !important;
+    cursor: initial;
+}
+
+.ieListClass li:hover {
+    background: #D2D2D2;
+    color: black;
+}
+
+.ieViewFullHeadings{
+    text-transform: uppercase;
+    color: black;
+}
+
+.ieViewFullMain {
+    background: #F2E7D9 ;  
+}
+
+.ieViewFullQnDiv {
+    background: #F1E0CD;  
+}
+
+.ieViewFullDate{
+    font-size: 14px;
+    float: right;
+
+}
+.ieViewFullCollege{
+    font-size: 14px;
+    text-align: left;
+}
+.ieViewFullAuthor{
+    font-size: 14px;    
+    float: right; 
+}
 /* -- VAMSHI -- */
 /* */
 body {

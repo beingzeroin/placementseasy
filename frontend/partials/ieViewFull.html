@@ -1,0 +1,33 @@
+<div class="container ieViewFullMain">
+    <div>
+        <br>
+        <br>
+        <br>
+        <h2 align="center" class="ieViewFullHeadings"><strong>{{ie.company}}</strong> Interview Experience <span class="label label-success">{{ie.gotSelected}}</span></h2>
+    </div>
+    <br>
+    <span class="label label-warning ieViewFullCollege">{{ie.college}}</span>
+    <span class="label label-warning ieViewFullAuthor"> Author: {{ie.user}} </span>
+    <hr>
+
+    <h3>
+        <span class="label label-danger" ng-repeat="t in ie.topicsFocusedOn">{{t}}</span>
+        <span class="label label-info ieViewFullDate">ie.date</span>
+    </h3>
+    <br>
+
+    <div class="jumbotron ieViewFullQnDiv">
+        <h3 align="left"><strong><u>DESCRIPTION</u></strong></h3>
+        <br>
+        <span ng-bind-html="ie.generalDescription"></span>
+    </div>
+
+    <div class="jumbotron ieViewFullQnDiv" ng-repeat="ieQn in ie.questionsArray">
+        <h3><strong>QUESTION {{$index+1}}<strong></h3>
+        <h4>
+                <span class="label label-warning" ng-repeat="tags in ieQn.ieQnTags">{{tags}}</span>
+        </h4>
+        <h4><strong>{{ieQn.ieQuestion}}</strong></h4>
+            <span ng-bind-html="ieQnDesc"></span>
+    </div>
+</div>

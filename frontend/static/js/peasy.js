@@ -83,20 +83,22 @@ peMod.config(function($routeProvider) {
     })
 
     .when('/ieAdd', {
-        templateUrl: '/partials/ieAdd.html',
-        controller: 'ieAddCtrl'
-    })
-
-    .when('/ieView', {
-        templateUrl: '/partials/ieView.html',
-        controller: 'ieViewCtrl'
-    })
-
-    .when('/ieList', {
-            templateUrl: '/partials/ieList.html',
-            controller: 'ieListCtrl'
+            templateUrl: '/partials/ieAdd.html',
+            controller: 'ieAddCtrl'
         })
-        .when('/demo/:id', {
+    .when('/ieView', {
+            templateUrl: '/partials/ieView.html',
+            controller: 'ieViewCtrl'
+        })
+    .when('/ieViewFull/:id', {
+            templateUrl: '/partials/ieViewFull.html',
+            controller: 'ieViewFullCtrl'
+        })
+    .when('/ieList', {
+                templateUrl: '/partials/ieList.html',
+                controller: 'ieListCtrl'
+        })
+    .when('/demo/:id', {
             templateUrl: '/partials/demoQuiz.html',
         })
 
@@ -801,15 +803,13 @@ peMod.controller("ieViewCtrl", ['$http', '$scope', function($http, $scope) {
             url: '/ie/api',
             method: "GET",
 
-
         })
         .then(function(response) {
                 console.log("SUCCESS" + JSON.stringify(response.data));
                 data = response.data.items;
                 for (i = 0; i < data.length; i++) {
-                    if (data[i].gotSelected) {
-                        if (data[i].gotSelected == true) data[i].hiredOrNot = "HIRED";
-                        else if (data[i].gotSelected == false) data[i].hiredOrNot = "NOT HIRED";
+                    if (data[i].gotSelected != undefined) {
+                        if (data[i].gotSelected == true) { data[i].hiredOrNot = "HIRED"; } else data[i].hiredOrNot = "NOT HIRED";
                     }
                     if (data[i].date) {
                         d = new Date(data[i].date);
@@ -827,28 +827,6 @@ peMod.controller("ieViewCtrl", ['$http', '$scope', function($http, $scope) {
 }]);
 
 peMod.controller("ieListCtrl", ['$http', '$scope', function($http, $scope) {
-
-
-    // **
-    // **
-    // **
-    // **
-    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-    // **
-    // **
-    // **
-    // **
-    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-    // **
-    // **
-    // **
-    // **
-    // ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-
-
-
-
-
 
     $scope.ieShowFn = function(ieId) {
         $scope.ieId = ieId;
@@ -944,45 +922,35 @@ peMod.controller("ieListCtrl", ['$http', '$scope', function($http, $scope) {
             })
             .then(function(response) {
                     console.log("SUCCESS IN PUT DELETE-FALSE");
-                    $scope.ieShowAllFn();
+                    //$scope.ieShowAllFn();
                     window.scrollTo(0, 0);
                 },
                 function(error) {
                     console.log("FAILURE IN STORING THE DELETE PARAM AS FALSE IN ");
-                    $scope.ieShowAllFn();
+                   // $scope.ieShowAllFn();
                     window.scrollTo(0, 0);
                 });
     }
 }]);
 
-
-
-
-
-// **
-// **
-// **
-// **
-// **
-// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-// **
-// **
-// **
-// **
-// **
-// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-// **
-// **
-// **
-// **
-// **
-// ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
-
-
-
-
-
-
+peMod.controller('ieViewFullCtrl', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams) {
+    
+    console.log("Entered IE VIEW FULL CTRL");
+    var ieId = $routeParams.id;
+    console.log("Able to fetch ID : " + ieId);
+    $http({
+            url: '/ie/api/' + ieId,
+            method: "GET",
+        })
+        .then(function(response) {
+                var ie = response.data;
+                console.log("SUCCESS IN GETTING IE TO VIEW FULL" + JSON.stringify(ie));
+                $scope.ie = ie;
+            },
+            function(error) {
+                console.log("FAILURE IN GET in finding the IE with id:" + ieId + JSON.stringify(ie));
+            });
+}]);
 
 /* SAHITHI / VAMSHI END */
 /*sahithi start*/

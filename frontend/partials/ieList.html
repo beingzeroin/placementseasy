@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="ie in allIEs | filter:searchFilter ">
+                <tr ng-repeat="ie in allIEs | filter:searchFilter " ng-if="ie.deleted==false">
                     <td>{{$index + 1}}</td>
                     <td>{{ie._id}}</td>
                     <td>{{ie.company}} </td>

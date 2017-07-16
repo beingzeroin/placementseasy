@@ -1,28 +1,53 @@
 <br>
 <br>
-View Interview Experience
 <div class="container">
-   
-	<div class="row"><br>
-
-		<div class="jumbotron" ng-repeat="d in data">
-          <h3>Experience</h3>
-          Company name:{{d.CompanyName}}
-            <br>
-            Date : {{d.DateVisited}}
-            <br>
-            CollegeName:{{d.CollegeName}}
-            <br>
-            Description:{{d.Description}}
-            <br>
-           Explanation:{{d.Explanation}}
-            <br>
-            
-          
+    <ul class="ieListClass">
+        <div class="row">
+            <h2> Interview Experiences</h2>
         </div>
-	</div>
-	
-</div>
- 
+        <li class="head">
+            <table class="table">
+                <col width="10%" />
+                <col width="20%" />
+                <col width="20%" />
+                <col width="20%" />
+                <col width="10%" />
+                <col width="20%" />
+                <thead>
+                    <tr>
+                        <th>Sl. No.</th>
+                        <th>Company</th>
+                        <th>Result</th> ̰
+                        <th>College</th>
+                        <th>Year</th>
+                        <th>User</th>
+                    </tr>
+                </thead>
+            </table>
+        </li>
 
+        <li ng-repeat="ie in data">
+            <a href="#!/ieViewFull/{{ie._id}}">
+                <table class="table">
+                    <col width="10%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="10%" />
+                    <col width="20%" />
 
+                    <tbody>
+                        <tr>
+                            <td>{{($index+1)}}</td>
+                            <td style="text-transform: uppercase">{{ie.company}}</td>
+                            <td>{{ie.hiredOrNot}}</td>
+                            <td>{{ie.college}}</td>
+                            <td>{{ie.year}}</td>
+                            <td>{{}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </a>
+        </li>
+    </ul>
+    +</div>
