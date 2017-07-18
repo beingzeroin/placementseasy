@@ -19,12 +19,13 @@ router.route('/edit/:id')
 
 router.route('/api')
     .get(ieLib.getAllIEs)
-    .put(ieLib.editIE)
-    .post(ieLib.createIE);
+    .post(ieLib.createIE)
 
 router.route('/api/:id')
     .get(ieLib.getIE)
-    .delete(ieLib.deleteIE);
+    .delete(ieLib.deleteIE)
+    .put(ieLib.editIE)
+    
 
 
 module.exports = router;

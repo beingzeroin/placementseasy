@@ -86,6 +86,10 @@ peMod.config(function($routeProvider) {
             templateUrl: '/partials/ieAdd.html',
             controller: 'ieAddCtrl'
         })
+    .when('/ieEdit/:id', {
+            templateUrl: '/partials/ieEdit.html',
+            controller: 'ieEditCtrl'
+        })
     .when('/ieView', {
             templateUrl: '/partials/ieView.html',
             controller: 'ieViewCtrl'
@@ -847,31 +851,7 @@ peMod.controller("ieListCtrl", ['$http', '$scope', function($http, $scope) {
         }
     }
 
-    $scope.ieUpdateFn = function() {
-        var ieId = $scope.ieId;
-        var ie = $scope.ie;
-        $http({
-                url: '/ie/api/' + ieId,
-                method: "PUT",
-                data: ie
-            })
-            .then(function(response) {
-                    console.log("SUCCESS IN PUT" + JSON.stringify(ie));
-                    // document.getElementById('ieEditSuccess').style.display = "block";
-                    $scope.ie = undefined;
-                    // var elems = document.getElementsByClassName('hiddenEditDelQnProperties');
-                    // for (var i = 0; i < elems.length; i += 1) {
-                    //     elems[i].style.display = 'none';
-                    // }
-                    // window.scrollTo(0, 0);
-                },
-                function(error) {
-                    console.log("FAILURE IN PUT" + JSON.stringify(ie));
-                    // document.getElementById('qnEditSuccess').style.display = "none";
-                    // document.getElementById('qnEditFailed').style.display = "block";
-                    window.scrollTo(0, 0);
-                });
-    }
+    
 
     $scope.ieShowAllFn = function() {
         $http({
@@ -950,6 +930,58 @@ peMod.controller('ieViewFullCtrl', ['$http', '$scope', '$routeParams', function(
             function(error) {
                 console.log("FAILURE IN GET in finding the IE with id:" + ieId + JSON.stringify(ie));
             });
+}]);
+
+peMod.controller('ieEditCtrl', ['$http', '$scope', '$routeParams','$compile', function($http, $scope, $routeParams, $compile) {
+    
+    console.log("Entered IE EDIT CTRL");
+    var ieId = $routeParams.id;
+    var ieQns;
+    console.log("Able to fetch ID : " + ieId);
+    $http({
+            url: '/ie/api/' + ieId,
+            method: "GET",
+        })
+        .then(function(response) {
+                var ie = response.data;
+                console.log("SUCCESS IN GETTING IE TO EDIT" + JSON.stringify(ie));
+                $scope.ie = ie;
+
+            },
+            function(error) {
+                console.log("FAILURE IN GET in finding the IE with id:" + ieId + JSON.stringify(ie));
+            });
+
+    var ieQnNo = 0;
+    $scope.add_ieQnFields = function() {
+        ieQnNo++;
+        var objTo = document.getElementById('question_fields')
+        var newQnDiv = document.createElement("div");
+        newQnDiv.innerHTML = '<div id="question_field' + ieQnNo + '"><br><br><div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Question ' + (ieQnNo + 1) + ': </label> </div> <div class="col-md-10"> <input type="text" class="form-control" placeholder="Question" ng-model="ie.questionsArray[' + ieQnNo + '].ieQuestion"> </div> </div> <div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Tag topics for this question:</label> </div> <div class="col-md-10"> <div class="input-group"> <span class="input-group-addon tagsBackground"><tags-input class="tagsFullWidth" placeholder="Eg: Linked Lists, Graphs, General Knowledge, etc" ng-model="ie.questionsArray[' + ieQnNo + '].ieQnTags" use-strings="true"></tags-input> </span> </div> </div> </div> <div class="row question-property"> <div class="col-md-2"> <label class="question-property-label">Description/Approach:</label> </div> <div class="col-md-10"> <text-angular ng-model="ie.questionsArray[' + ieQnNo + '].ieQnDesc" placeholder="Write answer here. Use links and format text if necessary." ></text-angular> </div> </div></div>';
+        objTo.appendChild(newQnDiv);
+        $compile(document.getElementById('question_field' + ieQnNo))($scope);
+    }
+
+    $scope.ieUpdateFn = function() {
+        var ie = $scope.ie;
+        $http({
+                url: '/ie/api/'+$routeParams.id,
+                method: "PUT",
+                data: ie
+            })
+            .then(function(response) {
+                    console.log("SUCCESS in PUT" + JSON.stringify(ie));
+                    document.getElementById('ieQnAddSuccess').style.display = "block";
+                    $scope.ie = undefined;
+                    window.scrollTo(0, 0);
+                },
+                function(error) {
+                    console.log("FAILURE" + JSON.stringify(ie));
+                    document.getElementById('ieQnAddSuccess').style.display = "none";
+                    document.getElementById('ieQnAddFailed').style.display = "block";
+                    window.scrollTo(0, 0);
+                });
+    }
 }]);
 
 /* SAHITHI / VAMSHI END */
