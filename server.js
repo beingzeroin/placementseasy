@@ -77,7 +77,7 @@ app.get('*', function(req, res) {
 
 
 /* Express Server */
-const PORT = 3000;
+const PORT = 4000;
 app.listen(PORT, function() {
     console.log('Example app listening on port: ' + PORT);
 })

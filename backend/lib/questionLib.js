@@ -1,4 +1,10 @@
+const mongoose = require('mongoose');
+var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
+mongoose.connect(dbConnectionString);
+var db = mongoose.connection;
+
 var QuestionModel = require('../models/question');
+
 
 exports.getAllQuestions = function(req, res) {
     QuestionModel.find(req.query).exec(function(err, dbItems) {
@@ -65,6 +71,42 @@ exports.getQuestion = function(req, res) {
             res.status(200).send(cObj);
     });
 };
+
+
+exports.searchAllQuestions = function(req, res) 
+{
+    var output=[];
+    console.log("Getting Group " + req.params.id);
+    //db.collection("questions").createIndex({"title":"text"});
+
+    QuestionModel.find({title:{$regex: req.params.id}},function(err, dbItems) {
+        console.log("XXXXXXXXXX" +JSON.stringify(dbItems));
+        if (err)
+            res.status(500).send(err);
+        else {
+            res.json( { items: dbItems } );
+        }
+    });
+}
+
+
+/*    QuestionModel.findById(req.params.id, function(err, cObj) {
+        // Return Object
+        if (err) {
+            QuestionModel.findOne({ 'title': req.params.title }, function(error, tObj) {
+                if (error)
+                    res.status(500).send(error);
+                else
+                    res.status(200).send(tObj);
+            });
+
+        } else
+            res.status(200).send(cObj);
+    });*/
+
+
+
+
 
 exports.deleteQuestion = function(req, res) {
 

@@ -109,11 +109,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <label>Add QuestionId</label>
+                <label>Add Question</label>
             </div>
             <div class="col-md-9">
 
-                <input type="text" ng-model="name" class="form-control" placeholder="Enter id" />
+                <input type="text" ng-model="name" ng-keyup="complete(name)" class="form-control"  />
+                <ul class="list-group" ng-model="hidethis" ng-hide="hidethis">
+                    <li class ="list-group-item"  ng-repeat="t in final" ng-click="fillTextbox(t.title,t._id)">
+                        <h4 style="margin-top: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 5px;color:red;"><b>{{t.title}}</b></h4><p style="margin-top: 5px; margin-bottom: 5px; margin-right: 5px; margin-left: 5px; " ng-maxlength="5"  ng-bind-html="t.description.substr(0,120)">{{t.description}}</p>
+                    </li>
+                </ul>
             </div>
         </div>
         <br>
@@ -121,7 +126,7 @@
 
         <br>
 
-        <p align="center"><button class="btn btn-info" ng-click="add(name)">Add Question</button></p>
+        <p align="center"><button class="btn btn-info" ng-click="add(name,id)">Add Question</button></p>
     </div><br>
 
     <div class="container">
@@ -129,11 +134,9 @@
             <div class="row">
 
                 <li>
-                    <div class="col-md-3">
-                        {{ l.name }}</div>
-                    <div class="col-md-3">{{l.title}}
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3" ng-bind-html="l.title">
+                        {{ l.title }}</div>
+                    <div class="col-md-6" >
                         <button class="btn btn-danger" ng-click="Delete($index)">Delete</button><br>
                     </div>
                 </li>

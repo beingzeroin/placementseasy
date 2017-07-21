@@ -22,9 +22,13 @@ router.route('/api')
     .get(questionLib.getAllQuestions)
     .post(questionLib.createQuestion);
 
+router.route('/search/:id')
+    .get(questionLib.searchAllQuestions);
+
+
 router.route('/api/:id')
     .get(questionLib.getQuestion)
     .delete(questionLib.deleteQuestion)
-	.put(questionLib.editQuestion)
+    .put(questionLib.editQuestion)
 
 module.exports = router;

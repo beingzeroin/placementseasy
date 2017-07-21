@@ -1,8 +1,8 @@
 var authorTest = require('../models/authorTest');
-
+var body = require('body-parser');
 exports.getAllTemplates = function(req, res) {
     authorTest.find(req.query).populate('users').exec(function(err, dbItems) {
-        //console.log(dbItems);
+        console.log(dbItems);
         if (err)
             res.status(500).send(err);
         else {
@@ -12,7 +12,7 @@ exports.getAllTemplates = function(req, res) {
 };
 
 exports.createTemplate = function(req, res) {
-    //console.log(req.body);
+    console.log("\n\nbody:"+req.body);
     var ti = new authorTest(req.body);
     ti.save(function(err) {
         if (err)

@@ -1100,10 +1100,11 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
     $scope.time1 = new Date();
     $scope.list = [];
     $scope.listDb = [];
-    $scope.authorTest = function() {
 
 
-        $scope.a.questions = $scope.listDb;
+    $scope.authorTest = function() 
+    {
+     $scope.a.questions = $scope.listDb;
         var a = $scope.a;
 
 
@@ -1116,24 +1117,50 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                     console.log("SUCCESS" + JSON.stringify(a));
                 },
                 function(error) {
-                    console.log("FAILURE" + JSON.stringify(a));
+                    console.log("FAILURE" +error);
                 });
     }
-
-
-
+    
     $scope.Delete = function(index) {
         $scope.list.splice(index, 1);
         $scope.listDb.splice(index, 1);
 
     }
 
+    //$scope.list=["Divya","Abc","fgh"];
 
-
-    $scope.add = function(questionId) {
-        $scope.name = questionId;
+    $scope.complete = function(ques) 
+    {
+       //  var out=[];
+       /*  angular.forEach($scope.list, function(name)
+         {
+            out.push(name);
+         })
+         $scope.final = out;
+*/
         $http({
-                url: '/question/api/' + questionId,
+                url: '/question/search/'+ques, 
+                method: "GET"
+            }).then(function(response) {
+               $scope.hidethis = false;
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.final = response.data.items;
+            },
+            function(error) {
+                console.log("FAILURE");
+            });
+    }
+    $scope.fillTextbox = function(string1,string2)
+    {
+        $scope.name = string1;
+        $scope.id=string2;
+        $scope.hidethis = true;
+    }
+    $scope.add = function(name,id) 
+    {
+        $scope.name = id;
+        $http({
+                url: '/question/api/' + id,
                 method: "GET",
             })
             .then(function(response) {
@@ -1163,7 +1190,13 @@ peMod.controller('authorTestCtrl', ['$http', '$scope', function($http, $scope) {
                 function(error) {
                     console.log("FAILURE IN GET in finding the question with id:" + questionId + JSON.stringify(qn));
                 });
+
+
     }
+
+
+
+
 
 
 
