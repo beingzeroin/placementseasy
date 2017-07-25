@@ -8,7 +8,7 @@ peMod.config(function($routeProvider) {
     .when('/login', {
             templateUrl: '/partials/login.html',
             controller: 'peasyCtrl'
-        })
+        }) 
         .when('/movies', {
             templateUrl: '/partials/movies.html',
             controller: 'moviesCtrl'
@@ -207,19 +207,6 @@ peMod.controller('compayWiseCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 peMod.controller('leaderCtrl', ['$scope', '$http', function($scope, $http) {
-    /*  $scope.func =function(){
-      var qid = $scope.qid;
-      if(qid)
-      {
-        
-          var url='/leaderboard/api' + qid
-          $http.get(url).then(function(response){
-              $scope.details = response.data
-          },function(err){
-              $scope.error = err
-          })
-          }
-      }*/
 
     $http.get('/leaderboard/api')
         .then(function(response) {
@@ -383,10 +370,34 @@ peMod.controller('viewhistoryCtrl', ['$http', '$scope', function($http, $scope) 
 }]);
 /* SATYA END*/
 
-peMod.controller('dashboardCtrl', function($scope, $localStorage) {
+peMod.controller('dashboardCtrl', function($scope, $location, $http, $localStorage, myService)
+{
+    
+   $scope.quiz_details = {};
     if ($localStorage.currentUser)
         $scope.user = $localStorage.currentUser.username;
 
+    $http({
+            url: '/authorTest/api',
+            method: "GET",
+
+
+        })
+        .then(function(response) {
+                console.log("SUCCESS" + JSON.stringify(response.data));
+                $scope.data = response.data.items;
+            },
+            function(error) {
+                console.log("FAILURE");
+            });
+    $scope.fun = function(id)
+    {
+        //console.log("\n\nid:\n\n"+id);
+        myService.set(id);
+        $location.path('/takeQuiz');
+
+    }   
+  
 });
 
 /* AJAY START */
@@ -464,9 +475,24 @@ peMod.controller('attemptQuizCtrl', function($scope, $http) {
 
 });
 
-peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
+peMod.controller('takeQuizCtrl', function($scope, $http, helperService,myService) {
     $scope.quizName = '/data/csharp-quiz-data.json';
+    var id = myService.get();
+    console.log("\n\nid in takeQuizCtrl id:"+id);
+     $scope.lleader={}
+       // console.log("hello from init")
+        $http(
+                {
+                    url:'/submitQuiz/abc/'+id,
+                    method:'GET'
 
+
+                }).then(function(response){
+
+                    
+                    $scope.lleader = response.data
+                    console.log(JSON.stringify($scope.lleader))
+                })
     //Note: Only those configs are functional which is documented at: http://www.codeproject.com/Articles/860024/Quiz-Application-in-AngularJs
     // Others are work in progress.
     $scope.defaultConfig = {
@@ -481,7 +507,7 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
         'shuffleOptions': false,
         'showClock': false,
         'showPager': true,
-        'theme': 'none'
+        'theme': 'none' 
     }
 
     $scope.goTo = function(index) {
@@ -489,7 +515,7 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
             $scope.currentPage = index;
             $scope.mode = 'quiz';
         }
-    }
+    }   
 
     $scope.onSelect = function(question, option) {
         if (question.QuestionTypeId == 1) {
@@ -497,18 +523,23 @@ peMod.controller('takeQuizCtrl', function($scope, $http, helperService) {
                 if (element.Id != option.Id) {
                     element.Selected = false;
                     question.Answered = element.Id;
-                }
+                }  
             });
         }
 
         if ($scope.config.autoMove == true && $scope.currentPage < $scope.totalItems)
             $scope.currentPage++;
-    }
+    } 
 
-    $scope.onSubmit = function() {
+  
+    
+
+
+     $scope.onSubmit = function() {
 
         var myobj = {};
-        var answers = [];
+        var answers = [];  
+       
 
         $scope.questions.forEach(function(q, index) {
             answers.push({

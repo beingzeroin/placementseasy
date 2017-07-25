@@ -18,7 +18,7 @@ const historyofTestsRouter = require('./backend/routes/historyofTestsRoutes')
 const leaderRouter = require('./backend/routes/leaderRoute')
 const movieRoutes = require('./backend/routes/movieRoutes')
 
-var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost/peasy';
+var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost:27017/peasy';
 
 if (dbConnectionString === 'mongodb://localhost/peasy')
     console.log('Using Local Database');

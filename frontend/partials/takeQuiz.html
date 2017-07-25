@@ -1,3 +1,6 @@
+<div ng-controller="takeQuizCtrl" ng-init="init()">
+    <div class="row">
+        <div class="col-md-9">    
     <div class="header">
     <div class="row">
         <div class="col-md-8">
@@ -83,4 +86,32 @@
         <button class="btn btn-default" ng-click="onSubmit();">Submit Quiz</button>
     </div>
 </div>
+        
+        </div>
+            <h2 style="text-align:center">LEADERBOARD</h2>
+            <div class="col-md-3" >
+            <table class="table table-bordered table-striped">
+            <thead>
+                <thead>
+                    <tr>
+                        <th>SR</th>
+                        <th>NAME</th>
+                        <th>SCORE</th>
+                    </tr>
+                    <tr ng-repeat="x in lleader">
+                        <td>{{$index+1}}</td>
+                        <td>{{x._id}}</td>
+                        <td>{{x.score}}</td>
+                    </tr>
+                </thead>
+            </table>
+            </div>
+
+    </div>
+    <div class="">
+        <div class="col-md-3">
+        </div>
+    </div>
+
+  </div>       
     

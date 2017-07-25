@@ -1,6 +1,6 @@
 var express = require('express')
 var router =express.Router();
-var quizinfo = require('../models/submitmodel')
+var submitQuizModel = require('../models/submitQuizModel')
 var body = require('body-parser')
 var mongoose = require('mongoose')
 var dbConnectionString = process.env.PEASY_DB || 'mongodb://localhost:27017/peasy';
@@ -10,7 +10,7 @@ var db = mongoose.connection;
 
 router.route('/api')
     .get(function(req,res){
-        db.collection('quizzes').aggregate({$group:{_id:"$userid",score:{$sum:"$score"}}},{$sort:{score:-1}},
+        submitQuizModel.aggregate({$group:{_id:"$UserId",score:{$sum:"$score"}}},{$sort:{score:-1}},
         function(err,results){
             if(err)
                 res.send("error occured")
@@ -20,7 +20,7 @@ router.route('/api')
        
     })
     .post(function(req,res){
-        var l = new quizinfo(req.body)
+        var l = new submitQuizModel(req.body)
         l.save(function(err, obj){
             if(err)
                 res.send('error while saving');
@@ -30,7 +30,7 @@ router.route('/api')
         })
 
     })
-router.route('/api/:id')
+/*router.route('/api/:id')
     .get(function(req,res){
         db.collection('quizzes').aggregate({$match:{quizid:req.params.id}},{$group:{_id:"$userid",score:{$sum:"$score"}}},{$sort:{score:-1}},
         function(err,results){
@@ -41,5 +41,5 @@ router.route('/api/:id')
         })
     })
 
-    
+*/    
 module.exports = router

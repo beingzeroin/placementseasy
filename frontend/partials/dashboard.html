@@ -2,6 +2,49 @@
     <h1>Welcome {{user}}!!</h1>
     <p>You're logged in!!</p>
     <p><a class="btn btn-danger" ng-click="logoutFn()">Logout</a></p>
+
+</div>
+<br><br><br><br><br><br><br>
+<div>
+<h1>SHOWING ALL CONTESTS</h1>
+
+<div class="row">
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="col-md-1">SR </th>
+                    <th class="col-md-1">ID</th>
+                    <th class="col-md-1">Title </th>
+                    <th class="col-md-1">Company</th>
+                    <th class="col-md-1">Date</th>
+                    <th class="col-md-1">Start Time</th>
+                    <th class="col-md-1">End Time</th>  
+                   </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="d in data | filter:searchFilter ">
+                        <td>{{$index + 1}}</td>
+                        <td><a ng-click="fun(d._id)" href="">{{d._id}}</a></td>
+                        <td>{{d.Test_Title}} </td>
+                        <td> {{d.company}}</td>
+                        <td>{{d.DateExam}} </td>
+                        <td>{{d.start_time}} </td>
+                        <td>{{d.end_time}}</td>
+                       <!-- <td><a href="#!/contestEditPreFilled/{{d._id}}">EDIT</a></td>-->
+                        
+                       <!-- <td><button class="btn btn-danger" ng-click="deleteQuestionFn(qn._id)">DELETE</button></td> -->
+                    </tr>
+                </tbody>
+            
+        </table>
+    </div>
+</div>
 </div>
 <div ng-hide="user" class="col-md-6 col-md-offset-3">
     <p>You're not logged in!!</p>
